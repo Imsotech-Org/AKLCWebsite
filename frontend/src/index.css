@@ -26,6 +26,9 @@ header{
   padding: 1rem 1rem;
   background-color: var(--main-background);
   position: relative;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
 }
 
 ul{
@@ -72,6 +75,7 @@ ul{
   padding: 1.5rem 1rem;
   width: 13rem;
   border-radius: 10px 0 0 10px;
+  z-index: 999;
 }
 .mobile-nav-items li {
   padding: 0.5rem 0;
@@ -308,6 +312,49 @@ ul{
   margin-top: 1rem;
   margin-bottom: 3rem;
   color: var(--ternary-color);
+}
+
+
+.footerContainer{
+  background-color: var(--primary-color);
+  color: var(--main-background);
+}
+.footerNavLinks{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.footerLink{
+  text-decoration: none;
+  color: var(--main-background);
+}
+.footerLinkInfo{
+  display: inline-block;
+  margin: 1rem 3rem 1rem 3rem;
+}
+.footerLinkInfo h5{
+  font-size: 1.5rem;
+}
+
+.footerMoreInfo{
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+  padding-left: 2rem;
+  overflow: auto;
+}
+.footerMoreInfo img{
+  float: left;
+}
+.footerMoreInfoRight p {
+  font-size: 0.9rem;
+  width: 60%;
+  margin-left: 15rem;
+}
+.footerMoreInfoRightLinks{
+  display: flex;
+  justify-content: space-between;
+  padding: 3.5rem 1rem 0rem 5rem;
+  bottom: 0;
+  right: 0;
 }
 
 

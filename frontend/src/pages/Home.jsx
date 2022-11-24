@@ -23,7 +23,7 @@ const Home = () => {
   ];
 
   return (
-    <div>
+    <div style={{paddingTop: '5.5rem'}}>
       <div className='containerStyle'>
         <ImageSlider slides={slides}/>
       </div>

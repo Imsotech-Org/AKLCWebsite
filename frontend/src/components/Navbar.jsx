@@ -45,7 +45,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="credential-nav">
+      <div className="credential-nav" style={{marginRight: '2rem'}}>
         <ul>
           <li>
             <Link className='navbar-item' to='/credentials'>Sign Up</Link>
@@ -58,7 +58,7 @@ const Navbar = () => {
 
       <div className="mobile-nav">
         {
-          mobileNav ? (<MdClose onClick={openMenu} style={{height: '2.7rem', width: '2.7rem'}} className='navbar-item' id='nav-burger' />) : (<SlMenu onClick={openMenu} style={{height: '2rem', width: '2rem'}} className='navbar-item' id='nav-burger' />)
+          mobileNav ? (<MdClose onClick={openMenu} style={{height: '2.7rem', width: '2.7rem', marginRight: '2rem'}} className='navbar-item' id='nav-burger' />) : (<SlMenu onClick={openMenu} style={{height: '2rem', width: '2rem', marginRight: '2rem'}} className='navbar-item' id='nav-burger' />)
         }
         <div className="mobile-nav-items" style={{display: mobileNav ? '' : 'none'}}>
           <ul>
