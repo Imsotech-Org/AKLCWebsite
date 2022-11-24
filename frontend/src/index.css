@@ -294,6 +294,21 @@ ul{
 }
 
 
+.testimonialsItemContainer{
+  width: 24rem;
+  margin: 5rem 2rem 4rem 2rem;
+  display: inline-block;
+}
+.testimonialsItemHeader p{
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.3rem;
+}
+.testimonialsItemStars {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  color: var(--ternary-color);
+}
 
 
 @media only screen and (max-width: 1255px) {
