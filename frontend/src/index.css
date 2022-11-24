@@ -1,13 +1,219 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  --primary-color: #363d10;
+  --secondary-color: #879635;
+  --ternary-color: #502c49;
+  --main-background: #F3F1F3;
+  --primary-font: 'Josefin Sans', sans-serif;
+  --secondary-font: 'Cormorant', serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  font-family: var(--primary-font);
+  margin: 0;
+}
+
+body {
+  background-color: var(--main-background);
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+  background-color: var(--main-background);
+  position: relative;
+}
+
+ul{
+  list-style: none;
+}
+
+.center-items ul,.credential-nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.center-items ul li,.credential-nav ul li {
+  padding: 0 1rem;
+}
+
+.navbar-item {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.navbar-item:hover {
+  color: var(--secondary-color);
+}
+.navbar-item-active {
+  color: var(--secondary-color);
+}
+
+#nav-burger:hover{
+  cursor: pointer;
+}
+
+.mobile-nav{
+  display: none;
+}
+.mobile-nav-items{
+  background-color: var(--secondary-color);
+  box-shadow: 20px 10px 30px rgba(61, 61, 61, 0.464);
+  position: absolute;
+  right: 0rem;
+  padding: 1.5rem 1rem;
+  width: 13rem;
+  border-radius: 10px 0 0 10px;
+}
+.mobile-nav-items li {
+  padding: 0.5rem 0;
+}
+.mobile-nav-item{
+  color: var(--main-background);
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.mobile-nav-item:hover{
+  color: var(--primary-color);
+}
+
+.containerStyle{
+  width: 100%;
+  height: 47rem;
+  margin: 0 auto;
+}
+
+.sliderStyle{
+  height: 100%;
+  position: relative;
+}
+
+.slideStyle{
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  /* background-size: contain; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(40%);
+  background-color: var(--secondary-color);
+}
+
+.leftArrowStyle {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 32px;
+  font-size: 5rem;
+  color: var(--main-background);
+  z-index: 1;
+  cursor: pointer;
+}
+.leftArrowStyle:hover{
+  color: var(--primary-color);
+}
+
+.rightArrowStyle {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 32px;
+  font-size: 5rem;
+  color: var(--main-background);
+  z-index: 1;
+  cursor: pointer;
+}
+.rightArrowStyle:hover{
+  color: var(--primary-color);
+}
+
+.slideQuote{
+  font-size: 3rem;
+  color: var(--main-background);
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 60%;
+  z-index: 1;
+}
+.slideQuoteAuth{
+  font-size: 0.8rem;
+  color: var(--main-background);
+  position: absolute;
+  top: 60%;
+  right: 50%;
+  transform: translate(51%, -50%);
+  width: 60%;
+  z-index: 1;
+}
+
+.subscribeContainer{
+  background-color: var(--ternary-color);
+  color: var(--main-background);
+  text-align: center;
+  height: 22rem;
+}
+.subscribeContainer h2{
+  font-size: 49px;
+  padding-top: 2.5rem;
+}
+.subscribeContainer h4{
+  font-size: 24px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.subscribeContainer input{
+  width: 38rem;
+  height: 3rem;
+  border: none;
+  border-radius: 30px;
+  margin: 0.9rem;
+  padding-left: 1rem;
+}
+.subscribeContainer #email{
+  position: relative;
+}
+.subscribeButton{
+  position: absolute;
+  color: var(--ternary-color);
+  z-index: 1;
+  margin-left: -60px;
+  margin-top: 25px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.subscribeButton:hover{
+  color: var(--secondary-color);
+}
+
+.benefitsContainer{
+  background-color: var(--primary-color);
+  color: var(--main-background);
+  text-align: center;
+  height: 35rem;
+}
+.benefitsContainer h2 {
+  font-size: 49px;
+  padding-top: 2.5rem;
+}
+
+
+@media only screen and (max-width: 1255px) {
+  .center-items, .credential-nav {
+    display: none;
+  }
+  .mobile-nav{
+    display: block;
+  }
 }
