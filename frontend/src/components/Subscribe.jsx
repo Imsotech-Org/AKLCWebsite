@@ -1,9 +1,9 @@
 import React from 'react';
 import {BsArrowRight} from 'react-icons/bs';
 
-const Subscribe = () => {
+const Subscribe = ({ color }) => {
   return (
-    <div className='subscribeContainer'>
+    <div className='subscribeContainer' style={{backgroundColor: color ? color : '#502c49'}}>
       <h2>Subscribe to newsletter</h2>
       <h4>Join our newsletter for weekly health tips and podcasts</h4>
       <input type="text" name='name' id='name' placeholder='Name'/><br></br>

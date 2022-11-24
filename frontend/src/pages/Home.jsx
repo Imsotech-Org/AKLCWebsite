@@ -2,6 +2,9 @@ import React from 'react';
 import ImageSlider from '../components/ImageSlider';
 import Subscribe from '../components/Subscribe';
 import Benefits from '../components/Benefits';
+import ProgramsComponent from '../components/ProgramsComponent';
+import Testimonials from '../components/Testimonials';
+import Footer from '../components/Footer';
 import img1 from '../assets/media/img1.jpg';
 import img2 from '../assets/media/img2.jpg';
 import img3 from '../assets/media/img3.jpg';
@@ -24,8 +27,12 @@ const Home = () => {
       <div className='containerStyle'>
         <ImageSlider slides={slides}/>
       </div>
-      <Subscribe/>
+      <Subscribe color='#879635'/>
       <Benefits/>
+      <ProgramsComponent/>
+      <Testimonials/>
+      <Subscribe/>
+      <Footer/>
     </div>
   )
 }
