@@ -315,6 +315,127 @@ ul{
 }
 
 
+
+.successContainer{
+  background-color: var(--secondary-color);
+  color: var(--main-background);
+  text-align: center;
+  padding: 2rem;
+}
+.successContainer h2 {
+  font-size: 2.8rem;
+  padding-top: 2.5rem;
+  margin-bottom: 4rem;
+}
+.successImpact{
+  width: 29rem;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.successImpact h4{
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+  text-align: left;
+}
+.successImpact p{
+  text-align: left;
+  font-size: 1.3rem;
+}
+.successImage{
+  width: 29rem;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.successImage img{
+  width: 90%;
+  height: 100%;
+  border-radius: 10px;
+  filter: opacity(70%);
+}
+.successAccomplishments{
+  width: 29rem;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2rem;
+}
+.successAccomplishments h4{
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+  text-align: left;
+}
+.successAccomplishments p{
+  text-align: left;
+  font-size: 1.3rem;
+}
+
+
+.reccomendationsContainer{
+  background-color: var(--main-background);
+  color: var(--primary-color);
+  text-align: center;
+}
+.reccomendationsItems{
+  /* display: flex; */
+  padding: 4rem 2rem;
+  /* justify-content: space-between; */
+}
+.reccomendations{
+  width: 30rem;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.reccomendations h4{
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+  text-align: left;
+}
+.reccomendations p {
+  text-align: left;
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+}
+.reccomendationsQuotes{
+  width: 30rem;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.reccomendationsQuotes h4{
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+  text-align: left;
+}
+.reccomendationsQuotes p{
+  text-align: left;
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+}
+.reccomendationsImage{
+  width: 30rem;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.reccomendationsImage img{
+  width: 90%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+
+
 .footerContainer{
   background-color: var(--primary-color);
   color: var(--main-background);
