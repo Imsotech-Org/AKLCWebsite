@@ -21,17 +21,47 @@ const Programs = () => {
     {url: img6, title: 'Image 6'}
   ];
 
+  const programs = [
+    {
+      title: '67 Transformational Program',
+      image: img1,
+      price: 99,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci sem, consectetur id ullamcorper eu, venenatis feugiat metus. Nunc sed ullamcorper lectus, vel lacinia sem. In ullamcorper fermentum risus nec finibus. ',
+      topics: ['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet']
+    },
+    {
+      title: 'Annual One-On-One Training and Support',
+      image: img1,
+      price: 199,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci sem, consectetur id ullamcorper eu, venenatis feugiat metus. Nunc sed ullamcorper lectus, vel lacinia sem. In ullamcorper fermentum risus nec finibus. ',
+      topics: ['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet']
+    },
+    {
+      title: 'The Foundations for Health, Fitness and Longevity',
+      image: img1,
+      price: 299,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci sem, consectetur id ullamcorper eu, venenatis feugiat metus. Nunc sed ullamcorper lectus, vel lacinia sem. In ullamcorper fermentum risus nec finibus. ',
+      topics: ['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet']
+    },
+    {
+      title: 'Membership Program',
+      image: img1,
+      price: 399,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci sem, consectetur id ullamcorper eu, venenatis feugiat metus. Nunc sed ullamcorper lectus, vel lacinia sem. In ullamcorper fermentum risus nec finibus. ',
+      topics: ['Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet']
+    },
+  ];
+
   return (
     <div style={{paddingTop: '5.5rem'}}>
       <div className='containerStyle'>
         <ImageSlider slides={slides} showQuotes={false}/>
       </div>
       <Subscribe/>
-      <h2>Products and Programs</h2>
-      <Product/>
-      <Product/>
-      <Product/>
-      <Product/>
+      <h2 style={{textAlign: 'center', fontSize: '49px', paddingTop: '2.5rem'}}>Products and Programs</h2>
+      {
+        programs.map((item, index) => <Product item={item} index={index}/>)
+      }
       <Footer/>
     </div>
   )

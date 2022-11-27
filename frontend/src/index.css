@@ -434,6 +434,42 @@ ul{
   border-radius: 50%;
 }
 
+.productContainer{
+  padding: 5rem 4rem 6rem 8rem;
+  overflow: auto;
+}
+.productContainer img {
+  width: 20rem;
+  height: 23rem;
+  border-radius: 20px;
+  margin-right: 10rem;
+  float: left;
+  overflow: auto;
+}
+.productInfo{
+  display: inline-block;
+  width: 48rem;
+  
+}
+.productInfo h3 {
+  font-size: 40px;
+  margin-bottom: 3rem;
+  width: 70%;
+}
+.productInfo h4 {
+  font-size: 36px;
+  margin-left: 8rem;
+}
+.productInfo p {
+  color: var(--secondary-color);
+  font-size: 20px;
+  margin-bottom: 3rem;
+}
+.productInfo ul {
+  font-size: 20px;
+  color: #502c49;
+}
+
 
 
 .footerContainer{
