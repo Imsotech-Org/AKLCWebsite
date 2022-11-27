@@ -9,8 +9,7 @@ const About = () => {
     <div style={{paddingTop: '5.5rem'}}>
       <div className="containerStyle">
         <div className='sliderStyle'>
-          <div className='slideQuote'>"I am not concerned that you have fallen. I am concerned that you will rise"</div>
-          <div className='slideQuoteAuth'>-Abraham Lincoln</div>
+          <div className='slideQuote'>"I am not concerned that you have fallen. I am concerned that you will rise"<div className='slideQuoteAuth'>-Abraham Lincoln</div></div>
           <div className='slideStyle' style={{backgroundImage: `url(${img5})`}}></div>
         </div>
       </div>

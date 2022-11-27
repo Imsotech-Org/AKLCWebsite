@@ -154,19 +154,13 @@ ul{
 .slideQuoteAuth{
   font-size: 0.8rem;
   color: var(--main-background);
-  position: absolute;
-  top: 60%;
-  right: 50%;
-  transform: translate(51%, -50%);
-  width: 60%;
-  z-index: 1;
+  margin-top: 1rem;
 }
 
 .subscribeContainer{
   background-color: var(--ternary-color);
   color: var(--main-background);
   text-align: center;
-  height: 22rem;
 }
 .subscribeContainer h2{
   font-size: 49px;
@@ -178,7 +172,7 @@ ul{
   padding-bottom: 1rem;
 }
 .subscribeContainer input{
-  width: 38rem;
+  width: 40rem;
   height: 3rem;
   border: none;
   border-radius: 30px;
@@ -484,19 +478,20 @@ ul{
   text-decoration: none;
   color: var(--main-background);
 }
+
 .footerLinkInfo{
   display: inline-block;
   margin: 1rem 3rem 1rem 3rem;
 }
 .footerLinkInfo h5{
   font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .footerMoreInfo{
   margin-top: 3rem;
   padding-bottom: 3rem;
   padding-left: 2rem;
-  overflow: auto;
 }
 .footerMoreInfo img{
   float: left;
@@ -521,5 +516,53 @@ ul{
   }
   .mobile-nav{
     display: block;
+  }
+}
+
+@media only screen and (max-width: 725px) {
+  .subscribeContainer input{
+    width: 90%;
+  }
+  .slideQuote {
+    font-size: 1.8rem;
+    line-height: 2rem;
+  }
+  .rightArrowStyle{
+    right: 0px
+  }
+  .leftArrowStyle{
+    left: 0px
+  }
+  .footerMoreInfo img{
+    display: inline;
+    float:unset;
+    width: 8rem;
+
+  }
+  .footerMoreInfoRight p {
+    width: 100%;
+    margin-left: 0;
+  }
+  .footerMoreInfoRightLinks{
+    display: flex;
+    justify-content: space-between;
+    padding: 3.5rem 1rem 0rem 0rem;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+@media only screen and (max-width: 467px) {
+  .subscribeButton{
+    position: absolute;
+    color: var(--ternary-color);
+    z-index: 1;
+    bottom: -38%;
+    right: 30px;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .testimonialsItemContainer{
+    width: 15rem;
   }
 }

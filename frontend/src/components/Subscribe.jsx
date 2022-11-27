@@ -7,7 +7,7 @@ const Subscribe = ({ color }) => {
       <h2>Subscribe to newsletter</h2>
       <h4>Join our newsletter for weekly health tips and podcasts</h4>
       <input type="text" name='name' id='name' placeholder='Name'/><br></br>
-      <input type="email" name='email' id='email' placeholder='Email'/>
+      <input style={{marginBottom: '3rem'}} type="email" name='email' id='email' placeholder='Email'/>
       <BsArrowRight className='subscribeButton'/>
     </div>
   )
