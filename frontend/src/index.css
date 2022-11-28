@@ -506,6 +506,70 @@ ul{
 }
 
 
+.podcastHeader{
+  display: flex;
+  margin-top: 5rem;
+}
+.subscribePodcastContainer{
+  margin-left: 6rem;
+  margin-right: 4rem;
+  margin-top: 1rem;
+  width: 25rem;
+  color: #363d10;
+}
+.subscribePodcastContainer h3{
+  font-size: 1.5rem; 
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.subscribePodcastContainer p{
+  font-size: 1.3rem;
+}
+.subscribePodcastContainer hr{
+  margin-top: 1rem; 
+  margin-bottom: 0.5rem;
+}
+.aboutPodcast{
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-top: 1rem;
+  width: 40rem;
+  background-color: lightgrey;
+  border-radius: 10px; 
+  padding: 2rem;
+}
+.aboutPodcast h4{
+  color: #363d10;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.aboutPodcast p{
+  margin-left: 1.5rem;
+  color: #879635;
+  line-height: 1.2rem;
+}
+.podcastList{
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-top: 5rem;
+  text-align: center;
+}
+.podcastList h4{
+  color: #363d10;
+  font-size: 2rem;
+}
+.podcastPod{
+  width: 45rem;
+  height: 2.5rem; 
+  margin: 2rem auto;
+  border: 2px solid #363d10; 
+  border-radius: 10px;
+  text-align: left;
+}
+.podcastPod h5 {
+  padding: 1rem 0 0.5rem 2rem;
+}
+
 
 .footerContainer{
   background-color: var(--primary-color);
@@ -588,6 +652,21 @@ ul{
   }
 }
 
+@media only screen and (max-width: 835px) {
+  .podcastHeader{
+    display: block;
+  }
+  .subscribePodcastContainer{
+    margin-bottom: 2rem;
+  }
+  .aboutPodcast{
+    width: 75%;
+  }
+  .podcastPod{
+    width: 96%;
+  }
+}
+
 @media only screen and (max-width: 725px) {
   .subscribeContainer input{
     width: 90%;
@@ -622,6 +701,10 @@ ul{
   .videoContainer img {
     width: 85%;
   }
+  .podcastHeader{
+    margin-left: -2rem;
+    margin-right: 1.5rem;
+  }
 }
 
 @media only screen and (max-width: 467px) {
@@ -636,5 +719,9 @@ ul{
   }
   .testimonialsItemContainer{
     width: 15rem;
+  }
+  .podcastHeader{
+    margin-left: -3rem;
+    margin-right: 3rem;
   }
 }
