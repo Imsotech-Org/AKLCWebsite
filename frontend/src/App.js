@@ -10,6 +10,7 @@ import Payment from './pages/Payment';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Blog from './pages/Blog';
 import Podcast from './pages/Podcast';
+import Videos from './pages/Videos';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path='/about' element={<About/>}/>
             <Route path='/programs' element={<Programs/>}/>
             <Route path='/blog' element={<Blog/>}/>
+            <Route path='/videos' element={<Videos/>}/>
             <Route path='/podcast' element={<Podcast/>}/>
             <Route path='/credentials' element={<Credentials/>}/>
             <Route path='/profile' element={<Profile/>}/>
