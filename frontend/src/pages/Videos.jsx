@@ -8,6 +8,7 @@ import img6 from '../assets/media/img6.JPG';
 import ImageSlider from '../components/ImageSlider';
 import Subscribe from '../components/Subscribe';
 import Footer from '../components/Footer';
+import VideosItem from '../components/VideosItem';
 
 const Videos = () => {
   const slides = [
@@ -19,6 +20,25 @@ const Videos = () => {
     {url: img6, title: 'Image 6'}
   ];
 
+  const videos = [
+    {
+      videoUrl: '',
+      videoImage: img6,
+    },
+    {
+      videoUrl: '',
+      videoImage: img6,
+    },
+    {
+      videoUrl: '',
+      videoImage: img6,
+    },
+    {
+      videoUrl: '',
+      videoImage: img6,
+    },
+  ];
+
   return (
     <div>
       <div style={{paddingTop: '5.5rem'}}>
@@ -26,7 +46,10 @@ const Videos = () => {
           <ImageSlider slides={slides} showQuotes={false}/>
         </div>
         <Subscribe color={'#363D10'}/>
-        <h2 style={{textAlign: 'center', fontSize: '49px', paddingTop: '2.5rem', color: '#363D10'}}>Videos</h2>
+        <h2 style={{textAlign: 'center', fontSize: '49px', paddingTop: '2.5rem', color: '#363D10', paddingBottom: '5rem'}}>Videos</h2>
+        {
+          videos.map((item, index) => <VideosItem item={item} index={index}/>)
+        }
         <Footer/>
       </div>
     </div>
