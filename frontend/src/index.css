@@ -571,6 +571,75 @@ ul{
 }
 
 
+.credentialsContainer{
+  padding: 5rem 15rem 3rem 15rem; 
+  display: flex;
+  color: var(--main-background);
+}
+.signIn {
+  background-color: var(--secondary-color);
+  display: inline-block;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  border-radius: 15px;
+}
+.signIn h3, .signUp h3 {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.signIn p, .signUp p{
+  margin-bottom: 2rem;
+}
+.signIn label, .signUp label {
+  display: block;
+}
+.signIn input, .signUp input {
+  width: 20rem;
+  height: 42px;
+  margin-bottom: 1rem;
+  margin-top: 0.2rem;
+  border-radius: 15px;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--ternary-color);
+  padding-left: 0.5rem;
+}
+.signIn button, .signUp button {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  background-color: var(--ternary-color);
+  color: var(--main-background);
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.signIn button:hover{
+  background-color: var(--primary-color);
+  transform: scale(105%);
+}
+.signUp button:hover {
+  background-color: var(--secondary-color);
+  transform: scale(105%);
+}
+.divider{
+  background-color: var(--ternary-color);
+  height: 35rem;
+  width: 0.5rem; 
+  margin: auto auto;
+  border-radius: 10rem;
+}
+.signUp{
+  background-color: var(--primary-color);
+  display: inline-block;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  border-radius: 15px;
+}
+
+
 .footerContainer{
   background-color: var(--primary-color);
   color: var(--main-background);
