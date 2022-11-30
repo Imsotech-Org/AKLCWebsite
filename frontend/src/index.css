@@ -596,7 +596,7 @@ ul{
 }
 .signIn input, .signUp input {
   width: 20rem;
-  height: 42px;
+  height: 2.7rem;
   margin-bottom: 1rem;
   margin-top: 0.2rem;
   border-radius: 15px;
@@ -637,6 +637,113 @@ ul{
   margin: 0 auto;
   padding: 3rem 2rem;
   border-radius: 15px;
+}
+
+
+.paymentContainer{
+  padding: 5.5rem 14rem;
+  display: flex;
+  justify-content: space-between;
+}
+.shoppingInfo {
+  margin-top: 4rem;
+}
+.shoppingInfo h3, .shoppingList h3 {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+}
+.shoppingInfo p {
+  color: var(--secondary-color);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.shoppingInfo label{
+  display: block;
+  color: var(--secondary-color);
+}
+.shoppingInfo input {
+  width: 27rem;
+  height: 2.7rem;
+  background: #F3F1F3;
+  border: 1px solid #363D10;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  margin-top: 0.2rem;
+}
+.shoppingInfo button {
+  width: 411px;
+  height: 45px;
+  background-color: var(--primary-color);
+  color: var(--main-background);
+  font-size: 1.4rem;
+  text-align: center;
+  border-radius: 15px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+.shoppingInfo button:hover {
+  background-color: var(--secondary-color);
+  transform: scale(105%);
+}
+.shoppingList {
+  margin-top: 4rem;
+}
+.shoppingItemsList{
+  background-color: lightGrey;
+  width: 28rem;
+  border-radius: 15px;
+  padding: 1rem;
+}
+.shoppingItemsList .shoppingItemsTotal {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6rem;
+  margin-bottom: 1rem;
+}
+
+.differentPayments {
+  background: #F3F1F3;
+  border: 1px solid #363D10;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  padding: 1rem;
+}
+.differentPaymentsItems{
+  width: 7rem;
+  height: 7rem;
+}
+
+.outerShoppingItemContainer hr{
+  background-color: var(--primary-color);
+  margin: 0.5rem 0 1rem 0;
+  height: 0.09rem;
+  border: none;
+}
+.shoppingItemInfoMain h4 {
+  color: var(--primary-color);
+}
+.shoppingItemInfoMain{
+  display: flex;
+  justify-content: space-between;
+}
+.shoppingItemInfo p {
+  color: var(--secondary-color);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+.shoppingItemContainer{
+  overflow: auto;
+}
+.shoppingItemContainer img {
+  width: 4rem;
+  float: left;
+  overflow: auto;
+  border-radius: 15px;
+  margin-right: 1rem;
 }
 
 
