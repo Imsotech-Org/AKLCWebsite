@@ -1,10 +1,10 @@
 import React from 'react';
 import ProgramItem from './ProgramItem';
 
-const ProgramsComponent = () => {
+const ProgramsComponent = ({title = 'Programs and Resources'}) => {
   return (
     <div className='programsContainer'>
-      <h2>Programs and Resources</h2>
+      <h2>{title}</h2>
       <ProgramItem programName={'67 Transformational Program'} programPrice={99}/>
       <ProgramItem programName={'Annual One-On-One Training and Support'} programPrice={199}/>
       <ProgramItem programName={'The Foundations for Health, Fitness and Longevity'} programPrice={99}/>
