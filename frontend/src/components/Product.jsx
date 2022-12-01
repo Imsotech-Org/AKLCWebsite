@@ -61,6 +61,7 @@ const Product = ({item, index}) => {
         <ul style={{color: liColor(index)}}>
           {item.topics.map((topic) => <li style={{display: 'inline-block', margin: '0 2rem 2rem 0'}}>· {topic}</li>)}
         </ul>
+        <button>Subscribe</button>
       </div>
     </div>
   )

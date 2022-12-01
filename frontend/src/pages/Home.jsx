@@ -27,11 +27,11 @@ const Home = () => {
       <div className='containerStyle'>
         <ImageSlider slides={slides}/>
       </div>
-      <Subscribe color='#879635'/>
+      <Subscribe color='#363d10'/>
       <Benefits/>
       <ProgramsComponent/>
       <Testimonials/>
-      <Subscribe/>
+      <Subscribe color='#363d10'/>
       <Footer/>
     </div>
   )

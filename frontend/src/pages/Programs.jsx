@@ -57,7 +57,7 @@ const Programs = () => {
       <div className='containerStyle'>
         <ImageSlider slides={slides} showQuotes={false}/>
       </div>
-      <Subscribe/>
+      <Subscribe color='#363d10'/>
       <h2 style={{textAlign: 'center', fontSize: '49px', paddingTop: '2.5rem', color: '#363D10'}}>Products and Programs</h2>
       {
         programs.map((item, index) => <Product item={item} index={index}/>)

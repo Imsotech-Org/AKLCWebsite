@@ -4,6 +4,7 @@ import {FaUser, FaSearch} from 'react-icons/fa';
 import {SlMenu} from 'react-icons/sl';
 import {MdClose} from 'react-icons/md';
 import Logo1 from '../assets/media/logo1.svg';
+import Logo3 from '../assets/media/logo3.svg';
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);
@@ -25,7 +26,8 @@ const Navbar = () => {
   return (
     <header>
       <div className="logo">
-        <img src={Logo1} alt="" />
+        <Link to='/' className='desktopLogo'><img src={Logo1} alt="" /></Link>
+        <Link to='/' className='mobileLogo'><img src={Logo3} alt="" /></Link>
       </div>
       <div className="center-items">
         <ul>

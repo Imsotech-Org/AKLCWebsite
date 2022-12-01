@@ -28,7 +28,11 @@ header{
   position: relative;
   position: fixed;
   width: 100%;
+  box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.376);
   z-index: 999;
+}
+header .mobileLogo {
+  display: none;
 }
 
 ul{
@@ -196,8 +200,8 @@ ul{
 }
 
 .benefitsContainer{
-  background-color: var(--primary-color);
-  color: var(--main-background);
+  background-color: var(--main-background);
+  color: var(--ternary-color);
   text-align: center;
   /* height: 35rem; */
 }
@@ -217,7 +221,7 @@ ul{
 }
 
 .testimonialsContainer{
-  color: var(--secondary-color);
+  color: var(--primary-color);
   text-align: center;
 }
 .testimonialsContainer h2{
@@ -302,6 +306,9 @@ ul{
   color: var(--primary-color);
   margin-bottom: 0.3rem;
 }
+.testimonialsItemHeader small{
+  color: var(--secondary-color);
+}
 .testimonialsItemStars {
   margin-top: 1rem;
   margin-bottom: 3rem;
@@ -333,6 +340,7 @@ ul{
   font-size: 2.6rem;
   margin-bottom: 3rem;
   text-align: left;
+  color: var(--ternary-color);
 }
 .successImpact p{
   text-align: left;
@@ -363,6 +371,7 @@ ul{
   font-size: 2.6rem;
   margin-bottom: 3rem;
   text-align: left;
+  color: var(--ternary-color);
 }
 .successAccomplishments p{
   text-align: left;
@@ -392,10 +401,11 @@ ul{
   font-size: 2.6rem;
   margin-bottom: 3rem;
   text-align: left;
+  color: var(--ternary-color);
 }
 .reccomendations p {
   text-align: left;
-  color: var(--secondary-color);
+  color: var(--primary-color);
   font-size: 1.3rem;
 }
 .reccomendationsQuotes{
@@ -410,10 +420,11 @@ ul{
   font-size: 2.6rem;
   margin-bottom: 3rem;
   text-align: left;
+  color: var(--ternary-color);
 }
 .reccomendationsQuotes p{
   text-align: left;
-  color: var(--secondary-color);
+  color: var(--primary-color);
   font-size: 1.3rem;
 }
 .reccomendationsImage{
@@ -462,6 +473,23 @@ ul{
 .productInfo ul {
   font-size: 20px;
   color: #502c49;
+}
+.productInfo button {
+  width: 50%;
+  height: 3rem;
+  border: none;
+  background-color: var(--ternary-color);
+  color: var(--main-background);
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.productInfo button:hover{
+  border: 2px solid var(--ternary-color);
+  background-color: #363d1000;
+  color: var(--ternary-color);
+  transform: scale(105%);
 }
 
 
@@ -753,7 +781,7 @@ ul{
 
 
 .footerContainer{
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   color: var(--main-background);
 }
 .footerNavLinks{
@@ -849,6 +877,15 @@ ul{
 }
 
 @media only screen and (max-width: 725px) {
+  header .mobileLogo {
+    display: block;
+  }
+  .mobileLogo img {
+    width: 5rem;
+  }
+  header .desktopLogo {
+    display: none;
+  }
   .subscribeContainer input{
     width: 90%;
   }
