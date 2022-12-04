@@ -1,0 +1,20 @@
+{
+  "name": "AKLCWebsite",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js"
+  },
+  "repository": "https://github.com/Imsotech-Org/AKLCWebsite.git",
+  "author": "layuntaFelipe <layunta.felipe@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.5",
+    "nodemon": "^2.0.20"
+  }
+}
