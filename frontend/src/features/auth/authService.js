@@ -15,6 +15,19 @@ const signUp = async (userData) => {
   return response.data;
 }
 
+// Sign Up user
+const signIn = async (userData) => {
+  const response = await axios.post(API_URL + '/signIn', userData);
+
+  console.log(response.data);
+  if(response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data));
+    console.log(JSON.stringify(response.data));
+  }
+
+  return response.data;
+}
+
 // Sign Off user
 const signOff = () => {
   console.log('sign Off from authService');
@@ -24,7 +37,8 @@ const signOff = () => {
 
 const authService = {
   signUp,
-  signOff
+  signOff,
+  signIn
 }
 
 export default authService;
