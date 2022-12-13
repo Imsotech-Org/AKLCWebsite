@@ -14,6 +14,24 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, 'Please add a password'],
   },
+  userImage: {
+    type: String,
+    require: [false]
+  },
+  about: {
+    type: String,
+    require: [false]
+  },
+  plan: {
+    type: mongoose.Schema.Types.ObjectId,
+    require: [false],
+    ref: 'Plan'
+  },
+  hasPaid: {
+    type: Boolean,
+    require: true,
+    default: false,
+  },
   isAdmin: {
     type: Boolean,
     required: true,

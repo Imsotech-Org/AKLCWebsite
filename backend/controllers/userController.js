@@ -1,15 +1,22 @@
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
 
 
 const User = require('../models/userModel');
+
 
 // @desc Register a new user
 // @route /api/v1/users
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
-  const {name, email, password, isAdmin} = req.body;
+  if(req.files === null){
+    res.status(400);
+    throw new Error("No File was uploaded");
+  }
+
+  const {name, email, password, userImage, about, plan, hasPaid, isAdmin} = req.body;
 
   // Validation
   if(!name || !email || !password){
@@ -34,6 +41,10 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashPassword,
+    userImage: `${email}_${userImage}`,
+    about,
+    plan,
+    hasPaid,
     isAdmin
   });
 
@@ -42,6 +53,10 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      userImage: user.userImage,
+      about: user.about,
+      plan: user.plan,
+      hasPaid: user.hasPaid,
       isAdmin: user.isAdmin,
       token: generateToken(user._id)
     });
@@ -49,6 +64,7 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Invalid user data');
   }
+
 });
 
 // @desc Login a user

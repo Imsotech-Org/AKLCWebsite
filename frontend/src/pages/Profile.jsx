@@ -1,11 +1,14 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import ProgramsComponent from '../components/ProgramsComponent';
+import {useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 import img3 from '../assets/media/img3.jpg';
 
 
 const Profile = () => {
+  const {user} = useSelector((state) => state.auth);
+
   return (
     <div style={{ paddingTop: '5.5rem' }}>
       <h2 style={{ color: '#363d10', fontSize: '3rem', margin: '2.7rem 0 0 12rem' }}>Profile</h2>
@@ -19,8 +22,8 @@ const Profile = () => {
         </div>
         <div style={{ width: '40rem', textAlign: 'right' }}>
           <img src={img3} alt="" style={{ width: '10rem', height: '10rem', borderRadius: '50%', marginLeft: '70%', marginTop: '-5rem' }} />
-          <h3 style={{ color: '#502c49', fontSize: '1.5rem', margin: '1rem 1rem 1rem 0' }}>Jane Doe</h3>
-          <h4 style={{ color: '#502c49', fontSize: '1.2rem', margin: '1rem 1rem 1rem 0' }}>JaneDoe@email.com</h4>
+          <h3 style={{ color: '#502c49', fontSize: '1.5rem', margin: '1rem 1rem 1rem 0' }}>{user.name}</h3>
+          <h4 style={{ color: '#502c49', fontSize: '1.2rem', margin: '1rem 1rem 1rem 0' }}>{user.email}</h4>
           <h4 style={{ color: '#363d10', fontSize: '1.2rem', margin: '2rem 1rem 0.4rem 0' }}>About:</h4>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestias animi possimus dignissimos, alias officiis ut consequatur consectetur non nihil. Illo inventore beatae debitis quod.</p>
         </div>

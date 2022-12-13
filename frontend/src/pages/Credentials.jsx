@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useSelector, useDispatch} from 'react-redux';
@@ -10,14 +11,17 @@ const Credentials = () => {
     name: '',
     email: '',
     password1: '',
-    password2: ''
+    password2: '',
+    userImage: ''
   })
+  const [file, setFile] = useState('');
+  const [fileName, setFileName] = useState('Choose File');
   const [formDataSignIn, setFormDataSignIn] = useState({
     email: '',
     password: ''
   })
 
-  const {name, email, password1, password2} = formDataSignUp;
+  const {name, email, password1, password2, userImage} = formDataSignUp;
   const {emailSignIn, password} = formDataSignIn;
 
   const dispatch = useDispatch();
@@ -38,10 +42,19 @@ const Credentials = () => {
   }, [isError, isSuccess, message, user, dispatch, navigate]);
 
   const onChangeSignUp = (e) => {
-    setFormDataSignUp((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }))
+    if(e.target.name === 'userImage'){
+      setFile(e.target.files[0]);
+      setFileName(e.target.files[0].name);
+      setFormDataSignUp((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.files[0].name
+      }))
+    }else{
+      setFormDataSignUp((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.value
+      }))
+    }
   }
 
   const onChangeSignIn = (e) => {
@@ -51,9 +64,10 @@ const Credentials = () => {
     }))
   }
 
-  const onSubmitSignUp = (e) => {
+  const onSubmitSignUp = async (e) => {
     e.preventDefault();
 
+    console.log('Test')
     if(password1 !== password2){
       toast.error('Passwords do not match');
       console.log('Passwords do not match');
@@ -61,7 +75,29 @@ const Credentials = () => {
       const userData = {
         name,
         email,
-        password: password1
+        password: password1,
+        userImage
+      };
+      const formData = new FormData();
+      formData.append('userImage', file);
+      formData.append('userEmail', email);
+
+      try {
+        console.log('Just before axios');
+        const res = await axios.post('/uploads', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+        console.log('Just after axios');
+
+        const {fileName, filePath} = res.data;
+      } catch (error) {
+        if(error.response.status === 500){
+          console.log('There was a prroblem with the server')
+        } else {
+          console.log(error.response.data)
+        }
       }
 
       dispatch(signUp(userData));
@@ -107,7 +143,7 @@ const Credentials = () => {
         <div className="signUp">
           <h3>Sign Up</h3>
           <p>Welcome to AKLC!</p>
-          <form onSubmit={onSubmitSignUp}>
+          <form onSubmit={onSubmitSignUp} encType='multipart/form-data'>
             <label name='name'>
               Enter your name<br />
               <input type="text" name='name' id='name' onChange={onChangeSignUp} required/>
@@ -123,6 +159,10 @@ const Credentials = () => {
             <label name='password2'>
               Confirm your password <br />
               <input type="password" name='password2' id='password2' onChange={onChangeSignUp} required/>
+            </label>
+            <label name='userImage'>
+              {fileName} <br />
+              <input type="file" filename='userImage' name='userImage' id='userImage' onChange={onChangeSignUp}/>
             </label>
             <button>Continue</button>
           </form>
