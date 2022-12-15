@@ -67,7 +67,7 @@ const Profile = () => {
       name,
       email,
       about,
-      userImage
+      userImage: `${email}_${userImage}`
     }
 
     const formData = new FormData();
