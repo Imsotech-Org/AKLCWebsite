@@ -98,10 +98,23 @@ const getMe = asyncHandler(async (req, res) => {
     id: req.user._id,
     email: req.user.email,
     name: req.user.name,
-    isAdmin: req.user.isAdmin
+    isAdmin: req.user.isAdmin,
+    about: req.user.about ? req.user.about : '',
+    userImage: req.user.userImage ? req.user.userImage : '',
+    token: req.user.token
   }
 
   res.status(200).json(user);
+})
+
+
+// @desc PUT update user
+// @route /api/v1/users/me
+// @access Private
+const updateMe = asyncHandler(async (req, res) => {
+  const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, { new: true }) 
+
+  res.status(200).json(updatedUser);
 })
 
 
@@ -116,5 +129,6 @@ const generateToken = (id) => {
 module.exports = {
   registerUser,
   loginUser,
-  getMe
+  getMe,
+  updateMe
 }

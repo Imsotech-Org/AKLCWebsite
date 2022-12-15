@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const session = require('express-session');
+const flash = require('connect-flash');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
 const multer = require('multer');
@@ -15,7 +17,7 @@ const app = express();
 
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../frontend/public/uploads'))
+    cb(null, path.join(__dirname, '../frontend/public/imgs'))
   },
   filename: (req, file, cb) => {
     console.log(file);
@@ -29,17 +31,19 @@ const upload = multer({storage: fileStorageEngine});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 app.get('/', (req, res) => {
   res.status(200).json({message: 'Welcome to AKLC API'});
 });
 
 // Routes
 app.use('/api/v1/users', require('./routes/userRoutes'))
-// Upload Images
 
+
+// Upload Images
 app.post('/uploads', upload.single('userImage'),(req, res) => {
   const bodyObj = JSON.parse(JSON.stringify(req.body));
-  fs.rename(path.join(__dirname, '../frontend/public/uploads') + '/' + req.file.filename, path.join(__dirname, '../frontend/public/uploads/') + bodyObj.userEmail + '_' + req.file.filename, function(err) {
+  fs.rename(path.join(__dirname, '../frontend/public/imgs/') + '/' + req.file.filename, path.join(__dirname, '../frontend/public/imgs/') + bodyObj.userEmail + '_' + req.file.filename, function(err) {
     if ( err ) console.log('ERROR: ' + err);
   });
   res.send('File Uploaded!');

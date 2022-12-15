@@ -89,9 +89,6 @@ const Credentials = () => {
             'Content-Type': 'multipart/form-data'
           }
         });
-        console.log('Just after axios');
-
-        const {fileName, filePath} = res.data;
       } catch (error) {
         if(error.response.status === 500){
           console.log('There was a prroblem with the server')
