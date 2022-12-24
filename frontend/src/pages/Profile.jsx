@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { updateMe, reset } from '../features/auth/authSlice';
 import { Link } from 'react-router-dom';
 import {MdPhotoSizeSelectActual} from 'react-icons/md';
+// import {BsPersonCircle} from 'react-icons/bs';
 import axios from 'axios';
 
 
 const Profile = () => {
   const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth);
+
   const imageName = user.userImage;
   const [edit, setEdit] = useState(false);
   const [file, setFile] = useState('');
@@ -30,12 +32,9 @@ const Profile = () => {
   const navigate = useNavigate();
 
 
-  // useEffect(() => {
-  //   if(isSuccess){
-  //     dispatch(reset());
-  //     navigate('/profile')
-  //   }
-  // }, [dispatch, navigate, isSuccess]);
+  useEffect(() => {
+    console.log(user.isAdmin);
+  }, []);
 
 
   const onEdit = () => {
@@ -97,6 +96,11 @@ const Profile = () => {
       <h2 style={{ color: '#363d10', fontSize: '3rem', margin: '2.7rem 0 0 12rem' }}>Profile</h2>
       <div style={{ display: 'flex', margin: '3rem auto', backgroundColor: 'lightGrey', borderRadius: '15px', padding: '7rem', justifyContent: 'space-between', width: '50rem' }}>
         <div style={{ width: '10rem' }}>
+          {
+            user.isAdmin && (
+              <Link to='/website-edit' style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem' }}>Edit Website</Link>
+            )
+          }
           <button onClick={onEdit} style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem', backgroundColor: 'lightGrey', border: 'none', marginLeft: '-0.5rem' }}>Edit Profile</button>
           <Link style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem' }}>Events</Link>
           <Link style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem' }}>My Wallet</Link>

@@ -13,6 +13,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Blog from './pages/Blog';
 import Podcast from './pages/Podcast';
 import Videos from './pages/Videos';
+import WebsiteEdit from './pages/WebsiteEdit';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path='/podcast' element={<Podcast/>}/>
             <Route path='/credentials' element={<Credentials/>}/>
             <Route path='/profile' element={<Profile/>}/>
+            <Route path='/website-edit' element={<WebsiteEdit/>}/>
             <Route path='/payment' element={<Payment/>}/>
             <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
           </Routes>

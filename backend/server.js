@@ -25,7 +25,18 @@ const fileStorageEngine = multer.diskStorage({
   },
 })
 
+const fileStorageEngineSystemImage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../frontend/public/systemImgs'))
+  },
+  filename: (req, file, cb) => {
+    console.log(file);
+    cb(null, file.originalname)
+  },
+})
+
 const upload = multer({storage: fileStorageEngine});
+const uploadSystemImages = multer({storage: fileStorageEngineSystemImage});
 
 // app.use(fileUpload());
 app.use(express.json());
@@ -39,11 +50,22 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/v1/users', require('./routes/userRoutes'))
 
+app.use('/api/v1/systemImages', require('./routes/systemImagesRoutes'));
 
-// Upload Images
+
+// Upload Images for profile
 app.post('/uploads', upload.single('userImage'),(req, res) => {
   const bodyObj = JSON.parse(JSON.stringify(req.body));
-  fs.rename(path.join(__dirname, '../frontend/public/imgs/') + '/' + req.file.filename, path.join(__dirname, '../frontend/public/imgs/') + bodyObj.userEmail + '_' + req.file.filename, function(err) {
+  fs.rename(path.join(__dirname, '../frontend/public/imgs') + '/' + req.file.filename, path.join(__dirname, '../frontend/public/imgs/') + bodyObj.userEmail + '_' + req.file.filename, function(err) {
+    if ( err ) console.log('ERROR: ' + err);
+  });
+  res.send('File Uploaded!');
+})
+
+// Upload System images
+app.post('/uploadSystem', uploadSystemImages.single('systemImage'), (req, res) => {
+  const bodyObj = JSON.parse(JSON.stringify(req.body));
+  fs.rename(path.join(__dirname, '../frontend/public/systemImgs') + '/' + req.file.filename, path.join(__dirname, '../frontend/public/systemImgs/') + 'systemImage_' + bodyObj.imagePlace + '_' + req.file.filename, function(err) {
     if ( err ) console.log('ERROR: ' + err);
   });
   res.send('File Uploaded!');
