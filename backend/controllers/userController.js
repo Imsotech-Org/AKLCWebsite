@@ -36,12 +36,18 @@ const registerUser = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(password, salt);
 
+  // Check for value for userImage
+  const newUserImage = '';
+  if(userImage){
+    newUserImage = `${email}_${userImage}`;
+  }
+
   // Create user
   const user = await User.create({
     name,
     email,
     password: hashPassword,
-    userImage: `${email}_${userImage}`,
+    userImage: newUserImage,
     about,
     plan,
     hasPaid,
