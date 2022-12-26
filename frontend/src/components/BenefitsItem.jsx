@@ -38,7 +38,7 @@ const BenefitsItem = ({itemValue = 0}) => {
   ];
 
   return (
-    <div style={{width: '12rem', display: 'inline-block', margin: '4rem 2rem'}}>
+    <div style={{width: '10rem', display: 'inline-block', margin: '4rem 2rem'}}>
       <div style={{marginBottom: '0.7rem'}}>{items[itemValue].icon}</div>
       <h3 style={{marginBottom: '1.5rem'}}>{items[itemValue].title}</h3>
       <p style={{marginBottom: '1.5rem'}}>{items[itemValue].description}</p>

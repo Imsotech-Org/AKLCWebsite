@@ -4,7 +4,7 @@ import BenefitsItem from './BenefitsItem';
 const Benefits = () => {
   return (
     <div className='benefitsContainer'>
-      <h2>Benefits of AKLC Science</h2>
+      <h2>Benefits of Andrew Kolasko Life Center</h2>
       <BenefitsItem itemValue={0}/>
       <BenefitsItem itemValue={1}/>
       <BenefitsItem itemValue={2}/>
