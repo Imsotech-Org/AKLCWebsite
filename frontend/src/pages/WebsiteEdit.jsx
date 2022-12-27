@@ -4,15 +4,21 @@ import {toast} from 'react-toastify';
 import {MdPhotoSizeSelectActual} from 'react-icons/md';
 import {createSystemImage, getSystemImages, reset} from '../features/systemImages/systemImageSlice';
 import axios from 'axios';
+import Modal from '../components/Modal';
 
 const WebsiteEdit = () => {
+  const [imageClicked, setImageClicked] = useState('');
+  const [openModal, setOpenModal] = useState(false);
+  const [idClicked, setIdClicked] = useState('');
+
   const {systemImages, systemImage, isError, isSuccess, isLoading, message} = useSelector((state) => state.systemImage);
 
   const [file, setFile] = useState('');
   const [fileName, setFileName] = useState('Choose File');
-  const [imagesLoaded, setImagesLoaded] = useState([{name: '', place: '', show: ''}]);
+  const [imagesLoaded, setImagesLoaded] = useState([{id: '', name: '', place: '', show: ''}]);
 
   const [systemImageData, setSystemImageData] = useState({
+    id: '',
     name: '',
     place: '',
     show: false
@@ -25,15 +31,17 @@ const WebsiteEdit = () => {
       toast.error(message);
     }
 
-    // if(isSuccess){
-    //   dispatch(reset());
-    // }
-
     dispatch(getSystemImages());
     systemImages.forEach((item) => {
-      setImagesLoaded(oldArray => [...oldArray, {name: `${process.env.PUBLIC_URL}systemImgs/${item.name}`, place: item.place, show: item.show}]);
+      setImagesLoaded(oldArray => [...oldArray, {id: item._id, name: `${process.env.PUBLIC_URL}systemImgs/${item.name}`, place: item.place, show: item.show}]);
     })
   }, [dispatch, isError, isSuccess, message]);
+
+  const onClickModal = (image, id) => {
+    setOpenModal(true);
+    setImageClicked(image);
+    setIdClicked(id);
+  }
 
   const onChangeUploadImage = (e) => {
     if(e.target.name === 'systemImage'){
@@ -86,6 +94,7 @@ const WebsiteEdit = () => {
 
   return (
     <div style={{ paddingTop: '5.5rem' }}>
+      <Modal image={imageClicked} id={idClicked} open={openModal} onClose={() => setOpenModal(false)} />
       <h2 style={{ color: '#363d10', fontSize: '3rem', margin: '2.7rem 0 0 12rem' }}>Website Edit</h2>
       <div className="editContainer" style={{margin: '3rem 10rem'}}>
         <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Upload new Image to system:</h4>
@@ -129,7 +138,7 @@ const WebsiteEdit = () => {
         <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current System Images:</h4>
         {
           imagesLoaded.map((item, index) => {
-            return (<img key={index} style={{height: '8rem', borderRadius: '15px', margin: '0 1.4rem 1rem 0'}} src={item.name} alt="" />)
+            return (<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px', margin: '0 1.4rem 1rem 0', cursor: 'pointer'}} src={item.name} alt="" />)
           })
         }
         <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Images on display:</h4>
@@ -139,7 +148,7 @@ const WebsiteEdit = () => {
             {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'Home' && item.show){
-                  return(<img key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
+                  return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px', cursor: 'pointer'}} src={item.name} alt="" />)
                 }
               })
             }
@@ -149,7 +158,7 @@ const WebsiteEdit = () => {
             {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'About' && item.show){
-                  return(<img key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
+                  return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
                 }
               })
             }
@@ -159,7 +168,7 @@ const WebsiteEdit = () => {
             {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'Programs' && item.show){
-                  return(<img key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
+                  return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
                 }
               })
             }
@@ -169,7 +178,7 @@ const WebsiteEdit = () => {
             {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'Blog' && item.show){
-                  return(<img key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
+                  return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
                 }
               })
             }
@@ -179,7 +188,7 @@ const WebsiteEdit = () => {
             {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'Videos' && item.show){
-                  return(<img key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
+                  return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
                 }
               })
             }

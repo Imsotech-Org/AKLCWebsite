@@ -32,6 +32,17 @@ export const getSystemImages = createAsyncThunk('systemImages/getAll', async (_,
  }
 })
 
+// Get system image
+export const getSystemImage = createAsyncThunk('systemImages/get', async (imageId, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.user.token;
+    return await systemImageService.getSystemImage(imageId, token);
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+ })
+
 export const systemImageSlice = createSlice({
   name: 'systemImage',
   initialState,
@@ -60,6 +71,19 @@ export const systemImageSlice = createSlice({
       state.systemImages = action.payload
     })
     .addCase(getSystemImages.rejected, (state, action) => {
+      state.isLoading = true
+      state.isError = true
+      state.message = action.payload
+    })
+    .addCase(getSystemImage.pending, (state) => {
+      state.isLoading = true
+    })
+    .addCase(getSystemImage.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.isSuccess = true
+      state.systemImage = action.payload
+    })
+    .addCase(getSystemImage.rejected, (state, action) => {
       state.isLoading = true
       state.isError = true
       state.message = action.payload

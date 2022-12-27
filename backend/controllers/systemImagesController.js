@@ -94,6 +94,35 @@ const createSystemImage = asyncHandler(async (req, res) => {
   res.status(201).json(systemImage);
 })
 
+// @desc  Update a system Images
+// @route PUT /api/v1/systemImages/:id
+// @access Private
+const updateSystemImage = asyncHandler(async (req, res) => {
+  let token
+  let user
+
+  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    // Get token from header
+    token = req.headers.authorization.split(' ')[1];
+    // Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    user = await User.findById(decoded.id).select('-password');
+  }
+
+  if(!user.isAdmin) {
+    res.status(401);
+    throw new Error('User not authorized for function');
+  }
+
+  const updatedSystemImage = await SystemImage.findByIdAndUpdate(req.params.id, req.body);
+  if(!updatedSystemImage){
+    res.status(404);
+    throw new Error('System Image not found');
+  }
+  res.status(200).json(updatedSystemImage);
+
+})
+
 
 // @desc  Delete a system Images
 // @route DELETE /api/v1/systemImages/:id
@@ -131,5 +160,6 @@ module.exports = {
   getSystemImages,
   getSystemImage,
   createSystemImage,
+  updateSystemImage,
   deleteSystemImage
 }

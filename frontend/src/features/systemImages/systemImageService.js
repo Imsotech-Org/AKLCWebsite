@@ -28,10 +28,24 @@ const getSystemImages = async (token) => {
  return response.data;
 }
 
+// Get system image
+const getSystemImage = async (imageId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+ 
+  const response = await axios.get(API_URL + '/' + imageId, config);
+ 
+  return response.data;
+ }
+
 
 const systemImageService = {
   createSystemImage,
-  getSystemImages
+  getSystemImages,
+  getSystemImage
 }
 
 export default systemImageService;
