@@ -24,8 +24,7 @@ export const createSystemImage = createAsyncThunk('systemImages/create', async (
 // Get all system images
 export const getSystemImages = createAsyncThunk('systemImages/getAll', async (_, thunkAPI) => {
  try {
-   const token = thunkAPI.getState().auth.user.token;
-   return await systemImageService.getSystemImages(token);
+   return await systemImageService.getSystemImages();
  } catch (error) {
    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
    return thunkAPI.rejectWithValue(message);
@@ -35,8 +34,7 @@ export const getSystemImages = createAsyncThunk('systemImages/getAll', async (_,
 // Get system image
 export const getSystemImage = createAsyncThunk('systemImages/get', async (imageId, thunkAPI) => {
   try {
-    const token = thunkAPI.getState().auth.user.token;
-    return await systemImageService.getSystemImage(imageId, token);
+    return await systemImageService.getSystemImage(imageId);
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
     return thunkAPI.rejectWithValue(message);

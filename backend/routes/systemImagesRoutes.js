@@ -4,7 +4,7 @@ const {getSystemImages, getSystemImage, createSystemImage, updateSystemImage, de
 
 const {protect} = require('../middleware/authMiddleware');
 
-router.route('/').get(protect, getSystemImages).post(protect, createSystemImage);
+router.route('/').get(getSystemImages).post(protect, createSystemImage);
 router.route('/:id').get(getSystemImage).delete(protect, deleteSystemImage).put(protect, updateSystemImage);
 
 module.exports = router;

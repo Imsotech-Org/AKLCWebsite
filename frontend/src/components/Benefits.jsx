@@ -5,12 +5,34 @@ const Benefits = () => {
   return (
     <div className='benefitsContainer'>
       <h2>Benefits of Andrew Kolasko Life Center</h2>
-      <BenefitsItem itemValue={0}/>
-      <BenefitsItem itemValue={1}/>
-      <BenefitsItem itemValue={2}/>
-      <BenefitsItem itemValue={3}/>
-      <BenefitsItem itemValue={4}/>
-      <BenefitsItem itemValue={5}/>
+      <div className="benefitsItems" style={{textAlign: 'left'}}>
+        <div className="leftUl">
+          <ul>
+            <li>
+              <BenefitsItem itemValue={0} />
+            </li>
+            <li>
+              <BenefitsItem itemValue={1} />
+            </li>
+            <li>
+              <BenefitsItem itemValue={2} />
+            </li>
+          </ul>
+        </div>
+        <div className="rightUl">
+          <ul>
+            <li>
+              <BenefitsItem itemValue={3} />
+            </li>
+            <li>
+              <BenefitsItem itemValue={4} />
+            </li>
+            <li>
+              <BenefitsItem itemValue={5} />
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   )
 }

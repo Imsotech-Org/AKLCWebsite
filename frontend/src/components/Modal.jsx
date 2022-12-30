@@ -80,7 +80,10 @@ const Modal = ({image, id, open, onClose}) => {
                                 <input type="checkbox" name="show" id="show" onClick={onChange} checked={show}/>
                             </label>
                         </div>
-                        <button>Save Changes</button>
+                        <div style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+                            <button className='editImageBtn-Save'>Save Changes</button>
+                            <button className='editImageBtn-Delete'>Delete Image</button>
+                        </div>
                     </form>
                 </div>
             </div>

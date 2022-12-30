@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {toast} from 'react-toastify';
+import {getSystemImages, reset} from '../features/systemImages/systemImageSlice';
 import ImageSlider from '../components/ImageSlider';
 import Subscribe from '../components/Subscribe';
 import Benefits from '../components/Benefits';
@@ -13,6 +16,26 @@ import img5 from '../assets/media/img5.JPG';
 import img6 from '../assets/media/img6.JPG';
 
 const Home = () => {
+  const {systemImages, systemImage, isError, isSuccess, isLoading, message} = useSelector((state) => state.systemImage);
+  const [imagesLoaded, setImagesLoaded] = useState([{id: '', name: '', place: '', show: ''}]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(isError){
+      toast.error(message);
+    }
+
+    dispatch(getSystemImages());
+    if(isSuccess){
+      systemImages.forEach((item) => {
+        if(item.place === 'Home' && item.show){
+          setImagesLoaded(oldArray => [...oldArray, {id: item._id, name: `${process.env.PUBLIC_URL}systemImgs/${item.name}`, place: item.place, show: item.show}]);
+        }
+      })
+    }
+  }, [dispatch, isError, isSuccess]);
+
   const slides = [
     {url: img1, title: 'Image 1'},
     {url: img2, title: 'Image 2'},
@@ -25,13 +48,14 @@ const Home = () => {
   return (
     <div style={{paddingTop: '3.5rem'}}>
       <div className='containerStyle'>
-        <ImageSlider slides={slides}/>
+        {/* <img style={{margin: '5rem',width: '10rem', height: '10rem', backgroundColor: 'blue'}} src={imagesLoaded[2].name} alt="" /> */}
+        <ImageSlider/>
       </div>
-      <Subscribe color='#363d10'/>
+      <Subscribe color='#879635'/>
       <Benefits/>
       <ProgramsComponent/>
       <Testimonials/>
-      <Subscribe color='#363d10'/>
+      <Subscribe color='#879635'/>
       <Footer/>
     </div>
   )

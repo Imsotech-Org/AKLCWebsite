@@ -16,27 +16,17 @@ const createSystemImage = async (systemImageData, token) => {
 }
 
 // Get all system images
-const getSystemImages = async (token) => {
- const config = {
-   headers: {
-     Authorization: `Bearer ${token}`
-   }
- }
+const getSystemImages = async () => {
 
- const response = await axios.get(API_URL, config);
+ const response = await axios.get(API_URL);
 
  return response.data;
 }
 
 // Get system image
-const getSystemImage = async (imageId, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }
+const getSystemImage = async (imageId) => {
  
-  const response = await axios.get(API_URL + '/' + imageId, config);
+  const response = await axios.get(API_URL + '/' + imageId);
  
   return response.data;
  }

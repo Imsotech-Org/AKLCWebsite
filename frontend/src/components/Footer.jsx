@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {FaInstagram, FaLinkedin, FaTwitterSquare, FaTiktok} from 'react-icons/fa';
-import logo2 from '../assets/media/logo2.svg';
+import logo2 from '../assets/icons-logos/logo-sml-second.png';
 
 const Footer = () => {
   return (
@@ -49,7 +49,7 @@ const Footer = () => {
       <div className='footerMoreInfo'>
         <img src={logo2} alt="" />
         <div className='footerMoreInfoRight'>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus tenetur qui nobis, at veniam atque quaerat sapiente, harum facere odit voluptate delectus in dolorum obcaecati nemo assumenda pariatur soluta nihil nesciunt et. Vero exercitationem voluptate ratione fugit nostrum, voluptatum corporis aliquid saepe! Ipsum illum consequuntur modi eveniet voluptates! Nobis, molestiae.</p>
+          <p>This website is for informational purposes only. It does not constitute the practice of medicine, nursing or other professional health care services, including the giving of medical advice. No doctor/patient relationship is formed. The use of the information contained within this website and any video, text, graphics, images and/or other materials linked to this website is at the users own risk. The content of this website is not intended to be a substitute for professional medical advice, diagnosis and/or treatment. Consult with your doctor before taking any medications, vitamins, herbs and/or supplements of any kind. Users should not disregard or delay in obtaining medical advice for any medical condition they have and they should seek the assistance of their qualified health care professionals for any such conditions.</p>
           <div className='footerMoreInfoRightLinks'>
             <Link className='footerLink'>Privacy</Link>
             <Link className='footerLink'>Do Not Sell My Personal Info</Link>

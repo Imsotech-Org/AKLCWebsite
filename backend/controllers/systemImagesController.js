@@ -9,22 +9,6 @@ const User = require('../models/userModel');
 // @route GET /api/v1/systemImages
 // @access Private
 const getSystemImages = asyncHandler(async (req, res) => {
-  let token
-  let user
-
-  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-     // Get token from header
-    token = req.headers.authorization.split(' ')[1];
-     // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    user = await User.findById(decoded.id).select('-password');
-  }
-
-  if(!user.isAdmin) {
-    res.status(401);
-    throw new Error('User not authorized for function');
-  }
-
   const systemImages = await SystemImage.find();
   res.status(200).json(systemImages);
 })
@@ -33,22 +17,6 @@ const getSystemImages = asyncHandler(async (req, res) => {
 // @route GET /api/v1/systemImages/:id
 // @access Private
 const getSystemImage = asyncHandler(async (req, res) => {
-  let token
-  let user
-
-  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-     // Get token from header
-    token = req.headers.authorization.split(' ')[1];
-     // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    user = await User.findById(decoded.id).select('-password');
-  }
-
-  if(!user.isAdmin) {
-    res.status(401);
-    throw new Error('User not authorized for function');
-  }
-
   const systemImage = await SystemImage.findById(req.params.id);
   if(!systemImage){
     res.status(404);

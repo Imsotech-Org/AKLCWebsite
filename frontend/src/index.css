@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/cmu-serif');
 
 :root {
   --primary-color: #363d10;
@@ -201,7 +202,7 @@ ul{
 
 .benefitsContainer{
   background-color: var(--main-background);
-  color: var(--ternary-color);
+  color: var(--primary-color);
   text-align: center;
   /* height: 35rem; */
 }
@@ -210,8 +211,39 @@ ul{
   padding-top: 2.5rem;
 }
 
+.benefits{
+  background-color: #F3F1F3; 
+  color: #363d10;
+  padding: 3rem 0;
+}
+
+.benefitsItems{
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+  margin: 0 5% 2rem 5%;
+}
+
+.leftUl ul {
+  list-style: none;
+}
+
+.rightUl ul {
+  list-style: none;
+}
+
+.moreAboutBtn{
+  border: none; 
+  color: #502c49; 
+  font-weight: bold;
+  cursor: pointer;
+}
+.moreAboutBtn:hover{
+  color: var(--secondary-color);
+}
+
 .programsContainer{
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   color: var(--main-background);
   text-align: center;
 }
@@ -244,7 +276,7 @@ ul{
 }
 .programItemContainer hr{
   height: 0.2rem;
-  background-color: var(--ternary-color);
+  background-color: var(--secondary-color);
   border: none;
   border-radius: 10px;
   margin-bottom: 1rem;
@@ -262,16 +294,16 @@ ul{
   border: none;
   width: 90%;
   height: 3rem;
-  background-color: var(--ternary-color);
+  background-color: var(--secondary-color);
   color: var(--main-background);
   border-radius: 30px;
   cursor: pointer;
   font-size: 1.4rem;
+  transition: 0.5s;
 }
 .programItemContainer button:hover{
-  border: 5px solid var(--ternary-color);
-  background-color: var(--secondary-color);
-  color: var(--ternary-color);
+  background-color: var(--ternary-color);
+  transition: 0.5s;
 }
 .programItemHeader{
   text-align: left;
@@ -286,7 +318,7 @@ ul{
   position: absolute;
   bottom: 0;
   font-size: 1.5rem;
-  color: var(--ternary-color);
+  color: var(--secondary-color);
 }
 .programItemHeader img{
   width: 7rem;
@@ -474,7 +506,7 @@ ul{
   font-size: 20px;
   color: #502c49;
 }
-.productInfo button {
+.productInfo .productInfoBtn {
   width: 50%;
   height: 3rem;
   border: none;
@@ -485,7 +517,7 @@ ul{
   border-radius: 15px;
   cursor: pointer;
 }
-.productInfo button:hover{
+.productInfo .productInfoBtn:hover{
   border: 2px solid var(--ternary-color);
   background-color: #363d1000;
   color: var(--ternary-color);
@@ -792,11 +824,12 @@ ul{
   transform: translate(-50%, -50%);
   display: flex;
   background-color: #F3F1F3;
+  border-radius: 10px;
   box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
 }
 
 .modalContainer img{
-  height: 300px;
+  height: 320px;
   object-fit: cover;
 }
 
@@ -821,7 +854,7 @@ ul{
 .modalForm{
   display: flex;
   flex-direction: column;
-  padding: 2rem 4rem;
+  padding: 2rem 4rem 0 4rem;
 }
 .modalForm label {
   color: var(--primary-color);
@@ -837,6 +870,34 @@ ul{
   font-size: 1rem;
   color: #502c49;
   margin-bottom: 1rem;
+}
+.editImageBtn-Save {
+  text-decoration: none;
+  background-color: rgb(135, 150, 53);
+  border-radius: 10px;
+  color: rgb(243, 241, 243);
+  border: none;
+  width: 10rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.editImageBtn-Delete {
+  text-decoration: none;
+  background-color: rgb(177, 34, 21);
+  border-radius: 10px;
+  color: rgb(243, 241, 243);
+  border: none;
+  padding: 0.5rem;
+  width: 10rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.editImageBtn-Delete:hover, .editImageBtn-Save:hover{
+  transform: scale(110%);
+  transition: 0.3s;
 }
 
 .btnContainer{
@@ -856,7 +917,7 @@ ul{
 
 
 .footerContainer{
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   color: var(--main-background);
 }
 .footerNavLinks{
@@ -884,6 +945,7 @@ ul{
 }
 .footerMoreInfo img{
   float: left;
+  width: 10rem;
 }
 .footerMoreInfoRight p {
   font-size: 0.9rem;
