@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {signOff, reset} from '../features/auth/authSlice';
 import {FaUser, FaSearch} from 'react-icons/fa';
 import {SlMenu} from 'react-icons/sl';
 import {MdClose} from 'react-icons/md';
@@ -10,15 +9,7 @@ import Logo1 from '../assets/icons-logos/logo-big-first.png';
 const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const {user} = useSelector((state) => state.auth);
-
-  const onSignOff = () => {
-    dispatch(signOff());
-    dispatch(reset());
-    navigate('/');
-  }
 
   const openMenu = () => {
     setMobileNav((mobileNav => !mobileNav))
@@ -74,10 +65,9 @@ const Navbar = () => {
             user ? (
               <>
                 <li>
-                  <button className='navbar-item' onClick={onSignOff} style={{color: 'red'}}>Sign Off</button>
-                </li>
-                <li>
-                  <Link className='navbar-item' to='/profile'><FaUser style={{height: '2rem', width: '2rem'}}/></Link>
+                  <Link style={{display: 'flex', alignItems: 'center', gap: '0.7rem'}} className='navbar-item' to='/profile'>
+                    <p>{user.name}</p><FaUser style={{height: '2rem', width: '2rem'}}/>
+                  </Link>
                 </li>
               </>
             ) : (

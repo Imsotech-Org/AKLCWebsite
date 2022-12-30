@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {toast} from 'react-toastify';
-import {getSystemImages, reset} from '../features/systemImages/systemImageSlice';
+import {getSystemImages} from '../features/systemImages/systemImageSlice';
 import {useSelector, useDispatch} from 'react-redux';
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io';
 
@@ -10,40 +10,41 @@ const ImageSlider = ({ showQuotes = true }) => {
 
   const dispatch = useDispatch();
 
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   useEffect(() => {
     if(isError){
       toast.error(message);
     }
 
     dispatch(getSystemImages());
+
     if(isSuccess){
-      // systemImages.forEach((item) => {
-      //   if(item.place === 'Home' && item.show){
-      //     setImagesLoaded(oldArray => [...oldArray, {id: item._id, name: `${process.env.PUBLIC_URL}systemImgs/${item.name}`, place: item.place, show: item.show}]);
-      //   }
-      // })
-      
-      console.log(systemImages);
-      for (let index = 0; index < systemImages.length; index++) {
-        if(systemImages[index].place === 'Home' && systemImages[index].show){
-          setImagesLoaded( arr => [...arr, [systemImages[index].name]]);
+      if(systemImages){
+        for (let index = 0; index < systemImages.length; index++) {
+          if(systemImages[index].place === 'Home' && systemImages[index].show){
+            setImagesLoaded( arr => [...arr, [systemImages[index].name]]);
+          }
         }
+        console.log(imagesLoaded);
       }
     }
-  }, [dispatch, isError, isSuccess]);
+  }, [dispatch, isError, isSuccess, message]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? systemImages.length - 1 : currentIndex - 1;
+    const newIndex = isFirstSlide ? systemImages.length - 2 : currentIndex - 2;
     setCurrentIndex(newIndex);
   }
 
   const goToNext = () => {
-    const isLastSlide = currentIndex === systemImages.length - 1;
+    const isLastSlide = currentIndex === systemImages.length - 2;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
+    console.log(currentIndex);
+    console.log(imagesLoaded[currentIndex])
   }
 
   return (
@@ -56,6 +57,9 @@ const ImageSlider = ({ showQuotes = true }) => {
           <div className='slideQuoteAuth'>-Abraham Lincoln</div>
         </div> :
         ''}
+      {
+
+      }
       <div className='slideStyle' style={{backgroundImage: `url(${process.env.PUBLIC_URL}systemImgs/${imagesLoaded[currentIndex]})`}}></div>
     </div>
   )

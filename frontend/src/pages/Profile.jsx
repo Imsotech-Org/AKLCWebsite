@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import ProgramsComponent from '../components/ProgramsComponent';
 import {useSelector, useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateMe, reset } from '../features/auth/authSlice';
+import { updateMe, signOff, reset } from '../features/auth/authSlice';
 import { Link } from 'react-router-dom';
 import {MdPhotoSizeSelectActual} from 'react-icons/md';
 // import {BsPersonCircle} from 'react-icons/bs';
@@ -91,6 +91,12 @@ const Profile = () => {
     setEdit(false);
   }
 
+  const onSignOff = () => {
+    dispatch(signOff());
+    dispatch(reset());
+    navigate('/');
+  }
+
   return (
     <div style={{ paddingTop: '5.5rem' }}>
       <h2 style={{ color: '#363d10', fontSize: '3rem', margin: '2.7rem 0 0 12rem' }}>Profile</h2>
@@ -98,14 +104,14 @@ const Profile = () => {
         <div style={{ width: '10rem' }}>
           {
             user.isAdmin && (
-              <Link to='/website-edit' style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem' }}>Edit Website</Link>
+              <Link to='/website-edit' className='profileBtn'>Edit Website</Link>
             )
           }
-          <button onClick={onEdit} style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem', backgroundColor: 'lightGrey', border: 'none', marginLeft: '-0.5rem' }}>Edit Profile</button>
-          <Link style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem' }}>Events</Link>
-          <Link style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem' }}>My Wallet</Link>
-          <Link style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem' }}>Go to App</Link>
-          <Link style={{ display: 'block', textDecoration: 'none', color: '#879635', fontSize: '1.5rem', marginBottom: '1rem' }}>Settings</Link>
+          <button onClick={onEdit} className='profileBtn' style={{cursor: 'pointer', backgroundColor: 'lightGrey', border: 'none', marginLeft: '-0.5rem' }}>Edit Profile</button>
+          <Link className='profileBtn'>Events</Link>
+          <Link className='profileBtn'>My Cart</Link>
+          <Link className='profileBtn'>Go to App</Link>
+          <button onClick={onSignOff} className='profileBtn' style={{color: 'red', cursor: 'pointer', backgroundColor: 'lightGrey', border: 'none', marginLeft: '-0.5rem' }}>Sign Off</button>
         </div>
         {edit ? 
           (

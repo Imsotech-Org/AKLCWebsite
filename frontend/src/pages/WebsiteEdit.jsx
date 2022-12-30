@@ -194,6 +194,54 @@ const WebsiteEdit = () => {
             }
           </div>
         </div>
+
+        <div className="editQuotesContent" style={{marginTop: '5rem'}}>
+          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current quotes content for eact page:</h4>
+          
+          <div>
+            <h5>Home page Quote:</h5>
+            <p></p>
+          </div>
+
+          <div>
+            <h5>About page Quote:</h5>
+            <p></p>
+          </div>
+
+          <div>
+            <h5>Programs page Quote:</h5>
+            <p></p>
+          </div>
+
+          <div>
+            <h5>Blog page Quote:</h5>
+            <p></p>
+          </div>
+
+          <div>
+            <h5>Videos page Quote:</h5>
+            <p></p>
+          </div>
+
+          <div>
+            <h5>Podcast page about:</h5>
+            <p></p>
+          </div>
+
+        </div>
+
+        <div className="editYoutubeContent" style={{marginTop: '5rem'}}>
+          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Youtube Videos content:</h4>
+        </div>
+
+        <div className="editVideosContent" style={{marginTop: '5rem'}}>
+          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Videos content:</h4>
+        </div>
+
+        <div className="editPodcastContent" style={{marginTop: '5rem'}}>
+          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Podcast links content:</h4>
+        </div>
+
       </div>
     </div>
   )

@@ -7,7 +7,7 @@ const User = require('../models/userModel');
 
 // @desc  Get All system Images
 // @route GET /api/v1/systemImages
-// @access Private
+// @access Public
 const getSystemImages = asyncHandler(async (req, res) => {
   const systemImages = await SystemImage.find();
   res.status(200).json(systemImages);
