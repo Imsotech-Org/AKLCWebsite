@@ -3,18 +3,19 @@ const mongoose = require('mongoose');
 const subscriberSchema = mongoose.Schema({
     name: {
         type: String,
-        require: [true, "Please add name to subscriber"]
+        require: [false]
     },
     email: {
         type: String,
-        require: [true, "Please add email to subscriber"]
+        require: [false]
     }
-},
-{
-    timestamps: true
 });
 
 const subscribersListSchema = mongoose.Schema({
+    name: {
+        type: String,
+        require: [true, "add name to list"]
+    },
     subscribers: [subscriberSchema]
 },
 {

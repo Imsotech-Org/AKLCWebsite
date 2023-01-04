@@ -43,9 +43,9 @@ const Programs = () => {
   ];
 
   return (
-    <div style={{paddingTop: '5.5rem'}}>
+    <div style={{paddingTop: '3.5rem'}}>
       <div className='containerStyle'>
-        <ImageSlider slides={slides} showQuotes={false}/>
+        <ImageSlider typeOfSlide="Programs"/>
       </div>
       <Subscribe color='#363d10'/>
       <h2 style={{textAlign: 'center', fontSize: '49px', paddingTop: '2.5rem', color: '#363D10'}}>Products and Programs</h2>

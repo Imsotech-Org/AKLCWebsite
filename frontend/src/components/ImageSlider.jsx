@@ -4,7 +4,7 @@ import {getSystemImages} from '../features/systemImages/systemImageSlice';
 import {useSelector, useDispatch} from 'react-redux';
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io';
 
-const ImageSlider = ({ showQuotes = true }) => {
+const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
   const {systemImages, systemImage, isError, isSuccess, isLoading, message} = useSelector((state) => state.systemImage);
   const [imagesLoaded, setImagesLoaded] = useState([]);
 
@@ -22,7 +22,7 @@ const ImageSlider = ({ showQuotes = true }) => {
     if(isSuccess){
       if(systemImages){
         for (let index = 0; index < systemImages.length; index++) {
-          if(systemImages[index].place === 'Home' && systemImages[index].show){
+          if(systemImages[index].place === typeOfSlide && systemImages[index].show){
             setImagesLoaded( arr => [...arr, [systemImages[index].name]]);
           }
         }
