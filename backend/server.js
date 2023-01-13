@@ -58,7 +58,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/', (req, res) => {
-  res.status(200).json({message: 'Welcome to AKLC API'});
+  res.status(200).json({message: `Welcome to AKLC API ${process.env.NODE_ENV}`});
 });
 
 // Routes
