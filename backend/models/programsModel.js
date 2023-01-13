@@ -17,12 +17,12 @@ const programsSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add a description to program'],
     },
-    firstTopics: [String],
+    firstTopics: String,
     moreTopics: {
         type: Boolean,
         require: [true, 'Please add a value if the product has more topics'],
     },
-    longTopics: [String]
+    longTopics: String
 },{
     timestamps: true
 })

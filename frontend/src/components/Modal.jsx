@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
-import {getSystemImage, reset} from '../features/systemImages/systemImageSlice';
+import {getSystemImage, updateSystemImage, reset} from '../features/systemImages/systemImageSlice';
 
 const Modal = ({image, id, open, onClose}) => {
+    const [typeSubmit, setTypeSubmit] = useState('');
     const [place, setPlace] = useState('');
     const [show, setShow] = useState(false);
-    const {systemImage, isError, isSuccess, isLoading, message} = useSelector((state) => state.systemImage);
+    const {systemImage, isError, message} = useSelector((state) => state.systemImage);
 
     const [imageLoaded, setImageLoaded] = useState({name: '', place: '', show: ''});
 
@@ -34,9 +36,70 @@ const Modal = ({image, id, open, onClose}) => {
         }
     }
 
-    const onSave = (e) => {
+    const onSave = async (e) => {
+        e.preventDefault();
+
+
+        if(typeSubmit === 'Change'){
+            if(systemImage.place !== place){
+                // Change name of image in local folder
+                console.log('In the form');
+                const formData = new FormData();
+                formData.append('imagePlace', place);
+                formData.append('oldName', systemImage.place);
+
+                try {
+                    const res = await axios.post(`/updateSystem/${place}/${systemImage.name}`, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                } catch (error) {
+                    if(error.response.status === 500){
+                        console.log('There was a problem with the server')
+                    } else {
+                        console.log(error.response.data)
+                    }
+                }
+
+                // Change name of image info in database
+                const splitName = imageLoaded.name.split("_");
+                let updatedSystemImageData = {
+                    name: `${splitName[0]}_${place}_${splitName[2]}`,
+                    place: place,
+                    show: show
+                };
+                
+                // window.location.reload();
+                const systemImageData = {
+                    id: id,
+                    data: updatedSystemImageData
+                }
+
+                dispatch(updateSystemImage(systemImageData))
+
+            }else{
+                // Change image show info in database
+                let updatedSystemImageData = {
+                    place: imageLoaded.place,
+                    show: show
+                };
+                
+                const systemImageData = {
+                    id: id,
+                    data: updatedSystemImageData
+                }
+                dispatch(updateSystemImage(systemImageData))
+                // dispatch(reset);
+            }
+            console.log('Change of Image');
+            console.log(systemImage.place);
+            console.log(place);
+        }else if (typeSubmit === 'Delete'){
+            console.log('Delete of Image');
+        }
         toast.success('Changes saved');
-        onClose()
+        onClose();
     }
 
     if(!open) return null
@@ -49,7 +112,7 @@ const Modal = ({image, id, open, onClose}) => {
                 <div className="modalRight">
                     <p style={{cursor: 'pointer'}} onClick={onClose} className='closeBtn'>X</p>
                     <h4 style={{marginTop: '1rem', fontSize: '1.4rem'}}>Configure Image</h4>
-                    <form className='modalForm'>
+                    <form className='modalForm' onSubmit={onSave}>
                         <label htmlFor="name">
                             Image name:
                             <input style={{color: 'grey'}} type="text" name='name' id='name' value={imageLoaded.name} disabled />
@@ -81,8 +144,8 @@ const Modal = ({image, id, open, onClose}) => {
                             </label>
                         </div>
                         <div style={{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-                            <button className='editImageBtn-Save'>Save Changes</button>
-                            <button className='editImageBtn-Delete'>Delete Image</button>
+                            <button onClick={() => setTypeSubmit('Change')} className='editImageBtn-Save'>Save Changes</button>
+                            <button onClick={() => setTypeSubmit('Delete')} className='editImageBtn-Delete'>Delete Image</button>
                         </div>
                     </form>
                 </div>

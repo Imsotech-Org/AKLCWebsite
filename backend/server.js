@@ -15,6 +15,7 @@ connectDB();
 
 const app = express();
 
+// fileStorageEngiine for the user picture
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, '../frontend/public/imgs'))
@@ -25,6 +26,7 @@ const fileStorageEngine = multer.diskStorage({
   },
 })
 
+// fileStorageEngine for the System Images
 const fileStorageEngineSystemImage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, '../frontend/public/systemImgs'))
@@ -35,8 +37,20 @@ const fileStorageEngineSystemImage = multer.diskStorage({
   },
 })
 
+// fileStorageEngine for the Programs Images
+const fileStorageEnginePrograms = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../frontend/public/programsImgs'))
+  },
+  filename: (req, file, cb) => {
+    console.log(file);
+    cb(null, file.originalname)
+  }
+})
+
 const upload = multer({storage: fileStorageEngine});
 const uploadSystemImages = multer({storage: fileStorageEngineSystemImage});
+const uploadProgramsImages = multer({storage: fileStorageEnginePrograms});
 
 // app.use(fileUpload());
 app.use(express.json());
@@ -87,6 +101,25 @@ app.post('/uploadSystem', uploadSystemImages.single('systemImage'), (req, res) =
     if ( err ) console.log('ERROR: ' + err);
   });
   res.send('File Uploaded!');
+})
+// Update System Image
+app.post('/updateSystem/:newPlace/:oldName', (req, res) => {
+  const bodyObj = JSON.parse(JSON.stringify(req.params));
+  console.log(bodyObj);
+  const oldNameSplit = bodyObj.oldName.split("_");
+  fs.rename(path.join(__dirname, '../frontend/public/systemImgs/') + bodyObj.oldName, path.join(__dirname, '../frontend/public/systemImgs/') + oldNameSplit[0] + '_' + bodyObj.newPlace + '_' + oldNameSplit[2], function(err) {
+    if (err) console.log('ERROR: ' + err)
+  });
+  res.send('System Image Updated Name!');
+})
+
+// Upload Images for Programs
+app.post('/uploadProgramsImg', uploadProgramsImages.single('programImage'), (req, res) => {
+  const bodyObj = JSON.parse(JSON.stringify(req.body));
+  fs.rename(path.join(__dirname, '../frontend/public/programsImgs') + '/' + req.file.filename, path.join(__dirname, '../frontend/public/programsImgs/') + 'programsImage_' + req.file.filename, function(err) {
+    if (err) console.log('ERROR: ' + err);
+  });
+  res.send('Program File Uploaded!')
 })
 
 

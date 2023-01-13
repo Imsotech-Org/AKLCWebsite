@@ -29,13 +29,28 @@ const getSystemImage = async (imageId) => {
   const response = await axios.get(API_URL + '/' + imageId);
  
   return response.data;
- }
+}
+
+// Update system image
+const updateSystemImage = async (systemImageData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  
+  const response = await axios.put(API_URL + '/' + systemImageData.id, systemImageData.data, config);
+  console.log('ID FOR UPDATE SYSTEM IMAGE IN SERVER IS: ' + systemImageData.id);
+  console.log('THE DATA BEING PASSED IN SERVICE IS: ' + systemImageData.data);
+  return response.data;
+}
 
 
 const systemImageService = {
   createSystemImage,
   getSystemImages,
-  getSystemImage
+  getSystemImage,
+  updateSystemImage
 }
 
 export default systemImageService;

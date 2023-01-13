@@ -5,6 +5,8 @@ import {MdPhotoSizeSelectActual} from 'react-icons/md';
 import {createSystemImage, getSystemImages, reset} from '../features/systemImages/systemImageSlice';
 import axios from 'axios';
 import Modal from '../components/Modal';
+import CreateProgram from '../components/CreateProgram';
+import ShowPrograms from '../components/ShowPrograms';
 
 const WebsiteEdit = () => {
   const [imageClicked, setImageClicked] = useState('');
@@ -195,6 +197,9 @@ const WebsiteEdit = () => {
           </div>
         </div>
 
+        <CreateProgram/>
+        <ShowPrograms/>
+
         <div className="editQuotesContent" style={{marginTop: '5rem'}}>
           <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current quotes content for eact page:</h4>
           
@@ -223,23 +228,14 @@ const WebsiteEdit = () => {
             <p></p>
           </div>
 
-          <div>
-            <h5>Podcast page about:</h5>
-            <p></p>
-          </div>
-
-        </div>
-
-        <div className="editYoutubeContent" style={{marginTop: '5rem'}}>
-          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Youtube Videos content:</h4>
-        </div>
-
-        <div className="editVideosContent" style={{marginTop: '5rem'}}>
-          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Videos content:</h4>
         </div>
 
         <div className="editPodcastContent" style={{marginTop: '5rem'}}>
           <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Podcast links content:</h4>
+        </div>
+
+        <div className="editVideosContent" style={{marginTop: '5rem'}}>
+          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Videos content:</h4>
         </div>
 
       </div>

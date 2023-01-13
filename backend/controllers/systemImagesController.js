@@ -82,7 +82,7 @@ const updateSystemImage = asyncHandler(async (req, res) => {
     throw new Error('User not authorized for function');
   }
 
-  const updatedSystemImage = await SystemImage.findByIdAndUpdate(req.params.id, req.body);
+  const updatedSystemImage = await SystemImage.findByIdAndUpdate(req.params.id, req.body, { new: true });
   if(!updatedSystemImage){
     res.status(404);
     throw new Error('System Image not found');

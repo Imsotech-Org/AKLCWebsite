@@ -39,7 +39,20 @@ export const getSystemImage = createAsyncThunk('systemImages/get', async (imageI
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
     return thunkAPI.rejectWithValue(message);
   }
- })
+})
+
+export const updateSystemImage = createAsyncThunk('systemImages/update', async (systemImageData, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.user.token;
+    return await systemImageService.updateSystemImage(systemImageData, token);
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    console.log("PROBLEM PROBLEM PROBLEM PROBLEM");
+    console.log(systemImageData.id);
+    console.log(systemImageData.data);
+    return thunkAPI.rejectWithValue(message);
+  }
+})
 
 export const systemImageSlice = createSlice({
   name: 'systemImage',
@@ -82,6 +95,19 @@ export const systemImageSlice = createSlice({
       state.systemImage = action.payload
     })
     .addCase(getSystemImage.rejected, (state, action) => {
+      state.isLoading = true
+      state.isError = true
+      state.message = action.payload
+    })
+    .addCase(updateSystemImage.pending, (state) => {
+      state.isLoading = true
+    })
+    .addCase(updateSystemImage.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.isSuccess = true
+      state.systeImage = action.payload
+    })
+    .addCase(updateSystemImage.rejected, (state, action) => {
       state.isLoading = true
       state.isError = true
       state.message = action.payload
