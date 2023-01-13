@@ -123,6 +123,21 @@ app.post('/uploadProgramsImg', uploadProgramsImages.single('programImage'), (req
 })
 
 
+// Server Frontend
+if(process.env.NODE_ENV === "production"){
+  // Set build folder as static
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(__dirname, '../', 'frontend', 'build', 'index.js');
+  })
+}else {
+  app.get('/', (req, res) => {
+    res.status(200).json({message: 'Welcome to AKLC API'});
+  });
+}
+
+
 app.use(errorHandler);
 
 app.listen(PORT, () => {console.log(`Server started on port ${PORT}`)});
