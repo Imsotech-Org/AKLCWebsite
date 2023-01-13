@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/Imsotech-Org/AKLCWebsite.git"
   },
-  "author": "layuntaFelipe <layunta.felipe@gmail.com>",
+  "author": "Tracy Chege <muthoni.chege@outlook.com>",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
