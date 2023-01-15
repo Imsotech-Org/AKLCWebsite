@@ -114,10 +114,11 @@ app.post('/uploadProgramsImg', uploadProgramsImages.single('programImage'), (req
 if (process.env.NODE_ENV === 'production') {
   // Set build folder as static
   app.use(express.static(path.join(__dirname, '../frontend/build')))
-
+  console.log('IN THE SERVER FRONTEND FUNCTION!!!!!!!!');
   // FIX: below code fixes app crashing on refresh in deployment
   app.get('*', (_, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+    console.log(path.join(__dirname, '../frontend/build/index.html'));
   })
 } 
 
