@@ -31,7 +31,7 @@ const YoutubeVideo = ({item, index}) => {
       <div className="youtubeVideoInfo">
         <h3 style={{color: index===1 || index===2 ? '#F3F1F3' : '#363D10'}}>{item.snippet.title}</h3>
         <p style={{color: index===1 || index===2 ? '#F3F1F3' : '#879635'}}>{item.snippet.description}</p>
-        <small><a target='_blank' style={{color: index===1 || index===2 ? '#F3F1F3' : ''}} href={`https://www.youtube.com/watch?v=${item.id.videoId}`}>Watch now!</a></small>
+        <small><a target='_blank' rel="noreferrer" style={{color: index===1 || index===2 ? '#F3F1F3' : ''}} href={`https://www.youtube.com/watch?v=${item.id.videoId}`}>Watch now!</a></small>
       </div>
     </div>
   )

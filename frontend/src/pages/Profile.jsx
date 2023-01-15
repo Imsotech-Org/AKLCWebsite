@@ -6,12 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { updateMe, signOff, reset } from '../features/auth/authSlice';
 import { Link } from 'react-router-dom';
 import {MdPhotoSizeSelectActual} from 'react-icons/md';
-// import {BsPersonCircle} from 'react-icons/bs';
 import axios from 'axios';
 
 
 const Profile = () => {
-  const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth);
+  const {user} = useSelector((state) => state.auth);
 
   const imageName = user.userImage;
   const [edit, setEdit] = useState(false);
@@ -34,7 +33,7 @@ const Profile = () => {
 
   useEffect(() => {
     console.log(user.isAdmin);
-  }, []);
+  }, [user.isAdmin]);
 
 
   const onEdit = () => {
@@ -79,6 +78,7 @@ const Profile = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
+      console.log(res);
     } catch (error) {
       if(error.response.status === 500){
         console.log('There was a prroblem with the server')

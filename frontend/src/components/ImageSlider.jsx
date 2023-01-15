@@ -5,12 +5,10 @@ import {useSelector, useDispatch} from 'react-redux';
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io';
 
 const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
-  const {systemImages, systemImage, isError, isSuccess, isLoading, message} = useSelector((state) => state.systemImage);
+  const {systemImages, isError, isSuccess, message} = useSelector((state) => state.systemImage);
   const [imagesLoaded, setImagesLoaded] = useState([]);
 
   const dispatch = useDispatch();
-
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
     if(isError){
@@ -26,10 +24,9 @@ const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
             setImagesLoaded( arr => [...arr, [systemImages[index].name]]);
           }
         }
-        console.log(imagesLoaded);
       }
     }
-  }, [dispatch, isError, isSuccess, message]);
+  }, [dispatch, isError, isSuccess, message, systemImages, typeOfSlide]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

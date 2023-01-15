@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {MdPhotoSizeSelectActual} from 'react-icons/md';
-import {createProgram, getPrograms, reset} from '../features/programs/programsSlice';
+import {createProgram} from '../features/programs/programsSlice';
 import {toast} from 'react-toastify';
 import axios from 'axios';
 
 const CreateProgram = () => {
-    const {programs, program, isError, isSuccess, isLoading, message} = useSelector((state) => state.programs);
 
     const [file, setFile] = useState('');
     const [fileName, setFileName] = useState('Choose File');
@@ -52,6 +51,7 @@ const CreateProgram = () => {
               'Content-Type': 'multipart/form-data'
             }
           });
+          console.log(res);
         } catch (error) {
           if(error.response.status === 500){
             console.log('There was a problem with the server')

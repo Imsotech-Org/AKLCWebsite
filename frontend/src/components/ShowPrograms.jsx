@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteProgram, getPrograms, reset} from '../features/programs/programsSlice';
+import {deleteProgram, getPrograms} from '../features/programs/programsSlice';
 import {toast} from 'react-toastify';
 
 const ShowPrograms = () => {
@@ -16,7 +16,7 @@ const ShowPrograms = () => {
     
         dispatch(getPrograms());
         console.log(programs);
-    }, [dispatch, isError, isSuccess, message]);
+    }, [dispatch, isError, isSuccess, message, programs]);
 
     const onSubmit = (e) => {
         e.preventDefault();

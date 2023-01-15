@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import {FaUser, FaSearch} from 'react-icons/fa';
 import {SlMenu} from 'react-icons/sl';
 import {MdClose} from 'react-icons/md';

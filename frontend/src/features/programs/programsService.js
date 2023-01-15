@@ -23,7 +23,8 @@ const deleteProgram = async (programId, token) => {
         }
     }
 
-    const response = await axios.delete(API_URL + '/' + programId, config)
+    const response = await axios.delete(API_URL + '/' + programId, config);
+    console.log(response);
 }
   
 // Get all programs

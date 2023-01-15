@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
-import {getSystemImage, updateSystemImage, reset} from '../features/systemImages/systemImageSlice';
+import {getSystemImage, updateSystemImage} from '../features/systemImages/systemImageSlice';
 
 const Modal = ({image, id, open, onClose}) => {
     const [typeSubmit, setTypeSubmit] = useState('');
@@ -54,6 +54,7 @@ const Modal = ({image, id, open, onClose}) => {
                             'Content-Type': 'multipart/form-data'
                         }
                     });
+                    console.log(res);
                 } catch (error) {
                     if(error.response.status === 500){
                         console.log('There was a problem with the server')

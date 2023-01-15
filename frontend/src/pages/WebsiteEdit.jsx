@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
 import {MdPhotoSizeSelectActual} from 'react-icons/md';
-import {createSystemImage, getSystemImages, reset} from '../features/systemImages/systemImageSlice';
+import {createSystemImage, getSystemImages} from '../features/systemImages/systemImageSlice';
 import axios from 'axios';
 import Modal from '../components/Modal';
 import CreateProgram from '../components/CreateProgram';
@@ -13,7 +13,7 @@ const WebsiteEdit = () => {
   const [openModal, setOpenModal] = useState(false);
   const [idClicked, setIdClicked] = useState('');
 
-  const {systemImages, systemImage, isError, isSuccess, isLoading, message} = useSelector((state) => state.systemImage);
+  const {systemImages, isError, isSuccess, message} = useSelector((state) => state.systemImage);
 
   const [file, setFile] = useState('');
   const [fileName, setFileName] = useState('Choose File');
@@ -34,9 +34,10 @@ const WebsiteEdit = () => {
     }
 
     dispatch(getSystemImages());
-    systemImages.forEach((item) => {
-      setImagesLoaded(oldArray => [...oldArray, {id: item._id, name: `${process.env.PUBLIC_URL}systemImgs/${item.name}`, place: item.place, show: item.show}]);
-    })
+    for (let index = 0; index < systemImages.length; index++) {
+      setImagesLoaded(oldArray => [...oldArray, {id: systemImages[index]._id, name: `${process.env.PUBLIC_URL}systemImgs/${systemImages[index].name}`, place: systemImages[index].place, show: systemImages[index].show}]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, isError, isSuccess, message]);
 
   const onClickModal = (image, id) => {
@@ -81,6 +82,7 @@ const WebsiteEdit = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
+      console.log(res);
     } catch (error) {
       if(error.response.status === 500){
         console.log('There was a problem with the server')
@@ -121,7 +123,6 @@ const WebsiteEdit = () => {
                 <option value="Blog">Blog</option>
                 <option value="Videos">Videos</option>
               </select>
-              {/* <input type="text" name='place' id='place'  /> */}
             </label><br />
             <div style={{display: 'flex'}}>
               <label htmlFor="show">
@@ -151,6 +152,8 @@ const WebsiteEdit = () => {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'Home' && item.show){
                   return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px', cursor: 'pointer'}} src={item.name} alt="" />)
+                }else {
+                  return ""
                 }
               })
             }
@@ -161,7 +164,7 @@ const WebsiteEdit = () => {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'About' && item.show){
                   return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
-                }
+                }else return ""
               })
             }
           </div>
@@ -171,7 +174,7 @@ const WebsiteEdit = () => {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'Programs' && item.show){
                   return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
-                }
+                }else return ""
               })
             }
           </div>
@@ -181,7 +184,7 @@ const WebsiteEdit = () => {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'Blog' && item.show){
                   return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
-                }
+                }else return ""
               })
             }
           </div>
@@ -191,7 +194,7 @@ const WebsiteEdit = () => {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'Videos' && item.show){
                   return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
-                }
+                }else return ""
               })
             }
           </div>

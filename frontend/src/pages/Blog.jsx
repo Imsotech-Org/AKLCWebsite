@@ -1,5 +1,4 @@
 import React from 'react';
-import img6 from '../assets/media/img6.JPG';
 import ImageSlider from '../components/ImageSlider';
 import Footer from '../components/Footer';
 import Subscribe from '../components/Subscribe';
@@ -18,11 +17,6 @@ const Blog = () => {
         const res = await axios.get('https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=UCScUFoeTbUXWU9FTsKJPCOA&maxResults=20&order=date&key=AIzaSyBRJeFhiWuzNUd6Wx_D01a2NRDNweMCBYw');
         setYtVideos(res.data.items);
         console.log(ytVideos);
-        ytVideos.map((item, index) => {
-          if(item.id.kind === "youtube#video"){
-            console.log(item.snippet.thumbnails.high.url)
-          }
-        });
       } catch (error) {
         if(error.response.status === 500){
           console.log('There was a problem with the server')
@@ -33,7 +27,7 @@ const Blog = () => {
     }
 
     getYoutubeVideos();
-  }, []);
+  }, [ytVideos]);
 
   return (
     <div>
@@ -47,6 +41,8 @@ const Blog = () => {
           ytVideos.map((item, index) => {
             if(item.id.kind === "youtube#video"){
               return <YoutubeVideo item={item} index={index}/>
+            } else {
+              return ""
             }
           })
         }
