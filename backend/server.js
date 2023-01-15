@@ -16,9 +16,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
+// Serve Frontend
+if (process.env.NODE_ENV === 'production') {
+  // Set build folder as static
+  app.use(express.static(path.join(__dirname, '../frontend/build')))
+  console.log('IN THE SERVER FRONTEND FUNCTION!!!!!!!!');
+  // FIX: below code fixes app crashing on refresh in deployment
+  app.get('*', (_, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+    console.log(path.join(__dirname, '../frontend/build/index.html'));
+  })
+} 
+
+
 app.get('/', (_, res) => {
   res.status(200).json({
-    message: `Welcome to AKLC API ${process.env.NODE_ENV}`
+    message: `Welcome to AKLC API ${process.env.NODE_ENV} and ${process.env.MONGO_URI}`
   })
 })
 
@@ -108,20 +121,6 @@ app.post('/uploadProgramsImg', uploadProgramsImages.single('programImage'), (req
   });
   res.send('Program File Uploaded!')
 })
-
-
-// Serve Frontend
-if (process.env.NODE_ENV === 'production') {
-  // Set build folder as static
-  app.use(express.static(path.join(__dirname, '../frontend/build')))
-  console.log('IN THE SERVER FRONTEND FUNCTION!!!!!!!!');
-  // FIX: below code fixes app crashing on refresh in deployment
-  app.get('*', (_, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
-    console.log(path.join(__dirname, '../frontend/build/index.html'));
-  })
-} 
-
 
 app.use(errorHandler);
 
