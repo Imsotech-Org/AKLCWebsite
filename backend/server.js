@@ -1,8 +1,6 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const session = require('express-session');
-const flash = require('connect-flash');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
 const multer = require('multer');
@@ -14,6 +12,28 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
+app.get('/', (_, res) => {
+  res.status(200).json({
+    message: `Welcome to AKLC API ${process.env.NODE_ENV}`
+  })
+})
+
+// Routes
+app.use('/api/v1/users', require('./routes/userRoutes'))
+// SystemImages
+app.use('/api/v1/systemImages', require('./routes/systemImagesRoutes'));
+// Podcasts
+app.use('/api/v1/podcasts', require('./routes/podcastRoutes'));
+// Quotes
+app.use('/api/v1/quotes', require('./routes/quotesRoutes'));
+// Subscribers
+app.use('/api/v1/subscribers', require('./routes/subscribersRoutes'));
+// Programs
+app.use('/api/v1/programs', require('./routes/programsRoutes'));
 
 // fileStorageEngiine for the user picture
 const fileStorageEngine = multer.diskStorage({
@@ -51,48 +71,6 @@ const fileStorageEnginePrograms = multer.diskStorage({
 const upload = multer({storage: fileStorageEngine});
 const uploadSystemImages = multer({storage: fileStorageEngineSystemImage});
 const uploadProgramsImages = multer({storage: fileStorageEnginePrograms});
-
-// app.use(fileUpload());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
-app.get('/', (req, res) => {
-  res.status(200).json({message: `Welcome to AKLC API ${process.env.NODE_ENV}`});
-});
-
-// Routes
-app.use('/api/v1/users', require('./routes/userRoutes'))
-
-// SystemImages
-app.use('/api/v1/systemImages', require('./routes/systemImagesRoutes'));
-
-// Podcasts
-app.use('/api/v1/podcasts', require('./routes/podcastRoutes'));
-
-// Quotes
-app.use('/api/v1/quotes', require('./routes/quotesRoutes'));
-
-// Subscribers
-app.use('/api/v1/subscribers', require('./routes/subscribersRoutes'));
-
-// Programs
-app.use('/api/v1/programs', require('./routes/programsRoutes'));
-
-// Youtube Videos
-
-
-// System Videos
-
-
-// Server Frontend
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../", "frontend", "build", "index.html"));
-  });
-}
-
 
 // Upload Images for profile
 app.post('/uploads', upload.single('userImage'),(req, res) => {
@@ -132,6 +110,18 @@ app.post('/uploadProgramsImg', uploadProgramsImages.single('programImage'), (req
 })
 
 
+// Serve Frontend
+if (process.env.NODE_ENV === 'production') {
+  // Set build folder as static
+  app.use(express.static(path.join(__dirname, '../frontend/build')))
+
+  // FIX: below code fixes app crashing on refresh in deployment
+  app.get('*', (_, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+  })
+} 
+
+
 app.use(errorHandler);
 
-app.listen(PORT, () => {console.log(`Server started on port ${PORT}`)});
+app.listen(PORT, () => console.log(`💾 Server is starting on port: ${PORT}`));
