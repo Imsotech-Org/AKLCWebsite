@@ -15,12 +15,18 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-app.get('/', (_, res) => {
-  res.status(200).json({
-    message: `Welcome to AKLC API ${process.env.NODE_ENV} and ${process.env.MONGO_URI}`
-  })
-})
+// Routes
+app.use('/api/v1/users', require('./routes/userRoutes'))
+// SystemImages
+app.use('/api/v1/systemImages', require('./routes/systemImagesRoutes'));
+// Podcasts
+app.use('/api/v1/podcasts', require('./routes/podcastRoutes'));
+// Quotes
+app.use('/api/v1/quotes', require('./routes/quotesRoutes'));
+// Subscribers
+app.use('/api/v1/subscribers', require('./routes/subscribersRoutes'));
+// Programs
+app.use('/api/v1/programs', require('./routes/programsRoutes'));
 
 // Serve Frontend
 if (process.env.NODE_ENV === 'production') {
@@ -34,18 +40,11 @@ if (process.env.NODE_ENV === 'production') {
   })
 } 
 
-// Routes
-app.use('/api/v1/users', require('./routes/userRoutes'))
-// SystemImages
-app.use('/api/v1/systemImages', require('./routes/systemImagesRoutes'));
-// Podcasts
-app.use('/api/v1/podcasts', require('./routes/podcastRoutes'));
-// Quotes
-app.use('/api/v1/quotes', require('./routes/quotesRoutes'));
-// Subscribers
-app.use('/api/v1/subscribers', require('./routes/subscribersRoutes'));
-// Programs
-app.use('/api/v1/programs', require('./routes/programsRoutes'));
+app.get('/', (_, res) => {
+  res.status(200).json({
+    message: `Welcome to AKLC API ${process.env.NODE_ENV} and ${process.env.MONGO_URI}`
+  })
+})
 
 // fileStorageEngiine for the user picture
 const fileStorageEngine = multer.diskStorage({
