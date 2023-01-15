@@ -16,6 +16,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
+app.get('/', (_, res) => {
+  res.status(200).json({
+    message: `Welcome to AKLC API ${process.env.NODE_ENV} and ${process.env.MONGO_URI}`
+  })
+})
+
 // Serve Frontend
 if (process.env.NODE_ENV === 'production') {
   // Set build folder as static
@@ -27,13 +33,6 @@ if (process.env.NODE_ENV === 'production') {
     console.log(path.join(__dirname, '../frontend/build/index.html'));
   })
 } 
-
-
-app.get('/', (_, res) => {
-  res.status(200).json({
-    message: `Welcome to AKLC API ${process.env.NODE_ENV} and ${process.env.MONGO_URI}`
-  })
-})
 
 // Routes
 app.use('/api/v1/users', require('./routes/userRoutes'))

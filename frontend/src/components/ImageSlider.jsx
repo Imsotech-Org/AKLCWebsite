@@ -24,6 +24,7 @@ const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
             setImagesLoaded( arr => [...arr, [systemImages[index].name]]);
           }
         }
+        console.log(systemImages);
       }
     }
   }, [dispatch, isError, isSuccess, message, systemImages, typeOfSlide]);

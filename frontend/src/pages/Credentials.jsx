@@ -99,6 +99,7 @@ const Credentials = () => {
       }
 
       dispatch(signUp(userData));
+      console.log(user);
     }
   }
 
