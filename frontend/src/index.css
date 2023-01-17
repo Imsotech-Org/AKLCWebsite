@@ -186,18 +186,6 @@ ul{
 .subscribeContainer #email{
   position: relative;
 }
-.subscribeButton{
-  position: absolute;
-  color: var(--ternary-color);
-  z-index: 1;
-  margin-left: -60px;
-  margin-top: 25px;
-  font-size: 2rem;
-  cursor: pointer;
-}
-.subscribeButton:hover{
-  color: var(--secondary-color);
-}
 
 .benefitsContainer{
   background-color: var(--main-background);
@@ -624,6 +612,10 @@ ul{
   border: 2px solid #363d10; 
   border-radius: 10px;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
 }
 .podcastPod h5 {
   padding: 1rem 0 0.5rem 2rem;
@@ -1077,15 +1069,6 @@ ul{
 }
 
 @media only screen and (max-width: 467px) {
-  .subscribeButton{
-    position: absolute;
-    color: var(--ternary-color);
-    z-index: 1;
-    bottom: -38%;
-    right: 30px;
-    font-size: 2rem;
-    cursor: pointer;
-  }
   .testimonialsItemContainer{
     width: 15rem;
   }

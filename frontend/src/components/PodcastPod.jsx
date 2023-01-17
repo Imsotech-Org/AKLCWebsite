@@ -1,10 +1,11 @@
 import React from 'react'
 
-const PodcastPod = () => {
+const PodcastPod = ({title = 'Title', link = 'https://www.google.com/'}) => {
   return (
-    <div>
+    <div style={{display: 'flex'}}>
       <div className="podcastPod">
-        <h5>Title</h5>
+        <h5>{title}</h5>
+        <a href={link} target='_blank' rel="noreferrer">{link}</a>
       </div>
     </div>
   )

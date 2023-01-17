@@ -24,7 +24,7 @@ app.use('/api/v1/podcasts', require('./routes/podcastRoutes'));
 // Quotes
 app.use('/api/v1/quotes', require('./routes/quotesRoutes'));
 // Subscribers
-app.use('/api/v1/subscribers', require('./routes/subscribersRoutes'));
+
 // Programs
 app.use('/api/v1/programs', require('./routes/programsRoutes'));
 

@@ -15,8 +15,7 @@ const ShowPrograms = () => {
         }
     
         dispatch(getPrograms());
-        console.log(programs);
-    }, [dispatch, isError, isSuccess, message, programs]);
+    }, [dispatch, isError, isSuccess, message]);
 
     const onSubmit = (e) => {
         e.preventDefault();

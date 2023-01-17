@@ -17,7 +17,7 @@ const deleteSubscriber = async (subId, token) => {
         }
     }
 
-    const response = await axios.delete(API_URL + '/63b37ff22983296c8eced198/' + subId, config);
+    const response = await axios.delete(API_URL + '/' + subId, config);
     console.log(response);
 }
 
