@@ -46,9 +46,6 @@ const Navbar = () => {
             <Link className='navbar-item' to='/blog' style={checkItemSelected('/blog')}>Blog</Link>
           </li>
           <li>
-            <Link className='navbar-item' to='/videos' style={checkItemSelected('/videos')}>Videos</Link>
-          </li>
-          <li>
             <Link className='navbar-item' to='/podcast' style={checkItemSelected('/podcast')}>Podcast</Link>
           </li>
           <li>

@@ -52,24 +52,8 @@ const deleteSubscriber = asyncHandler(async (req, res) => {
 
 // @desc  Add a subscriber
 // @route PUT /api/v1/subscribers
-// @access Private
+// @access Public
 const createSubscribers = asyncHandler(async (req, res) => {
-    let token
-    let user
-
-    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-        // Get token from header
-        token = req.headers.authorization.split(' ')[1];
-        // Verify token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        user = await User.findById(decoded.id).select('-password');
-    }
-
-    if(!user.isAdmin) {
-        res.status(401);
-        throw new Error('User not authorized for function');
-    }
-
     const {name, email} = req.body;
 
     const subscribers = await Subscriber.findOneAndUpdate({

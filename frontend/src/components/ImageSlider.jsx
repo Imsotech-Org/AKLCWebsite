@@ -27,7 +27,7 @@ const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
         console.log(systemImages);
       }
     }
-  }, [dispatch, isError, isSuccess, message, systemImages, typeOfSlide]);
+  }, [dispatch, isError, isSuccess, message, typeOfSlide]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

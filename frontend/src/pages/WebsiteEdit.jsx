@@ -7,6 +7,10 @@ import axios from 'axios';
 import Modal from '../components/Modal';
 import CreateProgram from '../components/CreateProgram';
 import ShowPrograms from '../components/ShowPrograms';
+import CreateQuotes from '../components/CreateQuotes';
+import ShowQuotes from '../components/ShowQuotes';
+import CreatePodcast from '../components/CreatePodcast';
+import ShowPodcast from '../components/ShowPodcast';
 
 const WebsiteEdit = () => {
   const [imageClicked, setImageClicked] = useState('');
@@ -200,46 +204,20 @@ const WebsiteEdit = () => {
           </div>
         </div>
 
+        <hr style={{backgroundColor: '#502c49', height: '0.5rem', border: 'none', borderRadius: '10px', marginTop: '2rem', marginBottom: '1rem'}} />
+
         <CreateProgram/>
         <ShowPrograms/>
 
-        <div className="editQuotesContent" style={{marginTop: '5rem'}}>
-          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current quotes content for eact page:</h4>
-          
-          <div>
-            <h5>Home page Quote:</h5>
-            <p></p>
-          </div>
+        <hr style={{backgroundColor: '#502c49', height: '0.5rem', border: 'none', borderRadius: '10px', marginTop: '2rem', marginBottom: '1rem'}} />
 
-          <div>
-            <h5>About page Quote:</h5>
-            <p></p>
-          </div>
+        <CreateQuotes/>
+        <ShowQuotes/>
 
-          <div>
-            <h5>Programs page Quote:</h5>
-            <p></p>
-          </div>
+        <hr style={{backgroundColor: '#502c49', height: '0.5rem', border: 'none', borderRadius: '10px', marginTop: '2rem', marginBottom: '1rem'}} />
 
-          <div>
-            <h5>Blog page Quote:</h5>
-            <p></p>
-          </div>
-
-          <div>
-            <h5>Videos page Quote:</h5>
-            <p></p>
-          </div>
-
-        </div>
-
-        <div className="editPodcastContent" style={{marginTop: '5rem'}}>
-          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Podcast links content:</h4>
-        </div>
-
-        <div className="editVideosContent" style={{marginTop: '5rem'}}>
-          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Videos content:</h4>
-        </div>
+        <CreatePodcast/>
+        <ShowPodcast/>
 
       </div>
     </div>
