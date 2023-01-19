@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {createSubscribers} from '../features/subscriberslists/subscriberslistsSlice';
+import {createRegisters} from '../features/registers/registersSlice';
 import {toast} from 'react-toastify';
 import {BsArrowRight} from 'react-icons/bs';
 
 const Subscribe = ({ color }) => {
 
-  const [subscriberData, setSubscriberData] = useState({
+  const [registerData, setRegisterData] = useState({
     name: '',
     email: '',
   })
@@ -14,7 +14,7 @@ const Subscribe = ({ color }) => {
   const dispatch = useDispatch();
 
   const onChange = (e) => {
-    setSubscriberData((prevState) => ({
+    setRegisterData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value
     }))
@@ -22,9 +22,12 @@ const Subscribe = ({ color }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createSubscribers(subscriberData));
+    dispatch(createRegisters(registerData));
     toast.success('Subscribed!');
-    setSubscriberData('');
+    setRegisterData({
+      name: '',
+      email: '',
+    });
   }
 
   return (

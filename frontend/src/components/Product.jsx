@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 const Product = ({item, index}) => {
 
@@ -60,12 +61,12 @@ const Product = ({item, index}) => {
 
   return (
     <div className="productContainer" style={{background: backgroundChoice(index)}}>
-      <img src={item.image} alt="" />
+      <img src={`${process.env.PUBLIC_URL}programsImgs/${item.programImage}`} alt="" />
       <div className="productInfo" style={{color: index===1 || index===2 ? '#F3F1F3' : '#363D10'}}>
         <h3 style={{display: 'inline-block'}}>{item.title}</h3>
         <h4 style={{display: 'inline-block'}}>${item.price}</h4>
         <p style={{color: index===1 || index===2 ? '#F3F1F3' : '#879635', marginBottom: '0.8rem'}}>{item.description}</p>
-        <ul style={{color: liColor(index)}}>
+        {/* <ul style={{color: liColor(index)}}>
           {item.topics.map((topic) => <li style={{display: 'inline-block', margin: '0 2rem 1rem 0'}}>· {topic}</li>)}
           {openMore && item.longTopics.map((topic) => <li style={{display: 'inline-block', margin: '0 2rem 1rem 0'}}>· {topic}</li>)}
           {
@@ -75,8 +76,8 @@ const Product = ({item, index}) => {
               </button>
             ) : ('')
           }
-        </ul>
-        <button className='productInfoBtn'>Subscribe</button>
+        </ul> */}
+        <Link to={`/payment/${item._id}`} className='productInfoBtn'>Buy Now</Link>
       </div>
     </div>
   )

@@ -1,12 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ProgramItem from './ProgramItem';
+import {useSelector, useDispatch} from 'react-redux';
+import {getPrograms} from '../features/programs/programsSlice';
+import {toast} from 'react-toastify';
 
 const ProgramsComponent = ({title = 'Programs and Resources'}) => {
+
+  const {programs, isError, isSuccess, message} = useSelector((state) => state.programs);
+  const [programId, setProgramId] = useState('');
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+      if(isError){
+        toast.error(message);
+      }
+  
+      dispatch(getPrograms());
+  }, [dispatch, isError, isSuccess, message]);
+
   return (
     <div className='programsContainer'>
       <h2>{title}</h2>
-      <ProgramItem programName={'67 Transformational Program'} programPrice={99}/>
-      <ProgramItem programName={'Annual One-On-One Training and Support'} programPrice={199}/>
+      {
+        programs.map((item, index) => {
+          return (<ProgramItem programImage={item.programImage} programName={item.title} programPrice={item.price} programDescription={item.description} programTopics={item.firstTopics}/>)
+        })
+      }
       <h5 style={{textAlign: 'left', padding: '2rem', color: '#879635', fontSize: '1.5rem'}}>Money back guaranteed *</h5>
     </div>
   )

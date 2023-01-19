@@ -1,85 +1,85 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import subscriberlistsService from './subscriberslistsService';
+import registersService from './registersService';
 
 const initialState = {
-    subscriberlists: [],
+    registers: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: ''
 };
 
-// Create new subscriber
-export const createSubscribers = createAsyncThunk('subscriberlists/create', async (subscriberData, thunkAPI) => {
+// Create new register
+export const createRegisters = createAsyncThunk('registers/create', async (registersData, thunkAPI) => {
     try {
-        return await subscriberlistsService.createSubscribers(subscriberData);
+        return await registersService.createRegisters(registersData);
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
     }
 })
 
-// Delete subscriber
-export const deleteSubscriber = createAsyncThunk('subscriberlists/delete', async (subId, thunkAPI) => {
+// Delete register
+export const deleteRegisters = createAsyncThunk('registers/delete', async (registersId, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
-        return await subscriberlistsService.deleteSubscriber(subId, token);
+        return await registersService.deleteRegisters(registersId, token);
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
     }
 })
 
-// Get all subscribers
-export const getSubscribers = createAsyncThunk('subscriberlists/getAll', async (_, thunkAPI) => {
+// Get all register
+export const getRegisters = createAsyncThunk('registers/getAll', async (_, thunkAPI) => {
     try {
-        return await subscriberlistsService.getSubscribers();
+        return await registersService.getRegisters();
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
     }
 })
 
-export const subscriberlistsSlice = createSlice({
-    name: 'subscriberlists',
+export const registersSlice = createSlice({
+    name: 'registers',
     initialState,
     reducers: {
       reset: (state) => initialState
     },
     extraReducers: (builder) => {
-      builder.addCase(createSubscribers.pending, (state) => {
+      builder.addCase(createRegisters.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(createSubscribers.fulfilled, (state) => {
+      .addCase(createRegisters.fulfilled, (state) => {
         state.isLoading = false
         state.isSuccess = true
       })
-      .addCase(createSubscribers.rejected, (state, action) => {
+      .addCase(createRegisters.rejected, (state, action) => {
         state.isLoading = true
         state.isError = true
         state.message = action.payload
       })
-      .addCase(deleteSubscriber.pending, (state) => {
+      .addCase(deleteRegisters.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(deleteSubscriber.fulfilled, (state) => {
+      .addCase(deleteRegisters.fulfilled, (state) => {
         state.isLoading = false
         state.isSuccess = true
       })
-      .addCase(deleteSubscriber.rejected, (state, action) => {
+      .addCase(deleteRegisters.rejected, (state, action) => {
         state.isLoading = true
         state.isError = true
         state.message = action.payload
       })
-      .addCase(getSubscribers.pending, (state) => {
+      .addCase(getRegisters.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getSubscribers.fulfilled, (state, action) => {
+      .addCase(getRegisters.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.subscriberlists = action.payload
+        state.registers = action.payload
       })
-      .addCase(getSubscribers.rejected, (state, action) => {
+      .addCase(getRegisters.rejected, (state, action) => {
         state.isLoading = true
         state.isError = true
         state.message = action.payload
@@ -87,5 +87,5 @@ export const subscriberlistsSlice = createSlice({
     }
   })
   
-export const {reset} = subscriberlistsSlice.actions;
-export default subscriberlistsSlice.reducer;
+  export const {reset} = registersSlice.actions;
+  export default registersSlice.reducer;

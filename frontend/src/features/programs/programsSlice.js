@@ -4,10 +4,10 @@ import programService from './programsService';
 const initialState = {
     programs: [],
     program: {},
-    isError: false,
-    isSuccess: false,
+    isErrorProgram: false,
+    isSuccessProgram: false,
     isLoading: false,
-    message: ''
+    messageProgram: ''
 };
 
 
@@ -77,11 +77,11 @@ export const programsSlice = createSlice({
       })
       .addCase(deleteProgram.fulfilled, (state) => {
         state.isLoading = false
-        state.isSuccess = true
+        state.isSuccessProgram = true
       })
       .addCase(deleteProgram.rejected, (state, action) => {
         state.isLoading = true
-        state.isError = true
+        state.isErrorProgram = true
         state.message = action.payload
       })
       .addCase(getPrograms.pending, (state) => {
@@ -89,25 +89,25 @@ export const programsSlice = createSlice({
       })
       .addCase(getPrograms.fulfilled, (state, action) => {
         state.isLoading = false
-        state.isSuccess = true
+        state.isSuccessProgram = true
         state.programs = action.payload
       })
       .addCase(getPrograms.rejected, (state, action) => {
         state.isLoading = true
-        state.isError = true
-        state.message = action.payload
+        state.isErrorProgram = true
+        state.messageProgram = action.payload
       })
       .addCase(getProgram.pending, (state) => {
         state.isLoading = true
       })
       .addCase(getProgram.fulfilled, (state, action) => {
         state.isLoading = false
-        state.isSuccess = true
+        state.isSuccessProgram = true
         state.program = action.payload
       })
       .addCase(getProgram.rejected, (state, action) => {
         state.isLoading = true
-        state.isError = true
+        state.isErrorProgram = true
         state.message = action.payload
       })
     }

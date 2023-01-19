@@ -54,7 +54,7 @@ const Footer = () => {
             <Link className='footerLink'>Privacy</Link>
             <Link className='footerLink'>Do Not Sell My Personal Info</Link>
             <Link className='footerLink'>Terms &amp; Conditions</Link>
-            <Link className='footerLink'>© Andrew Kolasko Life Center</Link>
+            <Link className='footerLink'>© 2023 Andrew Kolasko Life Center Ltd.</Link>
           </div>
         </div>
       </div>

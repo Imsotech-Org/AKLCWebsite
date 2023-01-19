@@ -15,9 +15,7 @@ const Recommendation = () => {
         </div>
         <div className="reccomendationsQuotes">
           <h4>Quotes</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci sem, consectetur id ullamcorper eu, venenatis feugiat metus. Nunc sed ullamcorper lectus, vel lacinia sem. In ullamcorper fermentum risus nec finibus. 
-          <br />&emsp;&emsp;Sed tristique vestibulum ultrices. Nulla nulla tellus, accumsan in interdum et, consectetur sit amet felis. Ut interdum non dolor in sagittis. Donec ut magna diam. Nullam et lectus erat. Donec et nisi sem. 
-          <br />&emsp;&emsp;Nunc interdum interdum mollis. Curabitur orci dui, luctus eu justo a, bibendum vehicula tellus. Curabitur cursus rutrum orci quis pharetra.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci sem, consectetur id ullamcorper eu, venenatis feugiat metus. Nunc sed ullamcorper lectus, vel lacinia sem. In ullamcorper fermentum risus nec finibus.</p>
         </div>
         <div className="reccomendationsImage">
           <img src={img16} alt="" />

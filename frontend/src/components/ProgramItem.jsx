@@ -1,24 +1,40 @@
 import React from 'react';
-import image1 from '../assets/media/img1.jpg';
+import {Link} from 'react-router-dom';
 
-const ProgramItem = ({programName, programPrice}) => {
+const ProgramItem = ({programImage, programName, programPrice, programDescription, programTopics}) => {
+
+  const showTopics = () => {
+    const programTopicsArray = programTopics.split('_');
+
+    if(programTopicsArray.length > 2){
+      return (
+        <ul>
+          
+        </ul>
+      )
+    }else {
+
+    }
+  }
+
   return (
     <div className='programItemContainer'>
       <div className='programItemHeader'>
-        <img src={image1} alt="Program-img" className='programItemHeaderImage'/>
+        <img src={`${process.env.PUBLIC_URL}programsImgs/${programImage}`} alt="Program-img" className='programItemHeaderImage'/>
         <div className='programItemHeaderInfo'>
           <h3>{programName}</h3>
           <h5>${programPrice}</h5>
         </div>
       </div>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate iure sequi consequatur sunt quod itaque amet, dolor dolores suscipit</p>
+      <p style={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100%', maxHeight: '50%'}}>{programDescription}</p>
       <hr />
       <ul>
-        <li>Lorem ipsum dolor sit amet consectetur.</li>
-        <li>Lorem ipsum dolor sit amet consectetur.</li>
-        <li>Lorem ipsum dolor sit amet consectetur.</li>
+        {
+          
+        }
+        <li style={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100%', maxHeight: '50%'}}>+ Lorem ipsum dolor sit amet consectetur.</li>
       </ul>
-      <button>Get Details</button>
+      <Link className='linkBtn' to='/programs'>Get Details</Link>
     </div>
   )
 }

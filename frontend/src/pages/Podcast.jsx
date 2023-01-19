@@ -20,7 +20,8 @@ const Podcast = () => {
           </div>
           <div className="aboutPodcast">
             <h4>About Podcast</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci sem, consectetur id ullamcorper eu, venenatis feugiat metus. Nunc sed ullamcorper lectus, vel lacinia sem. In ullamcorper fermentum risus nec finibus. Sed tristique vestibulum ultrices. Nulla nulla tellus, accumsan in interdum et, consectetur sit amet felis. Ut interdum non dolor in sagittis. Donec ut magna diam. Nullam et lectus erat. Donec et nisi sem. Nunc interdum interdum mollis. Curabitur orci dui, luctus eu justo a, bibendum vehicula tellus. Curabitur cursus rutrum orci quis pharetra.</p>
+            <p>the plus+ 
+Tune in to learn the latest emerging sciences in longevity, wellness advice, novel exercise methods, bio-hacks, healthy nutrition and supplementation, and real world, down-to-earth practices for a fitter, well rounded life.</p>
           </div>
         </div>
 

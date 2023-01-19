@@ -4,7 +4,8 @@ import systemImageReducer from '../features/systemImages/systemImageSlice';
 import programsReducer from '../features/programs/programsSlice';
 import podcastsReducer from '../features/podcasts/podcastsSlice';
 import quotesReducer from '../features/quotes/quotesSlice';
-import subscriberlistsReducer from '../features/subscriberslists/subscriberslistsSlice';
+import registersReducer from '../features/registers/registersSlice';
+import stripeReducer from '../features/stripe/stripeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     programs: programsReducer,
     podcasts: podcastsReducer,
     quotes: quotesReducer,
-    subscriberlists: subscriberlistsReducer,
+    registers: registersReducer,
+    stripe: stripeReducer,
   },
 });

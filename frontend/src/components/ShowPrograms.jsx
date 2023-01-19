@@ -31,16 +31,16 @@ const ShowPrograms = () => {
                         <div style={{backgroundColor: 'lightgray', padding: '1.5rem'}}>
                             <div style={{display: 'flex'}}>
                                 <img src={`${process.env.PUBLIC_URL}programsImgs/${item.programImage}`} alt="" style={{width: '8rem', borderRadius: '10px'}} />
-                                <div>
-                                    <h5>Program's name: {item.title}</h5>
-                                    <h5>Program's price: ${item.price}</h5>
-                                    <h5>Program's description: {item.description}</h5>
-                                    <h5>Program's topics: {item.firstTopics}</h5>
-                                    <h5>Program's more topics: {item.longTopics}</h5>
+                                <div style={{marginLeft: '1rem'}}>
+                                    <h4 style={{margin: '0.4rem 0'}}>{item.title}</h4>
+                                    <h4 style={{margin: '0.4rem 0'}}>Price: ${item.price}</h4>
+                                    <h5 style={{margin: '0.4rem 0'}}>Description: {item.description}</h5>
+                                    <h5 style={{margin: '0.4rem 0'}}>Topics: {item.firstTopics}</h5>
+                                    <h5 style={{margin: '0.4rem 0'}}>Program's more topics: {item.longTopics}</h5>
                                 </div>
                             </div>
                             <form onSubmit={onSubmit}>
-                                <button onClick={() => setProgramId(item._id)}>Test</button>
+                                <button onClick={() => setProgramId(item._id)}>Delete Program</button>
                             </form>
                         </div>
                     )

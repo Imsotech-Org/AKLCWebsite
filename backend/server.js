@@ -6,6 +6,11 @@ const dotenv = require('dotenv').config();
 const multer = require('multer');
 const {errorHandler} = require('./middleware/errorMiddleware');
 const {connectDB} = require('./config/db');
+
+const Stripe = require("stripe");
+
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
 const PORT = process.env.PORT || 5000;
 
 // Connect to Database
@@ -23,10 +28,12 @@ app.use('/api/v1/systemImages', require('./routes/systemImagesRoutes'));
 app.use('/api/v1/podcasts', require('./routes/podcastRoutes'));
 // Quotes
 app.use('/api/v1/quotes', require('./routes/quotesRoutes'));
-// Subscribers
-
+// Registers
+app.use('/api/v1/registers', require('./routes/registersRoutes'));
 // Programs
 app.use('/api/v1/programs', require('./routes/programsRoutes'));
+
+app.use('/api/v1/stripe', require('./routes/stripesRoutes'));
 
 // Serve Frontend
 if (process.env.NODE_ENV === 'production') {
@@ -119,6 +126,7 @@ app.post('/uploadProgramsImg', uploadProgramsImages.single('programImage'), (req
   });
   res.send('Program File Uploaded!')
 })
+
 
 app.use(errorHandler);
 
