@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Footer from '../components/Footer';
-import ProgramsComponent from '../components/ProgramsComponent';
+import ProgramProfileComponent from '../components/ProgramProfileComponent';
 import {useSelector, useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateMe, signOff, reset } from '../features/auth/authSlice';
@@ -108,8 +108,8 @@ const Profile = () => {
             )
           }
           <button onClick={onEdit} className='profileBtn' style={{cursor: 'pointer', backgroundColor: 'lightGrey', border: 'none', marginLeft: '-0.5rem' }}>Edit Profile</button>
-          <Link className='profileBtn'>Events</Link>
-          <Link className='profileBtn'>My Cart</Link>
+          {/* <Link className='profileBtn'>Events</Link>
+          <Link className='profileBtn'>My Cart</Link> */}
           <Link className='profileBtn'>Go to App</Link>
           <button onClick={onSignOff} className='profileBtn' style={{color: 'red', cursor: 'pointer', backgroundColor: 'lightGrey', border: 'none', marginLeft: '-0.5rem' }}>Sign Off</button>
         </div>
@@ -142,7 +142,9 @@ const Profile = () => {
           )
         }
       </div>
-      <ProgramsComponent title='My Programs' />
+
+      <ProgramProfileComponent/>
+      
       <Footer />
     </div>
   )

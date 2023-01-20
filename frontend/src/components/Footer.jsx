@@ -1,19 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 import {FaInstagram, FaLinkedin, FaTwitterSquare, FaTiktok} from 'react-icons/fa';
 import logo2 from '../assets/icons-logos/logo-sml-second.png';
 
 const Footer = () => {
+
+  const {programs} = useSelector((state) => state.programs);
+
   return (
     <div className='footerContainer'>
 
       <div className='footerNavLinks'>
         <div className='footerLinkInfo'>
           <h5>Shop</h5>
-          <Link className='footerLink'>67 Transformational Program</Link><br />
-          <Link className='footerLink'>Annual One-On-One Training and Support</Link><br />
-          <Link className='footerLink'>6The Foundations for Health, Fitness and Longevity</Link><br />
-          <Link className='footerLink'>Membership Program</Link>
+          {
+            programs.map((item, index) => {
+              return (<div><Link to='/programs' className='footerLink'>{item.title}</Link><br/></div>)
+            })
+          }
         </div>
         <div className='footerLinkInfo'>
           <h5>Learn More</h5>
@@ -25,7 +30,6 @@ const Footer = () => {
           <Link className='footerLink'>About us</Link><br />
           <Link className='footerLink'>Blog</Link><br />
           <Link className='footerLink'>Podcast</Link><br />
-          <Link className='footerLink'>Refer Friend</Link>
         </div>
         <div className='footerLinkInfo'>
           <h5>Contact</h5>

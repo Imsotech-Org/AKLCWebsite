@@ -31,7 +31,7 @@ function App() {
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/website-edit' element={<WebsiteEdit/>}/>
             <Route path='/payment/:id' element={<Payment/>}/>
-            <Route path='/payment-success' element={<PaymentSuccess/>}/>
+            <Route path='/payment-success/:userId/:programId' element={<PaymentSuccess/>}/>
             <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
           </Routes>
         </div>

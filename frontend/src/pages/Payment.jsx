@@ -14,6 +14,7 @@ const Payment = () => {
 
   let { id } = useParams();
   const {program, isErrorProgram, isSuccessProgram, messageProgram} = useSelector((state) => state.programs);
+  const {user} = useSelector((state) => state.auth);
   const {stripe, isError, isSuccess, message} = useSelector((state) => state.stripe);
   const [success, setSuccess] = useState(false);
 
@@ -30,7 +31,7 @@ const Payment = () => {
   }, [dispatch, isErrorProgram, isSuccessProgram, messageProgram, id]);
 
   const handleCheckout = async () => {
-    dispatch(createStripe({price: program.price, name: program.title}));
+    dispatch(createStripe({price: program.price, name: program.title, userId: user._id, programId: program._id}));
   }
 
 

@@ -249,9 +249,7 @@ ul{
 }
 
 .programItemContainer{
-  overflow: auto;
   width: 20rem;
-  height: 22rem;
   margin: 5rem 2rem 4rem 2rem;
   display: inline-block;
   text-align: left;
@@ -315,6 +313,9 @@ ul{
   height: 8rem;
   float: right;
   border-radius: 10px;
+}
+.programItemHeaderInfo {
+  display: flex;
 }
 
 
@@ -476,16 +477,12 @@ ul{
 .productInfo{
   display: inline-block;
   width: 48rem;
-  
 }
 .productInfo h3 {
   font-size: 40px;
-  margin-bottom: 3rem;
-  width: 70%;
 }
 .productInfo h4 {
   font-size: 36px;
-  margin-left: 8rem;
 }
 .productInfo p {
   color: var(--secondary-color);

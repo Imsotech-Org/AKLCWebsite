@@ -88,6 +88,8 @@ const loginUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      hasPaid: user.hasPaid,
+      plan: user.plan,
       token: generateToken(user._id)
     });
   }else {
@@ -101,10 +103,12 @@ const loginUser = asyncHandler(async (req, res) => {
 // @access Private
 const getMe = asyncHandler(async (req, res) => {
   const user = {
-    id: req.user._id,
-    email: req.user.email,
-    name: req.user.name,
-    isAdmin: req.user.isAdmin,
+    id: req.user._id ? req.user._id : '',
+    email: req.user.email ? req.user.email : '',
+    name: req.user.name ? req.user.name : '',
+    isAdmin: req.user.isAdmin ? req.user.isAdmin : '',
+    hasPaid: req.user.hasPaid ? req.user.hasPaid : '',
+    plan: req.user.plan ? req.user.plan : '',
     about: req.user.about ? req.user.about : '',
     userImage: req.user.userImage ? req.user.userImage : '',
     token: req.user.token

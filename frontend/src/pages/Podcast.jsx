@@ -1,9 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SiApplepodcasts, SiGooglepodcasts, SiSpotify} from 'react-icons/si';
 import Footer from '../components/Footer';
+import {useSelector, useDispatch} from 'react-redux';
+import {getPodcasts, reset} from '../features/podcasts/podcastsSlice';
 import PodcastPod from '../components/PodcastPod';
+import {toast} from 'react-toastify';
 
 const Podcast = () => {
+
+  const {podcasts, isSuccess, isError, message} = useSelector((state) => state.podcasts);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(reset());
+    if(isError){
+      toast.error(message);
+    }else{
+      dispatch(getPodcasts());
+    }
+  }, [dispatch, message, isError]);
+
   return (
     <div>
       <div style={{paddingTop: '5.5rem'}}>
@@ -27,12 +44,9 @@ Tune in to learn the latest emerging sciences in longevity, wellness advice, nov
 
         <div className="podcastList">
           <h4>Podcast Episodes</h4>
-          <PodcastPod/>
-          <PodcastPod/>
-          <PodcastPod/>
-          <PodcastPod/>
-          <PodcastPod/>
-          <PodcastPod/>
+          {
+            podcasts.map((item, index) => <PodcastPod key={index} title={item.title} link={item.link}/>)
+          }
         </div>
 
         <Footer/>

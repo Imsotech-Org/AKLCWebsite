@@ -1,21 +1,17 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {getProgram} from '../features/programs/programsSlice';
+import {updateMe, reset} from '../features/auth/authSlice';
 import {toast} from 'react-toastify';
 import { useParams } from 'react-router-dom';
-import {FaCcApplePay, FaGooglePay, FaCcPaypal} from 'react-icons/fa';
-import ShoppingItem from '../components/ShoppingItem';
 import Footer from '../components/Footer';
-
-import axios from 'axios';
 
 
 const PaymentSuccess = () => {
 
-  let { id } = useParams();
+  let { userId, programId } = useParams();
   const {program, isError, isSuccess, message} = useSelector((state) => state.programs);
-  const [success, setSuccess] = useState(false);
-
   
   const dispatch = useDispatch();
 
@@ -25,20 +21,22 @@ const PaymentSuccess = () => {
         toast.error(message);
       }
   
-      dispatch(getProgram(id));
-  }, [dispatch, isError, isSuccess, message, id]);
+      dispatch(getProgram(programId));
+      console.log(`UserID: ${userId}`);
 
-  const handleCheckout = () => {
+      // dispatch(updateMe({plan: programId, hasPaid: true}));
 
-  }
+  }, [dispatch, isError, isSuccess, message, programId, userId]);
 
 
   return (
     <div>
       <div className='paymentContainer'>
-        <div className="shoppingList" style={{margin: '5rem auto 1rem auto'}}>
-          <h3>Shop list Checkout</h3>
-                      
+        <div className="shoppingList" style={{margin: '5rem auto 1rem auto', backgroundColor: 'lightGray', padding: '4rem 3rem', borderRadius: '10px'}}>
+          <h3>Item Aquired:</h3>
+          <h2 style={{marginTop: '2rem', fontSize: '2.5rem', color: '#363d10'}}>{program.title}</h2>
+          <p style={{marginTop: '1rem', fontSize: '1.3rem', color: '#363d10', marginBottom: '2rem'}}>You have now officially joined the Andrew Kolasko Life Center Team! Congratulations?🥳</p>
+          <Link to='/profile' style={{textAlign: 'center', textDecoration: 'none', backgroundColor: '#879635', color: '#F3F1F3', fontSize: '1.5rem', padding: '1rem 2rem', borderRadius: '10px'}}>Go To Profile</Link>
         </div>
       </div>
       <Footer/>

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {toast} from 'react-toastify';
-import {getSystemImages} from '../features/systemImages/systemImageSlice';
+import {getSystemImages, reset} from '../features/systemImages/systemImageSlice';
 import {useSelector, useDispatch} from 'react-redux';
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io';
 
@@ -11,6 +11,7 @@ const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(reset());
     if(isError){
       toast.error(message);
     }

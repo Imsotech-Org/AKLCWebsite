@@ -24,7 +24,7 @@ const ProgramsComponent = ({title = 'Programs and Resources'}) => {
       <h2>{title}</h2>
       {
         programs.map((item, index) => {
-          return (<ProgramItem programImage={item.programImage} programName={item.title} programPrice={item.price} programDescription={item.description} programTopics={item.firstTopics}/>)
+          return (<ProgramItem key={index} programImage={item.programImage} programName={item.title} programPrice={item.price} programDescription={item.description} programTopics={item.firstTopics}/>)
         })
       }
       <h5 style={{textAlign: 'left', padding: '2rem', color: '#879635', fontSize: '1.5rem'}}>Money back guaranteed *</h5>

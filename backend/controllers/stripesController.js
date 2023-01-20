@@ -22,7 +22,7 @@ const createStripe = asyncHandler(async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `http://localhost:3000/payment-success`,
+        success_url: `http://localhost:3000/payment-success/${req.body.userId}/${req.body.programId}`,
         cancel_url: `http://localhost:3000/programs`,
     });
     res.send(201,{url: session.url});
