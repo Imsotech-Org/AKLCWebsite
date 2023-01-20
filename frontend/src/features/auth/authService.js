@@ -59,13 +59,21 @@ const getMe = async (token) => {
   return response.data;
 }
 
+// Forgot Password
+const forgotMyPassword = async (userData) => {
+  const response = await axios.put(`${API_URL}/forgotPassword`, userData);
+
+  return response.data;  
+}
+
 
 const authService = {
   signUp,
   signOff,
   signIn,
   updateMe,
-  getMe
+  getMe,
+  forgotMyPassword
 }
 
 export default authService;

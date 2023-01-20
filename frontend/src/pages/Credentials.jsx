@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {useSelector, useDispatch} from 'react-redux';
 import {signUp, signIn, reset} from '../features/auth/authSlice';
+import {BsPersonCircle} from 'react-icons/bs';
 import Footer from '../components/Footer';
 
 const Credentials = () => {
@@ -122,7 +123,7 @@ const Credentials = () => {
         <div className="signIn">
           <h3>Sign In</h3>
           <p>Welcome Back!</p>
-          <form onSubmit={onSubmitSignIn}>
+          <form onSubmit={onSubmitSignIn} style={{marginBottom: '2rem'}}>
             <label name='emailSignIn'>
               Enter your email <br />
               <input type="email" name='emailSignIn' id='emailSignIn' onChange={onChangeSignIn} />
@@ -133,6 +134,7 @@ const Credentials = () => {
             </label>
             <button>Continue</button>
           </form>
+          <Link style={{marginLeft: '6.5rem'}} to='/forgot-password'>Forgot Password?</Link>
         </div>
 
 
@@ -143,6 +145,15 @@ const Credentials = () => {
           <h3>Sign Up</h3>
           <p>Welcome to AKLC!</p>
           <form onSubmit={onSubmitSignUp} encType='multipart/form-data'>
+            <div className="systemImageUpContainer">
+              <label name='systemImage'>
+                {fileName} <br />
+                <div style={{backgroundColor: '#F3F1F3', width: '5rem', height: '5rem', margin: '0 auto 1rem auto'}}>
+                  <label htmlFor="systemImage"><BsPersonCircle style={{cursor: 'pointer', height: '5rem', width: '5rem', color: '#879635', backgroundColor: '#363d10'}}/></label>
+                  <input onClick={() => console.log('hi')} style={{visibility: 'hidden'}} type="file" filename='userImage' name='userImage' id='userImage' onChange={onChangeSignUp}/>
+                </div>
+              </label>
+            </div>
             <label name='name'>
               Enter your name<br />
               <input type="text" name='name' id='name' onChange={onChangeSignUp} required/>
@@ -159,17 +170,12 @@ const Credentials = () => {
               Confirm your password <br />
               <input type="password" name='password2' id='password2' onChange={onChangeSignUp} required/>
             </label>
-            <label name='userImage'>
-              {fileName} <br />
-              <input type="file" filename='userImage' name='userImage' id='userImage' onChange={onChangeSignUp}/>
-            </label>
             <button>Continue</button>
           </form>
         </div>
 
 
       </div>
-      <p style={{width: '20rem', margin: '0 auto', textAlign: 'center', paddingBottom: '2rem', color: '#879635'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magni velit quae, illo reprehenderit nisi.</p>
       <Footer/>
     </div>
   )

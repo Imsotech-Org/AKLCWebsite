@@ -193,16 +193,6 @@ const WebsiteEdit = () => {
               })
             }
           </div>
-          <div style={{width: '16rem', backgroundColor: 'lightgray', textAlign: 'center', fontSize: '1.5rem'}}>
-            <h5>Videos:</h5>
-            {
-              imagesLoaded.map((item, index) => {
-                if(item.place === 'Videos' && item.show){
-                  return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px'}} src={item.name} alt="" />)
-                }else return ""
-              })
-            }
-          </div>
         </div>
 
         <hr style={{backgroundColor: '#502c49', height: '0.5rem', border: 'none', borderRadius: '10px', marginTop: '2rem', marginBottom: '1rem'}} />

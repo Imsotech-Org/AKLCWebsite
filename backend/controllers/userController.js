@@ -127,6 +127,32 @@ const updateMe = asyncHandler(async (req, res) => {
   res.status(200).json(updatedUser);
 })
 
+// @desc PUT Forgot Password method
+// @route /api/v1/users/forgotPassword
+// @access Public
+const forgotMyPassword = asyncHandler(async (req, res) => {
+  const {name, email, password} = req.body;
+
+  // Hash Password
+  const salt = await bcrypt.genSalt(10);
+  const hashPassword = await bcrypt.hash(password, salt);
+
+  const getUserId = await User.findOne({email});
+
+  if(getUserId.name !== name){
+    res.status(401);
+    throw new Error('Invalid User');
+  }
+
+  // Update User
+  await User.findByIdAndUpdate(
+    {_id: getUserId._id},
+    {password: hashPassword}
+  )
+
+  res.status(200).json({msg: 'Password was updated successfully.'});
+})
+
 
 // Generate token function
 const generateToken = (id) => {
@@ -140,5 +166,6 @@ module.exports = {
   registerUser,
   loginUser,
   getMe,
-  updateMe
+  updateMe,
+  forgotMyPassword
 }

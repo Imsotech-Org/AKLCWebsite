@@ -14,6 +14,7 @@ import Blog from './pages/Blog';
 import Podcast from './pages/Podcast';
 import WebsiteEdit from './pages/WebsiteEdit';
 import PaymentSuccess from './pages/PaymentSuccess';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path='/website-edit' element={<WebsiteEdit/>}/>
             <Route path='/payment/:id' element={<Payment/>}/>
             <Route path='/payment-success/:userId/:programId' element={<PaymentSuccess/>}/>
+            <Route path='/forgot-password' element={<ForgotPassword/>}/>
             <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
           </Routes>
         </div>

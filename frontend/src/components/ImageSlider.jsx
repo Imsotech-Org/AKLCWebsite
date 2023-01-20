@@ -7,30 +7,22 @@ import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io';
 const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
   const {systemImages, isError, isSuccess, message} = useSelector((state) => state.systemImage);
   const [imagesLoaded, setImagesLoaded] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(reset());
-    if(isError){
-      toast.error(message);
-    }
-
-    dispatch(getSystemImages());
-
-    if(isSuccess){
-      if(systemImages){
-        for (let index = 0; index < systemImages.length; index++) {
-          if(systemImages[index].place === typeOfSlide && systemImages[index].show){
-            setImagesLoaded( arr => [...arr, [systemImages[index].name]]);
-          }
+    if(imagesLoaded.length === 0){
+      console.log('Test')
+      dispatch(getSystemImages());
+      for (let index = 0; index < systemImages.length; index++) {
+        if(systemImages[index].place === typeOfSlide && systemImages[index].show){
+          setImagesLoaded( arr => [...arr, [systemImages[index].name]]);
         }
-        console.log(systemImages);
       }
+      console.log(systemImages);
     }
-  }, [dispatch, isError, isSuccess, message, typeOfSlide]);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
+  }, [dispatch, isError, systemImages, imagesLoaded, typeOfSlide]);
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -39,11 +31,14 @@ const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
   }
 
   const goToNext = () => {
-    const isLastSlide = currentIndex === systemImages.length - 2;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    const isLastSlide = imagesLoaded.length;
+    let newIndex = currentIndex + 1;
+    if(newIndex === isLastSlide){
+      newIndex = 0;
+    }
     setCurrentIndex(newIndex);
     console.log(currentIndex);
-    console.log(imagesLoaded[currentIndex])
+    console.log(imagesLoaded[currentIndex][0].split('.')[1]);
   }
 
   return (
