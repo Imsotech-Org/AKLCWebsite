@@ -3,7 +3,7 @@ import TestimonialsItem from './TestimonialsItem';
 
 const Testimonials = () => {
   return (
-    <div className='testimonialsContainer'>
+    <div className='testimonialsContainer' id='testimonials'>
       <h2>Testimonials</h2>
       <TestimonialsItem itemValue={0}/>
       <TestimonialsItem itemValue={1}/>

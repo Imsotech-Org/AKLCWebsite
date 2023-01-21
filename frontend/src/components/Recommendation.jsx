@@ -13,10 +13,10 @@ const Recommendation = () => {
           <p>Consider the totality of your caloric intake.  Don’t overcomplicate your diet.  It’s not that you can’t have carbohydrates, fruit… Avoid processed foods.  Fibre is important.  Adequate nutrition.  Need proper protein intake everyday (1.6 grams of protein intake per kilogram of bodyweight per day for active individuals).  Need for muscle mass and muscle recovery.  In the case of osteoarthritis we need certain nutrients for our cartilage. </p>
           <p>Hormesis:  New emerging sciences are finding that embracing extreme cold and extreme heat could force your body to upgrade its defences and power up its microscopic repair systems which could cut the risks of disease and add years to your life.</p>
         </div>
-        <div className="reccomendationsQuotes">
+        {/* <div className="reccomendationsQuotes">
           <h4>Quotes</h4>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci sem, consectetur id ullamcorper eu, venenatis feugiat metus. Nunc sed ullamcorper lectus, vel lacinia sem. In ullamcorper fermentum risus nec finibus.</p>
-        </div>
+        </div> */}
         <div className="reccomendationsImage">
           <img src={img16} alt="" />
         </div>

@@ -22,8 +22,8 @@ const createStripe = asyncHandler(async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `http://localhost:3000/payment-success/${req.body.userId}/${req.body.programId}`,
-        cancel_url: `http://localhost:3000/programs`,
+        success_url: `https://kolasko.com/payment-success/${req.body.userId}/${req.body.programId}`,
+        cancel_url: `https://kolasko.com/programs`,
     });
     res.send(201,{url: session.url});
 });

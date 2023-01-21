@@ -14,7 +14,7 @@ const Blog = () => {
     const getYoutubeVideos = async () => {
       try {
         console.log('Just before axios');
-        const res = await axios.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyDIo6fs0Rn-6z39CygZ565aO2m9KEDWmiY&channelId=UCScUFoeTbUXWU9FTsKJPCOA&part=snippet,id&order=date&maxResults=20');
+        const res = await axios.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyDQyliUXXUneJSMPep_XEg9RN8xOhTHzh8&channelId=UCScUFoeTbUXWU9FTsKJPCOA&part=snippet,id&order=date&maxResults=20');
         setYtVideos(res.data.items);
         console.log(ytVideos);
       } catch (error) {

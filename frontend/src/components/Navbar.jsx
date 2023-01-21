@@ -49,11 +49,11 @@ const Navbar = () => {
             <Link className='navbar-item' to='/podcast' style={checkItemSelected('/podcast')}>Podcast</Link>
           </li>
           <li>
-            <Link className='navbar-item' to='/'>Contact</Link>
+            <Link className='navbar-item' to='/?contact=contactInfo'>Contact</Link>
           </li>
-          <li>
+          {/* <li>
             <FaSearch className='navbar-item'/>
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="credential-nav" style={{marginRight: '2rem'}}>
@@ -114,9 +114,9 @@ const Navbar = () => {
             <li>
               <Link className='mobile-nav-item' to='/credentials' style={checkItemSelected('/credentials', true)}>Sign Up</Link>
             </li>
-            <li>
+            {/* <li>
               <Link className='mobile-nav-item' to='/credentials'><FaUser style={{height: '2rem', width: '2rem'}}/></Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

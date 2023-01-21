@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {getProgram} from '../features/programs/programsSlice';
 import {toast} from 'react-toastify';
-import { useParams, useNavigate } from 'react-router-dom';
-import {FaCcApplePay, FaGooglePay, FaCcPaypal} from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
 import ShoppingItem from '../components/ShoppingItem';
 import Footer from '../components/Footer';
 
@@ -15,12 +14,12 @@ const Payment = () => {
   let { id } = useParams();
   const {program, isErrorProgram, isSuccessProgram, messageProgram} = useSelector((state) => state.programs);
   const {user} = useSelector((state) => state.auth);
-  const {stripe, isError, isSuccess, message} = useSelector((state) => state.stripe);
-  const [success, setSuccess] = useState(false);
+  const {stripe} = useSelector((state) => state.stripe);
+  // const [success, setSuccess] = useState(false);
 
   
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
       if(isErrorProgram){

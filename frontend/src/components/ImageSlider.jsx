@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {toast} from 'react-toastify';
-import {getSystemImages, reset} from '../features/systemImages/systemImageSlice';
+import {getSystemImages} from '../features/systemImages/systemImageSlice';
 import {useSelector, useDispatch} from 'react-redux';
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io';
 
 const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
-  const {systemImages, isError, isSuccess, message} = useSelector((state) => state.systemImage);
+  const {systemImages, isError} = useSelector((state) => state.systemImage);
   const [imagesLoaded, setImagesLoaded] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentFileType, setCurrentFileType] = useState('');

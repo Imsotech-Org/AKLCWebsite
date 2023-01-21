@@ -8,7 +8,7 @@ import {toast} from 'react-toastify';
 
 const Podcast = () => {
 
-  const {podcasts, isSuccess, isError, message} = useSelector((state) => state.podcasts);
+  const {podcasts, isError, message} = useSelector((state) => state.podcasts);
 
   const dispatch = useDispatch();
 
