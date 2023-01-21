@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'production') {
   console.log('IN THE SERVER FRONTEND FUNCTION!!!!!!!!');
   // FIX: below code fixes app crashing on refresh in deployment
   app.get('*', (_, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
     console.log(path.join(__dirname, '../frontend/build/index.html'));
   })
 } 
