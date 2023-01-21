@@ -13,10 +13,10 @@ const Footer = () => {
 
       <div className='footerNavLinks'>
         <div className='footerLinkInfo'>
-          <h5>Shop</h5>
+          <h5 id='shop'>Shop</h5>
           {
             programs.map((item, index) => {
-              return (<div><Link to='/programs' className='footerLink'>{item.title}</Link><br/></div>)
+              return (<div><Link to={`/programs?program=${item._id}`} className='footerLink'>{item.title}</Link><br/></div>)
             })
           }
         </div>

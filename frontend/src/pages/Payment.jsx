@@ -39,18 +39,24 @@ const Payment = () => {
     <div>
       <div className='paymentContainer'>
         <div className="shoppingList" style={{margin: '5rem auto 1rem auto'}}>
-          <h3>Shop list summary</h3>
-          <div className="shoppingItemsList">
+          <h3 style={{fontSize: '3rem', marginBottom: '2rem'}}>Shop list summary</h3>
+          <div className="shoppingItemsList" style={{width: '100%', marginBottom: '2rem'}}>
             <ShoppingItem programImage={program.programImage} programTitle={program.title} programPrice={program.price} programDescription={program.description}/>
             <div className="shoppingItemsTotal">
-              <h3>Total</h3>
-              <h3>${program.price}</h3>
+              <h3 style={{fontSize: '2.5rem'}}>Total</h3>
+              <h3 style={{fontSize: '2.5rem'}}>${program.price}</h3>
             </div>
           </div>
           {
-            stripe.url && <a href={stripe.url}>Go To Payment</a>
+            stripe.url && <a style={{backgroundColor: '#363d10', color: '#F3F1F3', fontSize: '1.4rem', textAlign: 'center', borderRadius: '15px', border: 'none', cursor: 'pointer', padding: '1rem 42%', textDecoration: 'none'}} href={stripe.url}>Go To Payment</a>
           }
-          <button onClick={() => handleCheckout()}>Check Out</button>
+          {
+            !stripe.url && (
+              <div className="shoppingInfo" style={{marginTop: '-2rem', width: '100%'}}>
+                <button style={{width: '100%'}} onClick={() => handleCheckout()}>Check Out</button>
+              </div>
+            )
+          }
         </div>
       </div>
       <Footer/>

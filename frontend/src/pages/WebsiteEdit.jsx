@@ -17,6 +17,7 @@ const WebsiteEdit = () => {
   const [imageClicked, setImageClicked] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const [idClicked, setIdClicked] = useState('');
+  const [currentFileType, setCurrentFileType] = useState('');
 
   const {systemImages, isError, isSuccess, message} = useSelector((state) => state.systemImage);
 
@@ -146,7 +147,11 @@ const WebsiteEdit = () => {
         <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current System Images:</h4>
         {
           imagesLoaded.map((item, index) => {
-            return (<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px', margin: '0 1.4rem 1rem 0', cursor: 'pointer'}} src={item.name} alt="" />)
+            if(item.name.split('.')[1] === 'mp4'){
+              return (<video onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px', margin: '0 1.4rem 1rem 0', cursor: 'pointer'}} src={item.name} alt="" />)
+            }else {
+              return (<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px', margin: '0 1.4rem 1rem 0', cursor: 'pointer'}} src={item.name} alt="" />)
+            }
           })
         }
         <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current Images on display:</h4>
@@ -156,7 +161,11 @@ const WebsiteEdit = () => {
             {
               imagesLoaded.map((item, index) => {
                 if(item.place === 'Home' && item.show){
-                  return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px', cursor: 'pointer'}} src={item.name} alt="" />)
+                  if(item.name.split('.')[1] === 'mp4'){
+                    return(<video onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px', cursor: 'pointer'}} src={item.name} alt="" />)
+                  }else {
+                    return(<img onClick={() => onClickModal(item.name, item.id)} key={index} style={{height: '8rem', borderRadius: '15px', cursor: 'pointer'}} src={item.name} alt="" />)
+                  }
                 }else {
                   return ""
                 }

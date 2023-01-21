@@ -7,10 +7,9 @@ const ShoppingItem = ({programImage, programTitle, programPrice, programDescript
         <img src={`${process.env.PUBLIC_URL}programsImgs/${programImage}`} alt="" />
         <div className="shoppingItemInfo">
           <div className="shoppingItemInfoMain" >
-            <h4>{programTitle}</h4>
-            <h4>${programPrice}</h4>
+            <h4 style={{fontSize: '2.5rem', padding: '1rem'}}>{programTitle}</h4>
           </div>
-          <p>{programDescription}</p>
+          <p style={{fontSize: '1rem', padding: '1rem'}}>{programDescription}</p>
         </div>
       </div>
       <hr />

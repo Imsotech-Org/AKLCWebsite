@@ -8,6 +8,7 @@ const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
   const {systemImages, isError, isSuccess, message} = useSelector((state) => state.systemImage);
   const [imagesLoaded, setImagesLoaded] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentFileType, setCurrentFileType] = useState('');
 
   const dispatch = useDispatch();
 
@@ -23,6 +24,17 @@ const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
       console.log(systemImages);
     }
   }, [dispatch, isError, systemImages, imagesLoaded, typeOfSlide]);
+
+  useEffect(() => {
+    setTimeout(function() {
+      if(imagesLoaded.length > 0){
+        setCurrentFileType(imagesLoaded[currentIndex][0].split('.')[1]);
+        console.log(currentFileType);
+        console.log(imagesLoaded[currentIndex][0]);
+        console.log(`${process.env.PUBLIC_URL}systemImgs/${imagesLoaded[currentIndex][0]}`);
+      }
+    }, 1000); 
+  }, [currentIndex, imagesLoaded])
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -43,18 +55,21 @@ const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
 
   return (
     <div className='sliderStyle'>
-      <div className='leftArrowStyle' onClick={goToPrevious}><IoIosArrowBack/></div>
-      <div className='rightArrowStyle' onClick={goToNext}><IoIosArrowForward/></div>
-      {showQuotes ?
-        <div>
-          <div className='slideQuote'>"I am not concerned that you have fallen. I am concerned that you will rise"</div>
-          <div className='slideQuoteAuth'>-Abraham Lincoln</div>
-        </div> :
-        ''}
       {
-
+        currentFileType === 'mp4' ? (<div className='slideStyle'><video style={{width: '100%', height: '100%'}} controls src={imagesLoaded[currentIndex][0] ? `${process.env.PUBLIC_URL}systemImgs/${imagesLoaded[currentIndex][0]}` : ``}></video></div>) : (<div className='slideStyle' style={{backgroundImage: `url(${process.env.PUBLIC_URL}systemImgs/${imagesLoaded[currentIndex]})`}}></div>)
       }
-      <div className='slideStyle' style={{backgroundImage: `url(${process.env.PUBLIC_URL}systemImgs/${imagesLoaded[currentIndex]})`}}></div>
+      {
+        currentFileType === 'mp4' ? (<div></div>) : (<div>
+          <div className='leftArrowStyle' onClick={goToPrevious}><IoIosArrowBack/></div>
+          <div className='rightArrowStyle' onClick={goToNext}><IoIosArrowForward/></div>
+          {showQuotes ?
+            <div>
+              <div className='slideQuote'>"I am not concerned that you have fallen. I am concerned that you will rise"</div>
+              <div className='slideQuoteAuth'>-Abraham Lincoln</div>
+            </div> :
+            ''}
+        </div>)
+      }
     </div>
   )
 }

@@ -109,7 +109,7 @@ const Modal = ({image, id, open, onClose}) => {
             <div onClick={(e) => {
                 e.stopPropagation()
             }} className="modalContainer">
-                <img src={image} alt="" />
+                {image.split('.')[1] === 'mp4' ? (<video style={{width: '20rem', marginLeft: '1rem'}} controls src={image} alt="" />) : (<img style={{height: '10rem', marginLeft: '1rem', marginTop: '4rem'}} src={image} alt="" />)}
                 <div className="modalRight">
                     <p style={{cursor: 'pointer'}} onClick={onClose} className='closeBtn'>X</p>
                     <h4 style={{marginTop: '1rem', fontSize: '1.4rem'}}>Configure Image</h4>

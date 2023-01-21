@@ -74,7 +74,7 @@ const Product = ({item, index}) => {
 
 
   return (
-    <div className="productContainer" style={{background: backgroundChoice(index)}}>
+    <div id={item._id} className="productContainer" style={{background: backgroundChoice(index)}}>
       <img src={`${process.env.PUBLIC_URL}programsImgs/${item.programImage}`} alt="" />
       <div className="productInfo" style={{color: index%2 ? '#F3F1F3' : '#363D10'}}>
         <div style={{display: 'flex', justifyContent: 'space-between', padding: '0 1rem 2rem 0'}}>
