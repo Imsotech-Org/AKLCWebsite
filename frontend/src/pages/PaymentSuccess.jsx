@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {getProgram} from '../features/programs/programsSlice';
-// import {updateMe, reset} from '../features/auth/authSlice';
+import {updateMe, reset} from '../features/auth/authSlice';
 import {toast} from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
@@ -24,7 +24,7 @@ const PaymentSuccess = () => {
       dispatch(getProgram(programId));
       console.log(`UserID: ${userId}`);
 
-      // dispatch(updateMe({plan: programId, hasPaid: true}));
+      dispatch(updateMe({plan: programId, hasPaid: true}));
 
   }, [dispatch, isError, isSuccess, message, programId, userId]);
 

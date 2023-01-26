@@ -7,6 +7,7 @@ import { updateMe, signOff, reset } from '../features/auth/authSlice';
 import { Link } from 'react-router-dom';
 import {MdPhotoSizeSelectActual} from 'react-icons/md';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const Profile = () => {
@@ -32,8 +33,10 @@ const Profile = () => {
 
 
   useEffect(() => {
-    console.log(user.isAdmin);
-  }, [user.isAdmin]);
+    if(window.location.search && window.location.search.split('?')[1].split('&')[0] === 'freePlan'){
+      toast.success('Thank For signing up for our FREE PROGRAM! You can take a closer look at it at the bottom of the page 🥳')
+    }
+  }, []);
 
 
   const onEdit = () => {

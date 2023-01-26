@@ -20,7 +20,6 @@ const ProgramItem = ({programImage, programName, programPrice, programDescriptio
         <img src={`${process.env.PUBLIC_URL}programsImgs/${programImage}`} alt="Program-img" className='programItemHeaderImage'/>
         <div className='programItemHeaderInfo'>
           <h3>{programName}</h3>
-          <h5>{formatter.format(programPrice)}</h5>
         </div>
       </div>
       <p style={{height: '70px', overflow:'hidden'}}>{programDescription}</p>

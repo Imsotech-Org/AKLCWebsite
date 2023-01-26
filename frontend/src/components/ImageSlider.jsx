@@ -3,7 +3,7 @@ import {getSystemImages} from '../features/systemImages/systemImageSlice';
 import {useSelector, useDispatch} from 'react-redux';
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io';
 
-const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
+const ImageSlider = ({ showQuotes = true, quote = "", author="", typeOfSlide = "Home" }) => {
   const {systemImages, isError} = useSelector((state) => state.systemImage);
   const [imagesLoaded, setImagesLoaded] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -63,8 +63,8 @@ const ImageSlider = ({ showQuotes = true, typeOfSlide = "Home" }) => {
           <div className='rightArrowStyle' onClick={goToNext}><IoIosArrowForward/></div>
           {showQuotes ?
             <div>
-              <div className='slideQuote'>"I am not concerned that you have fallen. I am concerned that you will rise"</div>
-              <div className='slideQuoteAuth'>-Abraham Lincoln</div>
+              <div className='slideQuote'>{quote}</div>
+              <div className='slideQuoteAuth'>-{author}</div>
             </div> :
             ''}
         </div>)

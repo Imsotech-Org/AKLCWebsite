@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {getProgram} from '../features/programs/programsSlice';
 import {toast} from 'react-toastify';
 import { useParams } from 'react-router-dom';
@@ -19,19 +20,28 @@ const Payment = () => {
 
   
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
       if(isErrorProgram){
         toast.error(messageProgram);
       }
-  
       dispatch(getProgram(id));
   }, [dispatch, isErrorProgram, isSuccessProgram, messageProgram, id]);
 
   const handleCheckout = async () => {
-    dispatch(createStripe({price: program.price, name: program.title, userId: user._id, programId: program._id}));
+    if(location.search !== '' && location.search.split('?')[1].split('=')[1]){
+      navigate(`/specialPayment/${user._id}/${program._id}`);
+    }else{
+      dispatch(createStripe({price: program.price, name: program.title, userId: user._id, programId: program._id}));
+    }
   }
+
+  const formatter = new Intl.NumberFormat('en-CA', {
+    style: 'currency',
+    currency: 'CAD',
+  });
 
 
   return (
@@ -40,10 +50,16 @@ const Payment = () => {
         <div className="shoppingList" style={{margin: '5rem auto 1rem auto'}}>
           <h3 style={{fontSize: '3rem', marginBottom: '2rem'}}>Shop list summary</h3>
           <div className="shoppingItemsList" style={{width: '100%', marginBottom: '2rem'}}>
-            <ShoppingItem programImage={program.programImage} programTitle={program.title} programPrice={program.price} programDescription={program.description}/>
+            <ShoppingItem programTitle={program.title} programPrice={program.price} programDescription={program.description}/>
             <div className="shoppingItemsTotal">
               <h3 style={{fontSize: '2.5rem'}}>Total</h3>
-              <h3 style={{fontSize: '2.5rem'}}>${program.price}</h3>
+              {
+                (location.search !== '' && location.search.split('?')[1].split('=')[1]) ? (
+                  <h3 style={{fontSize: '2.5rem'}}>{formatter.format(program.secondPrice)}</h3>
+                ): (
+                  <h3 style={{fontSize: '2.5rem'}}>{formatter.format(program.price)}</h3>
+                )
+              }
             </div>
           </div>
           {

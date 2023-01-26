@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import emailjs from "emailjs-com";
 import {toast} from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,14 +23,25 @@ const Contact = ({open, onClose}) => {
     const onSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
+        emailjs
+        .sendForm(
+          "service_j7fgxpa",
+          "template_j2nclgt",
+          e.target,
+          "-GyAEjDdGNTtcLhHU"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
         toast.success('Message Sent Successfully!');
         navigate('/');
         open = false;
-        setFormData({
-            name: '',
-            email: '',
-            description: ''
-        });
+        window.location.reload();
     }
 
     if(!open) return null

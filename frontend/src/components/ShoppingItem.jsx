@@ -1,6 +1,7 @@
 import React from 'react';
 
-const ShoppingItem = ({programImage, programTitle, programPrice, programDescription}) => {
+const ShoppingItem = ({programImage = "", programTitle, programPrice, programDescription}) => {
+
   return (
     <div className='outerShoppingItemContainer'>
       <div className='shoppingItemContainer'>

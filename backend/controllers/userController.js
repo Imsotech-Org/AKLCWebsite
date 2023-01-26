@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 
@@ -117,14 +118,35 @@ const getMe = asyncHandler(async (req, res) => {
   res.status(200).json(user);
 })
 
+// @desc Get all users
+// @route /api/v1/users/getAll
+// @access Public
+const getAll = asyncHandler(async (req, res) => {
+  const users = await User.find();
+  res.status(200).json(users);
+})
+
 
 // @desc PUT update user
 // @route /api/v1/users/me
 // @access Private
 const updateMe = asyncHandler(async (req, res) => {
-  const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, { new: true }) 
+  if(req.body.plan !== ""){
+    console.log('DIFFERENT');
+    console.log(req.body);
+    const newPlan = mongoose.Types.ObjectId(req.body.plan);
+    if(req.body.length > 1){
+      const updatedUser = await User.findByIdAndUpdate(req.user._id, {plan: newPlan, hasPaid: req.body.hasPaid}, {new: true});
+      res.status(200).json(updatedUser);
+    }else {
+      const updatedUser = await User.findByIdAndUpdate(req.user._id, {plan: newPlan}, {new: true});
+      res.status(200).json(updatedUser);
+    }
+  }else{
+    const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, { new: true });
 
-  res.status(200).json(updatedUser);
+    res.status(200).json(updatedUser);
+  }
 })
 
 // @desc PUT Forgot Password method
@@ -166,6 +188,7 @@ module.exports = {
   registerUser,
   loginUser,
   getMe,
+  getAll,
   updateMe,
   forgotMyPassword
 }

@@ -476,7 +476,7 @@ ul{
 }
 .productInfo{
   display: inline-block;
-  width: 48rem;
+  width: 45rem;
 }
 .productInfo h3 {
   font-size: 40px;
@@ -494,7 +494,6 @@ ul{
   color: #502c49;
 }
 .productInfo .productInfoBtn {
-  width: 50%;
   height: 3rem;
   border: none;
   background-color: var(--ternary-color);
@@ -575,6 +574,13 @@ ul{
 .subscribePodcastContainer hr{
   margin-top: 1rem; 
   margin-bottom: 0.5rem;
+}
+.marketingContainer{
+  text-align: center;
+  padding: 1rem 10rem; 
+  color: #363d10;
+  overflow: auto;
+  background-color: #F3F1F3;
 }
 .aboutPodcast{
   margin-left: 4rem;
@@ -852,7 +858,7 @@ ul{
   color: var(--primary-color);
   font-size: 1.2rem;
 }
-.modalForm input, select{
+.modalForm input, .modalForm select{
   display: block;
   width: 100%; 
   height: 2rem; 

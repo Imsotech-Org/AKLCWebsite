@@ -13,6 +13,10 @@ const programsSchema = mongoose.Schema({
         type: Number,
         require: [true, "Please add price to program"],
     },
+    secondPrice: {
+        type: Number,
+        require: [true, "Please add price to program"],
+    },
     description: {
         type: String,
         required: [true, 'Please add a description to program'],

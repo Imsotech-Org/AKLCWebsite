@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {getPrograms} from '../features/programs/programsSlice';
 import {toast} from 'react-toastify';
 
-const ProgramsComponent = ({title = 'Programs and Resources'}) => {
+const ProgramsComponent = ({title = 'Products and Programs'}) => {
 
   const {programs, isError, isSuccess, message} = useSelector((state) => state.programs);
   // const [programId, setProgramId] = useState('');

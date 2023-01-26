@@ -14,6 +14,7 @@ const CreateProgram = () => {
         programImage: '',
         title: '',
         price: '',
+        secondPrice: '',
         description: '',
         firstTopics: '',
         moreTopics: false,
@@ -88,6 +89,10 @@ const CreateProgram = () => {
                             <label htmlFor="price">
                                 Price<br/>
                                 <input style={{ width: '15rem', height: '2.7rem', background: '#F3F1F3', border: '1px solid #363D10', borderRadius: '15px', marginBottom: '1rem', marginTop: '0.2rem'}} type="text" name="price" id="price" onChange={onChangeUploadImage}/>
+                            </label><br />
+                            <label htmlFor="secondPrice">
+                                Second Price<br/>
+                                <input style={{ width: '15rem', height: '2.7rem', background: '#F3F1F3', border: '1px solid #363D10', borderRadius: '15px', marginBottom: '1rem', marginTop: '0.2rem'}} type="text" name="secondPrice" id="secondPrice" onChange={onChangeUploadImage}/>
                             </label><br />
                         </div>
                     </div>

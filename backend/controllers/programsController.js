@@ -44,17 +44,19 @@ const createProgram = asyncHandler(async (req, res) => {
         throw new Error('User not authorized for function');
     }
 
-    const {programImage, title, price, description, firstTopics, moreTopics, longTopics} = req.body;
+    const {programImage, title, price, secondPrice, description, firstTopics, moreTopics, longTopics} = req.body;
 
     if(!programImage || !title || !price || !description || moreTopics){
         res.status(400);
+        console.log(programImage, title, price, description, firstTopics, moreTopics, longTopics);
         throw new Error('Please add programImage, title, price, description, and the moreTopics');
     }
     
     const newProgram = await Programs.create({
         programImage,
         title, 
-        price, 
+        price,
+        secondPrice,
         description, 
         firstTopics, 
         moreTopics, 

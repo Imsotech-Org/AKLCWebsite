@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
   user: user ? user : null,
+  users: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -55,6 +56,17 @@ export const getMe = createAsyncThunk('auth/me', async (thunkAPI) => {
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
     return thunkAPI.rejectWithValue(message);
+  }
+})
+
+// Get all users
+export const getAll = createAsyncThunk('auth/getAll', async (_, thunkAPI) => {
+  try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await authService.getAll(token);
+  } catch (error) {
+      const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
   }
 })
 
@@ -142,6 +154,20 @@ export const authSlice = createSlice({
       state.isError = true
       state.message = action.payload
       state.user = null
+    })
+    .addCase(getAll.pending, (state) => {
+      state.isLoading = true
+    })
+    .addCase(getAll.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.isSuccess = true
+      state.users = action.payload
+    })
+    .addCase(getAll.rejected, (state, action) => {
+      state.isLoading = false
+      state.isError = true
+      state.message = action.payload
+      state.users = []
     })
     .addCase(forgotMyPassword.pending, (state) => {
       state.isLoading = true

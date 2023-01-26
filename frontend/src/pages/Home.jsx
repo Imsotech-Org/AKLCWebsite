@@ -13,7 +13,7 @@ const Home = () => {
 
   useEffect(() => {
     const element = document.getElementById(window.location.search.split('=')[1]) ? document.getElementById(window.location.search.split('=')[1]) : document.getElementById('containerInitial');
-    if(window.location.search.split('=')[1] === 'contactInfo'){
+    if(window.location.search && window.location.search.split('=')[1] === 'contactInfo'){
       setOpenModal(true);
     }else {
       console.log(window.location.search.split('=')[1]);
@@ -30,7 +30,7 @@ const Home = () => {
       <div className='containerStyle'>
         <ImageSlider/>
       </div>
-      <Subscribe color='#879635'/>
+      <Subscribe color='#879635' showTop={true}/>
       <Benefits/>
       <ProgramsComponent/>
       <Testimonials/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import img16 from '../assets/media/img16.jpg';
+import img16 from '../assets/media/image11.jpeg';
 
 const Recommendation = () => {
   return (

@@ -79,9 +79,13 @@ const Product = ({item, index}) => {
       <div className="productInfo" style={{color: index%2 ? '#F3F1F3' : '#363D10'}}>
         <div style={{display: 'flex', justifyContent: 'space-between', padding: '0 1rem 2rem 0'}}>
           <h3 style={{display: 'inline-block'}}>{item.title}</h3>
-          <h4 style={{display: 'inline-block'}}>{formatter.format(item.price)}</h4>
         </div>
         <p style={{color: index%2 ? '#F3F1F3' : '#363D10', marginBottom: '1rem'}}>{item.description}</p>
+        {
+          !(item.price == 0) && (
+            <h4 style={{display: 'inline-block', marginBottom: '1rem'}}>{formatter.format(item.price)}</h4>
+          )
+        }
         <ul style={{color: liColor(index), marginBottom: '3rem'}}>
           {firstTopics.map((topic) => <li style={{margin: '0 2rem 1rem 0'}}>+ {topic}</li>)}
           {openMore && longTopics.map((topic) => <li style={{display: 'inline-block', margin: '0 2rem 1rem 0'}}>+ {topic}</li>)}
@@ -93,7 +97,20 @@ const Product = ({item, index}) => {
             ) : ('')
           }
         </ul>
-        <Link to={`/payment/${item._id}`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 40%'}}>Buy Now</Link>
+        {
+          item.secondPrice ? (
+            <div style={{display: 'flex', justifyContent: 'space-between', gap: '1rem'}}>
+              <Link to={`/payment/${item._id}`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 8% 0 8%',}}>Pay {formatter.format(item.price)}</Link>
+              <Link to={`/payment/${item._id}?secondPrice=true`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 8% 0 8%'}}>Buy Subscription {formatter.format(item.secondPrice)}</Link>
+            </div>
+          ) : (
+            !(item.price == 0) ? (
+              <Link to={`/payment/${item._id}`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 30%'}}>Pay {formatter.format(item.price)}</Link>
+            ) : (
+              <Link to={`/profile?freePlan&${item._id}`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 30%'}}>FREE - Enroll Now</Link>
+            )
+          )
+        }
       </div>
     </div>
   )

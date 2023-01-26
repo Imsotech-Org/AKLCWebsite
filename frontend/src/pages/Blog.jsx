@@ -14,7 +14,8 @@ const Blog = () => {
     'AIzaSyDQyliUXXUneJSMPep_XEg9RN8xOhTHzh8',
     'AIzaSyDIo6fs0Rn-6z39CygZ565aO2m9KEDWmiY',
     'AIzaSyDoLRWVAF8CffT7_WP3Qfu5vO2X6QGepeE',
-    'AIzaSyDvaFeseVA_BjEFXo9WkE7KXzIlnrnfpKc'
+    'AIzaSyDvaFeseVA_BjEFXo9WkE7KXzIlnrnfpKc',
+    'AIzaSyCVrIzvWIlisPXrt169HC6YiPBx3Mha4EA'
   ])
 
   useEffect(() => {
@@ -50,10 +51,10 @@ const Blog = () => {
     <div>
       <div style={{paddingTop: '3.5rem'}}>
         <div className='containerStyle'>
-          <ImageSlider typeOfSlide="Blog"/>
+          <ImageSlider showQuotes={false} typeOfSlide="Blog"/>
         </div>
         <Subscribe color={'#363D10'}/>
-        <h2 style={{textAlign: 'center', fontSize: '49px', paddingTop: '2.5rem', color: '#363D10', marginBottom: '2rem'}}>Youtube Videos</h2>
+        <h2 style={{textAlign: 'center', fontSize: '49px', paddingTop: '2.5rem', color: '#363D10', marginBottom: '2rem'}}>YouTube Videos</h2>
         {
           ytVideos.map((item, index) => {
             if(item.id.kind === "youtube#video"){

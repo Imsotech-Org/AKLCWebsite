@@ -59,6 +59,18 @@ const getMe = async (token) => {
   return response.data;
 }
 
+// Get All
+const getAll = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+  const response = await axios.get(`${API_URL}/getAll`, config);
+
+  return response.data;
+}
+
 // Forgot Password
 const forgotMyPassword = async (userData) => {
   const response = await axios.put(`${API_URL}/forgotPassword`, userData);
@@ -73,6 +85,7 @@ const authService = {
   signIn,
   updateMe,
   getMe,
+  getAll,
   forgotMyPassword
 }
 

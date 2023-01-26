@@ -12,6 +12,7 @@ import ShowQuotes from '../components/ShowQuotes';
 import CreatePodcast from '../components/CreatePodcast';
 import ShowPodcast from '../components/ShowPodcast';
 import ShowSubscribers from '../components/ShowSubscribers';
+import GetUsers from '../components/GetUsers';
 
 const WebsiteEdit = () => {
   const [imageClicked, setImageClicked] = useState('');
@@ -225,6 +226,9 @@ const WebsiteEdit = () => {
 
         <hr style={{backgroundColor: '#502c49', height: '0.5rem', border: 'none', borderRadius: '10px', marginTop: '2rem', marginBottom: '1rem'}} />
 
+        <GetUsers/>
+
+        <hr style={{backgroundColor: '#502c49', height: '0.5rem', border: 'none', borderRadius: '10px', marginTop: '2rem', marginBottom: '1rem'}} />
       </div>
     </div>
   )
