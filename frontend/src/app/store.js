@@ -6,6 +6,7 @@ import podcastsReducer from '../features/podcasts/podcastsSlice';
 import quotesReducer from '../features/quotes/quotesSlice';
 import registersReducer from '../features/registers/registersSlice';
 import stripeReducer from '../features/stripe/stripeSlice';
+import youtubeVideoReducer from '../features/youtubeVideos/youtubeVideosSlice';
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     quotes: quotesReducer,
     registers: registersReducer,
     stripe: stripeReducer,
+    youtubeVideo: youtubeVideoReducer,
   },
 });

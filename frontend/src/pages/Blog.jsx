@@ -3,49 +3,83 @@ import ImageSlider from '../components/ImageSlider';
 import Footer from '../components/Footer';
 import Subscribe from '../components/Subscribe';
 import YoutubeVideo from '../components/YoutubeVideo';
+import {getYoutubeVideos, createYoutubeVideo} from '../features/youtubeVideos/youtubeVideosSlice';
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 const Blog = () => {
 
-  const [ytVideos, setYtVideos] = useState([]);
-  const [apiKey, setApiKey] = useState([
-    'AIzaSyBRJeFhiWuzNUd6Wx_D01a2NRDNweMCBYw',
-    'AIzaSyDQyliUXXUneJSMPep_XEg9RN8xOhTHzh8',
-    'AIzaSyDIo6fs0Rn-6z39CygZ565aO2m9KEDWmiY',
-    'AIzaSyDoLRWVAF8CffT7_WP3Qfu5vO2X6QGepeE',
-    'AIzaSyDvaFeseVA_BjEFXo9WkE7KXzIlnrnfpKc',
-    'AIzaSyCVrIzvWIlisPXrt169HC6YiPBx3Mha4EA'
-  ])
+  const {youtubeVideos, isError, isSuccess, message} = useSelector((state) => state.youtubeVideo);
+
+  const dispatch = useDispatch();
+
+  const [ytVideos, setYtVideos] = useState([
+    {
+      imageName: 'https://i.ytimg.com/vi/bBmNs8b8IIQ/hqdefault.jpg',
+      title: 'Aged 45 to 65? Bring your A+ game!!',
+      description: "In this video, I'll show you info about Andrew Kolasko Life Center, and a description of who Andrew Kolasko is. Enjoy! ABOUT MY ...",
+      youtubevideoId: 'bBmNs8b8IIQ'
+    },
+    {
+      imageName: 'https://i.ytimg.com/vi/3SjM13JDdmM/hqdefault.jpg',
+      title: 'Healthier and Fitter in your 40s, 50s, 60s+',
+      description: "If you're male ages 45-65 and are trying to figure out how to focus on your health, and fitness and promote longevity living, this is ...",
+      youtubevideoId: '3SjM13JDdmM'
+    },
+    {
+      imageName: 'https://i.ytimg.com/vi/bBmNs8b8IIQ/hqdefault.jpg',
+      title: 'Aged 45 to 65? Bring your A+ game!!',
+      description: "In this video, I'll show you info about Andrew Kolasko Life Center, and a description of who Andrew Kolasko is. Enjoy! ABOUT MY ...",
+      youtubevideoId: 'bBmNs8b8IIQ'
+    },
+    {
+      imageName: 'https://i.ytimg.com/vi/lte-1_l2Lgc/hqdefault.jp',
+      title: 'The Plus+ podcast #1 Is it better to look good or live a happy, healthy, longer life?',
+      description: "This clip is from podcast # ‒ Is it better to look good or live a happy, healthy longer life? |Andrew Kolasko| Advanced Human ...",
+      youtubevideoId: 'lte-1_l2Lgc'
+    },
+    {
+      imageName: 'https://i.ytimg.com/vi/CWJb8jCRDWw/hqdefault.jpg',
+      title: 'The Plus+ podcast #2 The Power of Outsourcing',
+      description: "This clip is from podcast #2 ‒ The Power Of Outsourcing |Andrew Kolasko | Advanced Human Performance Specialist Sign up to ...",
+      youtubevideoId: 'CWJb8jCRDWw'
+    },
+    {
+      imageName: 'https://i.ytimg.com/vi/uIQQEhJ7FR4/hqdefault.jpg',
+      title: 'The Plus+ podcst #3  How to increase your Longevity (Part1)',
+      description: "This clip is from podcast # ‒How to increase your Longevity (Part1) |Andrew Kolasko| Advanced Human Performance Specialist ...",
+      youtubevideoId: 'uIQQEhJ7FR4'
+    },
+    {
+      imageName: 'https://i.ytimg.com/vi/PnG7TsFvjEs/hqdefault.jpg',
+      title: 'The Plus+ podcast #4 The Why',
+      description: "This clip is from podcast #4 ‒ The why |Andrew Kolasko | Advanced Human Performance Specialist #longevity #fitness #health ...",
+      youtubevideoId: 'PnG7TsFvjEs'
+    },
+    {
+      imageName: 'https://i.ytimg.com/vi/H4Eupz5tKok/hqdefault.jpg',
+      title: 'The Plus+ podcast #5 What Really Matters',
+      description: "This clip is from podcast #5 ‒ What Really Matters |Andrew Kolasko| Advanced Human Performance Specialist Sign up to receive ...",
+      youtubevideoId: 'H4Eupz5tKok'
+    },
+  ]);
 
   useEffect(() => {
-    const getYoutubeVideos = async () => {
-      try {
-        console.log('Just before axios');
-        apiKey.forEach(chave => {
-          callYt(chave);
-        });
-        console.log(ytVideos);
-      } catch (error) {
-        if(error.response.status === 500){
-          console.log('There was a problem with the server')
-        } else {
-          console.log(error.response.data)
-        }
-      }
+
+    dispatch(getYoutubeVideos());
+
+    if(youtubeVideos.length === 0){
+      console.log('EMPTY');
+      ytVideos.forEach(element => {
+        console.log('Criando youtube')
+        dispatch(createYoutubeVideo(element));
+      });
     }
 
-    getYoutubeVideos();
-  }, [ytVideos]);
-
-  const callYt = async (apiKey) => {
-    const res = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=UCScUFoeTbUXWU9FTsKJPCOA&part=snippet,id&order=date&maxResults=20`);
-    if(res.error){
-      return
-    }else {
-      setYtVideos(res.data.items);
-    }
-  }
+    dispatch(getYoutubeVideos());
+    
+  }, []);
 
   return (
     <div>
@@ -56,12 +90,8 @@ const Blog = () => {
         <Subscribe color={'#363D10'}/>
         <h2 style={{textAlign: 'center', fontSize: '49px', paddingTop: '2.5rem', color: '#363D10', marginBottom: '2rem'}}>YouTube Videos</h2>
         {
-          ytVideos.map((item, index) => {
-            if(item.id.kind === "youtube#video"){
-              return <YoutubeVideo item={item} index={index}/>
-            } else {
-              return ""
-            }
+          youtubeVideos.map((item, index) => {
+            return <YoutubeVideo item={item} index={index}/>
           })
         }
         <Footer/>

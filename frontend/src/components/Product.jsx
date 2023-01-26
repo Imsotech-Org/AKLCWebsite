@@ -83,7 +83,10 @@ const Product = ({item, index}) => {
         <p style={{color: index%2 ? '#F3F1F3' : '#363D10', marginBottom: '1rem'}}>{item.description}</p>
         {
           !(item.price == 0) && (
-            <h4 style={{display: 'inline-block', marginBottom: '1rem'}}>{formatter.format(item.price)}</h4>
+            <div>
+              <h4 style={{display: 'inline-block', marginBottom: '1rem'}}>{formatter.format(item.price)}</h4>
+              <p style={{color: liColor(index)}}>14 DAY MONEY BACK GUARANTEE</p>
+            </div>
           )
         }
         <ul style={{color: liColor(index), marginBottom: '3rem'}}>

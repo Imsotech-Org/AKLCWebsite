@@ -35,6 +35,8 @@ app.use('/api/v1/programs', require('./routes/programsRoutes'));
 
 app.use('/api/v1/stripe', require('./routes/stripesRoutes'));
 
+app.use('/api/v1/youtubeVideos', require('./routes/youtubeVideoRoutes'));
+
 // Serve Frontend
 if (process.env.NODE_ENV === 'production') {
   // Set build folder as static
