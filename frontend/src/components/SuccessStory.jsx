@@ -1,5 +1,5 @@
 import React from 'react';
-import img16 from '../assets/media/image10.jpeg';
+import img16 from '../assets/media/thumbnail_next-pic-65.jpeg';
 
 const SuccessStory = () => {
   return (

@@ -34,7 +34,7 @@ const Blog = () => {
       youtubevideoId: 'bBmNs8b8IIQ'
     },
     {
-      imageName: 'https://i.ytimg.com/vi/lte-1_l2Lgc/hqdefault.jp',
+      imageName: 'https://i.ytimg.com/vi/lte-1_l2Lgc/hqdefault.jpg',
       title: 'The Plus+ podcast #1 Is it better to look good or live a happy, healthy, longer life?',
       description: "This clip is from podcast # ‒ Is it better to look good or live a happy, healthy longer life? |Andrew Kolasko| Advanced Human ...",
       youtubevideoId: 'lte-1_l2Lgc'

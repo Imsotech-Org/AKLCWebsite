@@ -16,6 +16,7 @@ import WebsiteEdit from './pages/WebsiteEdit';
 import PaymentSuccess from './pages/PaymentSuccess';
 import SpecialPayment from './pages/SpecialPayment';
 import ForgotPassword from './pages/ForgotPassword';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -30,13 +31,26 @@ function App() {
             <Route path='/blog' element={<Blog/>}/>
             <Route path='/podcast' element={<Podcast/>}/>
             <Route path='/credentials' element={<Credentials/>}/>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='/website-edit' element={<WebsiteEdit/>}/>
-            <Route path='/payment/:id' element={<Payment/>}/>
-            <Route path='/payment-success/:userId/:programId' element={<PaymentSuccess/>}/>
-            <Route path='/specialPayment/:userId/:programId' element={<SpecialPayment/>}/>
             <Route path='/forgot-password' element={<ForgotPassword/>}/>
             <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
+            
+            <Route path='/profile' element={<PrivateRoute/>}>
+              <Route path='/profile' element={<Profile/>}/>
+            </Route>
+            <Route path='/website-edit' element={<PrivateRoute/>}>
+              <Route path='/website-edit' element={<WebsiteEdit/>}/>
+            </Route>
+            <Route path='/payment/:id' element={<PrivateRoute/>}>
+              <Route path='/payment/:id' element={<Payment/>}/>
+            </Route>
+            <Route path='/payment-success/:userId/:programId' element={<PrivateRoute/>}>
+              <Route path='/payment-success/:userId/:programId' element={<PaymentSuccess/>}/>
+            </Route>
+            <Route path='/specialPayment/:userId/:programId' element={<PrivateRoute/>}>
+              <Route path='/specialPayment/:userId/:programId' element={<SpecialPayment/>}/>
+            </Route>
+
+            
           </Routes>
         </div>
       </Router>

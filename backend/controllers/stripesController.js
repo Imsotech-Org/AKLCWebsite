@@ -22,8 +22,8 @@ const createStripe = asyncHandler(async (req, res) => {
             },
         ],
         mode: 'payment',
-        success_url: `https://aklc-website.herokuapp.com/payment-success/${req.body.userId}/${req.body.programId}`,
-        cancel_url: `https://aklc-website.herokuapp.com/programs`,
+        success_url: `http://kolasko.com/payment-success/${req.body.userId}/${req.body.programId}`,
+        cancel_url: `http://kolasko.com/programs`,
     });
     res.send(201,{url: session.url});
 });

@@ -103,8 +103,14 @@ const Product = ({item, index}) => {
         {
           item.secondPrice ? (
             <div style={{display: 'flex', justifyContent: 'space-between', gap: '1rem'}}>
-              <Link to={`/payment/${item._id}`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 8% 0 8%',}}>Pay {formatter.format(item.price)}</Link>
-              <Link to={`/payment/${item._id}?secondPrice=true`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 8% 0 8%'}}>Buy Subscription {formatter.format(item.secondPrice)}</Link>
+              <Link to={`/payment/${item._id}`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 8% 2% 8%',}}>One-time payment {formatter.format(item.price)}</Link>
+              {
+                item.secondPrice > 1600 ? (
+                  <Link to={`/payment/${item._id}?secondPrice=true`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 8% 2% 8%'}}>3 payments of {formatter.format(item.secondPrice)}</Link>
+                ) : (
+                  <Link to={`/payment/${item._id}?secondPrice=true`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 8% 2% 8%'}}>Monthly payment {formatter.format(item.secondPrice)}</Link>
+                )
+              }
             </div>
           ) : (
             !(item.price == 0) ? (
