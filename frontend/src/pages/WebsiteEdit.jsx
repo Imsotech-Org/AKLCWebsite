@@ -24,6 +24,7 @@ const WebsiteEdit = () => {
 
   const [file, setFile] = useState('');
   const [fileName, setFileName] = useState('Choose File');
+  const [calledOnce, setCalledOnce] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState([{id: '', name: '', place: '', show: ''}]);
 
   const [systemImageData, setSystemImageData] = useState({
@@ -35,17 +36,22 @@ const WebsiteEdit = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if(isError){
-      toast.error(message);
-    }
-
+  const loadImages = () => {
     dispatch(getSystemImages());
     for (let index = 0; index < systemImages.length; index++) {
       setImagesLoaded(oldArray => [...oldArray, {id: systemImages[index]._id, name: `${process.env.PUBLIC_URL}systemImgs/${systemImages[index].name}`, place: systemImages[index].place, show: systemImages[index].show}]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, isError, isSuccess, message]);
+  }
+
+  useEffect(() => {
+    if(isError){
+      toast.error(message);
+    }
+    if(!calledOnce){
+      loadImages();
+    }
+    setCalledOnce(true);
+  }, [isError, message]);
 
   const onClickModal = (image, id) => {
     setOpenModal(true);
@@ -145,7 +151,10 @@ const WebsiteEdit = () => {
             <button style={{textDecoration: 'none', backgroundColor: '#879635', padding: '0.5rem 1rem', borderRadius: '10px', color: '#F3F1F3', fontSize: '1.5rem', border: 'none', width: '14rem'}}>Continue</button>
           </div>
         </form>
-        <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current System Images:</h4>
+        <div style={{display: 'flex', gap: '1rem'}}>
+          <h4 style={{fontSize: '1.4rem', margin: '1rem 0', color: '#363D10'}}>Current System Images:</h4>
+          <button style={{margin: '1rem'}} onClick={loadImages}>Load Images</button>
+        </div>
         {
           imagesLoaded.map((item, index) => {
             if(item.name.split('.')[1] === 'mp4'){

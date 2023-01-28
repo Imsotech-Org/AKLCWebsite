@@ -57,6 +57,8 @@ const ImageSlider = ({ showQuotes = true, quote = "", author="", typeOfSlide = "
       {
         currentFileType === 'mp4' ? (<div className='slideStyle'><video style={{width: '100%', height: '100%'}} controls src={imagesLoaded[currentIndex][0] ? `${process.env.PUBLIC_URL}systemImgs/${imagesLoaded[currentIndex][0]}` : ``}></video></div>) : (<div className='slideStyle' style={{backgroundImage: `url(${process.env.PUBLIC_URL}systemImgs/${imagesLoaded[currentIndex]})`}}></div>)
       }
+      <div className='leftArrowStyle' onClick={goToPrevious}><IoIosArrowBack/></div>
+      <div className='rightArrowStyle' onClick={goToNext}><IoIosArrowForward/></div>
       {
         currentFileType === 'mp4' ? (<div></div>) : (<div>
           <div className='leftArrowStyle' onClick={goToPrevious}><IoIosArrowBack/></div>
