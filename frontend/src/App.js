@@ -29,7 +29,7 @@ function App() {
             <Route path='/about' element={<About/>}/>
             <Route path='/programs' element={<Programs/>}/>
             <Route path='/blog' element={<Blog/>}/>
-            <Route path='/podcast' element={<Podcast/>}/>
+            {/* <Route path='/podcast' element={<Podcast/>}/> */}
             <Route path='/credentials' element={<Credentials/>}/>
             <Route path='/forgot-password' element={<ForgotPassword/>}/>
             <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>

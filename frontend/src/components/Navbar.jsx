@@ -43,11 +43,11 @@ const Navbar = () => {
             <Link className='navbar-item' to='/programs' style={checkItemSelected('/programs')}>Programs</Link>
           </li>
           <li>
-            <Link className='navbar-item' to='/blog' style={checkItemSelected('/blog')}>Blog</Link>
+            <Link className='navbar-item' to='/blog' style={checkItemSelected('/blog')}>Videos</Link>
           </li>
-          <li>
+          {/* <li>
             <Link className='navbar-item' to='/podcast' style={checkItemSelected('/podcast')}>Podcast</Link>
-          </li>
+          </li> */}
           <li>
             <Link className='navbar-item' to='/?contact=contactInfo'>Contact</Link>
           </li>
@@ -97,14 +97,14 @@ const Navbar = () => {
               <Link className='mobile-nav-item' to='/programs' style={checkItemSelected('/programs', true)}>Programs</Link>
             </li>
             <li>
-              <Link className='mobile-nav-item' to='/blog' style={checkItemSelected('/blog', true)}>Blog</Link>
+              <Link className='mobile-nav-item' to='/blog' style={checkItemSelected('/blog', true)}>Videos</Link>
             </li>
-            <li>
+            {/* <li>
               <Link className='mobile-nav-item' to='/videos' style={checkItemSelected('/videos', true)}>Videos</Link>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <Link className='mobile-nav-item' to='/podcast' style={checkItemSelected('/podcast', true)}>Podcast</Link>
-            </li>
+            </li> */}
             <li>
               <Link className='mobile-nav-item' to='/'>Contact</Link>
             </li>

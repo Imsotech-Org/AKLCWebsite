@@ -1,13 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {getSystemImages} from '../features/systemImages/systemImageSlice';
+import {getQuotes} from '../features/quotes/quotesSlice';
 import {useSelector, useDispatch} from 'react-redux';
 import {IoIosArrowForward, IoIosArrowBack} from 'react-icons/io';
 
-const ImageSlider = ({ showQuotes = true, quote = "", author="", typeOfSlide = "Home" }) => {
+const ImageSlider = ({ typeOfSlide = "Home" }) => {
+
   const {systemImages, isError} = useSelector((state) => state.systemImage);
+  const {quotes} = useSelector((state) => state.quotes);
+
   const [imagesLoaded, setImagesLoaded] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentFileType, setCurrentFileType] = useState('');
+
+  const [showQuotes, setShowQuotes] = useState(false);
+  const [quote, setQuote] = useState('');
 
   const dispatch = useDispatch();
 
@@ -21,6 +28,14 @@ const ImageSlider = ({ showQuotes = true, quote = "", author="", typeOfSlide = "
         }
       }
       console.log(systemImages);
+    }
+
+    dispatch(getQuotes());
+    for (let index = 0; index < quotes.length; index++) {
+      if(quotes[index].place === typeOfSlide){
+        setShowQuotes(true);
+        setQuote(quotes[index].text)
+      }
     }
   }, [dispatch, isError, systemImages, imagesLoaded, typeOfSlide]);
 
@@ -66,7 +81,6 @@ const ImageSlider = ({ showQuotes = true, quote = "", author="", typeOfSlide = "
           {showQuotes ?
             <div>
               <div className='slideQuote'>{quote}</div>
-              <div className='slideQuoteAuth'>-{author}</div>
             </div> :
             ''}
         </div>)
