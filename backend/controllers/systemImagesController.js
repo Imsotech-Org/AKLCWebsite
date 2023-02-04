@@ -124,10 +124,48 @@ const deleteSystemImage = asyncHandler(async (req, res) => {
 })
 
 
+// @desc  post a special system Images
+// @route POST /api/v1/systemImages/special/
+// @access Private
+const createSpecialSystemImage = asyncHandler(async (req, res) => {
+  let token
+  let user
+
+  if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+     // Get token from header
+    token = req.headers.authorization.split(' ')[1];
+     // Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    user = await User.findById(decoded.id).select('-password');
+  }
+
+  if(!user.isAdmin) {
+    res.status(401);
+    throw new Error('User not authorized for function');
+  }
+
+  const {name, place, show} = req.body;
+
+  if(!name || !place){
+    res.status(400);
+    throw new Error('Please add name, place, and show');
+  }
+
+  const systemImage = await SystemImage.create({
+    name,
+    place, 
+    show
+  })
+
+  res.status(201).json(systemImage);
+})
+
+
 module.exports = {
   getSystemImages,
   getSystemImage,
   createSystemImage,
   updateSystemImage,
-  deleteSystemImage
+  deleteSystemImage,
+  createSpecialSystemImage
 }

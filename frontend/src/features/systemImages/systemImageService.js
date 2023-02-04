@@ -58,13 +58,27 @@ const deleteSystemImage = async(imageId, token) => {
   return response.data;
 }
 
+// Create special system image
+const createSpecialSystemImage = async (systemImageData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const response = await axios.post(API_URL + '/special', systemImageData, config);
+
+  return response.data;
+}
+
 
 const systemImageService = {
   createSystemImage,
   getSystemImages,
   getSystemImage,
   updateSystemImage,
-  deleteSystemImage
+  deleteSystemImage,
+  createSpecialSystemImage
 }
 
 export default systemImageService;
