@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
-import {getSystemImage, updateSystemImage} from '../features/systemImages/systemImageSlice';
+import {getSystemImage, updateSystemImage, deleteSystemImage} from '../features/systemImages/systemImageSlice';
 
 const Modal = ({image, id, open, onClose}) => {
     const [typeSubmit, setTypeSubmit] = useState('');
@@ -98,6 +98,19 @@ const Modal = ({image, id, open, onClose}) => {
             console.log(place);
         }else if (typeSubmit === 'Delete'){
             console.log('Delete of Image');
+            try {
+                toast.success('Image deleted')
+                onClose();
+                dispatch(deleteSystemImage(id));
+                const res = await axios.delete(`/updateSystem/${systemImage.name}`);
+                console.log(res);
+            } catch (error) {
+                if(error.response.status === 500){
+                    console.log('There was a problem with the server')
+                } else {
+                    console.log(error.response.data)
+                }
+            }
         }
         toast.success('Changes saved');
         onClose();

@@ -45,12 +45,26 @@ const updateSystemImage = async (systemImageData, token) => {
   return response.data;
 }
 
+// Delete system image
+const deleteSystemImage = async(imageId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const response = await axios.delete(API_URL + '/' + imageId, config);
+ 
+  return response.data;
+}
+
 
 const systemImageService = {
   createSystemImage,
   getSystemImages,
   getSystemImage,
-  updateSystemImage
+  updateSystemImage,
+  deleteSystemImage
 }
 
 export default systemImageService;

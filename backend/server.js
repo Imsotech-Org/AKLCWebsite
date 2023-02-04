@@ -119,6 +119,18 @@ app.post('/updateSystem/:newPlace/:oldName', (req, res) => {
   });
   res.send('System Image Updated Name!');
 })
+// Delete System Image
+app.delete('/updateSystem/:name', (req, res) => {
+  const bodyObj = JSON.parse(JSON.stringify(req.params));
+  const imageName = bodyObj.name;
+  console.log('File Name in backend: ', imageName);
+  fs.unlink(path.join(__dirname, '../frontend/public/systemImgs/', imageName), (err) => {
+    if(err) {
+      console.log(err);
+      throw err;
+    }
+  })
+})
 
 // Upload Images for Programs
 app.post('/uploadProgramsImg', uploadProgramsImages.single('programImage'), (req, res) => {
