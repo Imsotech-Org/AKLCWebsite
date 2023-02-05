@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 import FileBase64 from 'react-file-base64';
 import {useSelector, useDispatch} from 'react-redux';
 import {toast} from 'react-toastify';
+import {MdPhotoSizeSelectActual} from 'react-icons/md';
 import {createSpecialSystemImage, getSystemImages} from '../features/systemImages/systemImageSlice';
+import SpecialInput from './SpecialInput';
 
 const TestImages = () => {
 
@@ -10,7 +12,6 @@ const TestImages = () => {
     const [calledOnce, setCalledOnce] = useState(false);
 
     const [systemImageData, setSystemImageData] = useState({
-        id: '',
         name: '',
         place: '',
         show: false
@@ -49,19 +50,19 @@ const TestImages = () => {
         };
     
         dispatch(createSpecialSystemImage(newSystemImageData));
-      }
+    }
 
 
   return (
     <div>
-        <p>{systemImageData.place}</p>
         <p>{systemImageData.name}</p>
+        <h4>This is a test image feature, only developers should use it</h4>
         <form onSubmit={onUploadImage} style={{display: 'flex'}}>
           <div className="systemImageUpContainer">
             <FileBase64
-            type="file"
-            multiple={false}
-            onDone={({ base64 }) => setSystemImageData({ ...systemImageData, name: base64 })}
+                type="file"
+                multiple={false}
+                onDone={({ base64 }) => setSystemImageData({ ...systemImageData, name: base64 })}
             />
           </div>
           <div className="moreSystemImageUpInfo">
@@ -90,10 +91,6 @@ const TestImages = () => {
             <button style={{textDecoration: 'none', backgroundColor: '#879635', padding: '0.5rem 1rem', borderRadius: '10px', color: '#F3F1F3', fontSize: '1.5rem', border: 'none', width: '14rem'}}>Continue</button>
           </div>
         </form>
-
-        <div>
-            <img style={{ width: '100%', height: 300 }} src={systemImages[13].name} alt="" />
-        </div>
     </div>
   )
 }
