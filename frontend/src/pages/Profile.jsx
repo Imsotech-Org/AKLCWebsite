@@ -35,6 +35,9 @@ const Profile = () => {
   useEffect(() => {
     if(window.location.search && window.location.search.split('?')[1].split('&')[0] === 'freePlan'){
       toast.success('Thank For signing up for our FREE PROGRAM! You can take a closer look at it at the bottom of the page 🥳')
+      const userData = {plan: window.location.search.split('?')[1].split('&')[1]};
+      dispatch(updateMe(userData));
+
     }
   }, []);
 
