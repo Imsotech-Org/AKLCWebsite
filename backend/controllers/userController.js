@@ -132,15 +132,19 @@ const getAll = asyncHandler(async (req, res) => {
 // @access Private
 const updateMe = asyncHandler(async (req, res) => {
   if(req.body.plan !== ""){
-    console.log('DIFFERENT');
     console.log(req.body);
     const newPlan = mongoose.Types.ObjectId(req.body.plan);
+    const updatedUser = {
+      plan: newPlan,
+      hasPaid: req.body.hasPaid
+    };
+    console.log(updatedUser);
     if(req.body.length > 1){
-      const updatedUser = await User.findByIdAndUpdate(req.user._id, {plan: newPlan, hasPaid: req.body.hasPaid}, {new: true});
-      res.status(200).json(updatedUser);
+      const latestUser = await User.findByIdAndUpdate(req.user._id, updatedUser, {new: true});
+      res.status(200).json(latestUser);
     }else {
-      const updatedUser = await User.findByIdAndUpdate(req.user._id, {plan: newPlan}, {new: true});
-      res.status(200).json(updatedUser);
+      const latestUser = await User.findByIdAndUpdate(req.user._id, updatedUser, {new: true});
+      res.status(200).json(latestUser);
     }
   }else{
     const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, { new: true });
