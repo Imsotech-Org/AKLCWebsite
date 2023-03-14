@@ -36,14 +36,13 @@ const Subscribe = ({ color, showTop = false }) => {
     <div className='subscribeContainer' style={{backgroundColor: color ? color : '#502c49'}}>
       {showTop && <div className="marketingContainer">
         <img src={thumbnail} style={{width: '22rem', borderRadius: '15px'}} alt="" />
-        <h3 style={{fontSize: '3rem', padding: '0.5rem', marginTop: '0.8rem'}}>Limited Time Offer!</h3>
-        <h4 style={{fontSize: '2rem', padding: '0.5rem', color: '#502c49'}}>FREE replay of</h4>
-        <h4 style={{fontSize: '2rem', padding: '0.5rem', color: '#502c49'}}>5 Fundamentals of Longevity Free Live Webinar.</h4>
-        <h3 style={{fontSize: '2rem', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Sign in to watch now! <FaArrowDown style={{marginLeft: '0.5rem',color: '#502c49', width: '4rem', height: '4rem'}}/></h3>
+        <h3 style={{fontSize: '3rem', padding: '0.5rem', marginTop: '0.8rem'}}>Special Offer!</h3>
+        <h4 style={{fontSize: '2rem', padding: '0.5rem', color: '#502c49'}}>FREE E-Book</h4>
+        <h4 style={{fontSize: '2rem', padding: '0.5rem', color: '#502c49'}}>5 Fundamentals of Longevity</h4>
+        <h3 style={{fontSize: '2rem', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Sign up to download now! <FaArrowDown style={{marginLeft: '0.5rem',color: '#502c49', width: '4rem', height: '4rem'}}/></h3>
       </div>}
 
-      <h2>Sign in to view Webinar</h2>
-      <h4>(Free viewing ends Feburary 15th, 2023)</h4>
+      <h2>Sign up for your FREE E-Book</h2>
       <form onSubmit={onSubmit} style={{width: '100%'}}>
         <input style={{width: '42.5rem'}} type="text" name='name' id='name' placeholder='Name' onChange={onChange}/><br></br>
         <div style={{width: '45rem', padding: '0', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', alignContent: 'center'}}>

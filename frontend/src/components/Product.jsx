@@ -116,7 +116,7 @@ const Product = ({item, index}) => {
             !(item.price == 0) ? (
               <Link to={`/payment/${item._id}`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 30%'}}>Pay {formatter.format(item.price)}</Link>
             ) : (
-              <Link to={`/profile?freePlan&${item._id}`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 30%'}}>FREE - Enroll Now</Link>
+              <a href="mailto:andy@kolasko.com" className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 30%'}}>INQUIRE</a>
               // <Link to={`/payment/${item._id}`} className='productInfoBtn' style={{textDecoration: 'none', padding: '1rem 30%'}}>FREE - Enroll Now</Link>
             )
           )
