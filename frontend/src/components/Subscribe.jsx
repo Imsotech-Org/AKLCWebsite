@@ -1,36 +1,24 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {createRegisters} from '../features/registers/registersSlice';
-import {toast} from 'react-toastify';
-import {BsArrowRight} from 'react-icons/bs';
-import {FaArrowDown} from 'react-icons/fa';
+import React from 'react';
+import { BsArrowRight } from 'react-icons/bs';
+import { FaArrowDown } from 'react-icons/fa';
 import thumbnail from '../assets/media/thumbnail.jpeg';
 
 const Subscribe = ({ color, showTop = false }) => {
 
-  const [registerData, setRegisterData] = useState({
-    name: '',
-    email: '',
-  })
-
-  const dispatch = useDispatch();
-
-  const onChange = (e) => {
-    setRegisterData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }))
-  }
-
-  const onSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createRegisters(registerData));
-    toast.success('Subscribed!');
-    setRegisterData({
-      name: '',
-      email: '',
-    });
-  }
+    const name = document.querySelector('#name').value;
+    const email = document.querySelector('#email').value;
+
+    const subject = 'E-Book Request: ' + email;
+    const body = 'Hi Andrew,\n\nMy name is ' + name + ', I would like to request a copy of your 5 Fundamentals of Longevity E-Book.';
+
+    // Open default email client with email pre-filled
+    window.open('mailto:andy@kolasko.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body));
+
+    // Reset form fields
+    document.querySelector('#contact-form').reset();
+  };
 
   return (
     <div className='subscribeContainer' style={{backgroundColor: color ? color : '#502c49'}}>
@@ -43,15 +31,18 @@ const Subscribe = ({ color, showTop = false }) => {
       </div>}
 
       <h2>Sign up for your FREE E-Book</h2>
-      <form onSubmit={onSubmit} style={{width: '100%'}}>
-        <input style={{width: '42.5rem'}} type="text" name='name' id='name' placeholder='Name' onChange={onChange}/><br></br>
+      <form id="contact-form" style={{width: '100%'}} onSubmit={handleSubmit}>
+        <label htmlFor="name"></label>
+        <input style={{width: '42.5rem'}} type="text" name='name' id='name' placeholder='Name' required/><br></br>
+
         <div style={{width: '45rem', padding: '0', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', alignContent: 'center'}}>
-          <input style={{marginBottom: '3rem', zIndex: '0'}} type="email" name='email' id='email' placeholder='Email' onChange={onChange}/>
-          <button style={{backgroundColor: 'transparent', border: 'none', display: 'inline', padding: '0', margin: '0'}}><BsArrowRight style={{width:'3rem', height: '3rem', marginBottom: '2rem'}}/></button>
+          <label htmlFor="email"></label>
+          <input style={{marginBottom: '3rem', zIndex: '0'}} type="email" name='email' id='email' placeholder='Email' required/>
+          <button type="submit" id="submit-button" style={{backgroundColor: 'transparent', border: 'none', display: 'inline', padding: '0', margin: '0'}}><BsArrowRight style={{width:'3rem', height: '3rem', marginBottom: '2rem'}}/></button>
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default Subscribe
+export default Subscribe;
