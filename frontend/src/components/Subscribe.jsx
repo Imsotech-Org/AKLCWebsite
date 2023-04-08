@@ -11,7 +11,7 @@ const Subscribe = ({ color, showTop = false }) => {
     const email = document.querySelector('#email').value;
 
     const subject = 'E-Book Request: ' + email;
-    const body = 'Hi Andrew,\n\nMy name is ' + name + ', I would like to request a copy of your 5 Fundamentals of Longevity E-Book.';
+    const body = 'Name: ' + name + '\nEmail: ' + email + '\n\nHi Andrew,\n\nMy name is ' + name + ', I would like to request a copy of your 5 Fundamentals of Longevity E-Book.';
 
     // Open default email client with email pre-filled
     window.open('mailto:andy@kolasko.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body));
